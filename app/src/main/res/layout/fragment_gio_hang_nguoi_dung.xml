@@ -7,10 +7,4 @@
     android:orientation="vertical"
     tools:context=".NguoiDungFragment.GioHangNguoiDungFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_marginTop="200dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="giỏ hàng" />
 </LinearLayout>

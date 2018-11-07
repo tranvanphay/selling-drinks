@@ -7,11 +7,8 @@
     android:orientation="vertical"
     tools:context=".AdminFragment.ChuaGiaoFragment"    >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_marginTop="200dp"
+    <ListView
+        android:id="@+id/lvchuagiao"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Chưa giao nè"
-        android:gravity="center"/>
+        android:layout_height="match_parent" />
 </LinearLayout>
