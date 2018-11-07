@@ -17,7 +17,6 @@ import com.example.lenovo.duan1.R;
  */
 public class DaGiaoFragment extends Fragment {
     ListView lvdagiao;
-    FloatingActionButton flb_dagiao;
     android.support.v7.widget.SearchView search_dagiao;
     public DaGiaoFragment() {
         // Required empty public constructor
@@ -30,7 +29,6 @@ public class DaGiaoFragment extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_da_giao,container,false);
         lvdagiao=v.findViewById(R.id.listDagiao);
-        flb_dagiao=v.findViewById(R.id.flbdagiao);
         search_dagiao=v.findViewById(R.id.searchDagiao);
         return  v;
     }

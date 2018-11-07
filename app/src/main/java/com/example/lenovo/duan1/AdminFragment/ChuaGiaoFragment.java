@@ -17,7 +17,6 @@ import com.example.lenovo.duan1.R;
  */
 public class ChuaGiaoFragment extends Fragment {
     ListView lvchuagiao;
-    FloatingActionButton flb_chuagiao;
     android.support.v7.widget.SearchView search_chuagiao;
     public ChuaGiaoFragment() {
 
@@ -31,7 +30,6 @@ public class ChuaGiaoFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_chua_giao, container, false);
         lvchuagiao=v.findViewById(R.id.listchuagiao);
-        flb_chuagiao=v.findViewById(R.id.flbchuagiao);
         search_chuagiao=v.findViewById(R.id.searchchuagiao);
         return v;
 
