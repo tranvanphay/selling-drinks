@@ -7,10 +7,13 @@
     android:orientation="vertical"
     tools:context=".NguoiDungFragment.GioHangNguoiDungFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_marginTop="200dp"
+    <android.support.v7.widget.SearchView
+        android:id="@+id/svgiohang"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="giỏ hàng" />
+        android:layout_height="wrap_content"></android.support.v7.widget.SearchView>
+
+    <ListView
+        android:id="@+id/lv_giohang"
+        android:layout_width="match_parent"
+        android:layout_height="456dp" />
 </LinearLayout>
