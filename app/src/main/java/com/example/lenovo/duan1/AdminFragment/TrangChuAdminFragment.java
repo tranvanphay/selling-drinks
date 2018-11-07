@@ -38,7 +38,7 @@ TextView tvRead;
         // Read from the database
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference myRef=firebaseDatabase.getReference();
-        myRef.child("Tên").setValue("tvxg");
+        myRef.child("Tên").setValue("123");
         // Read from the database
         myRef.child("Tên").addValueEventListener(new ValueEventListener() {
             @Override

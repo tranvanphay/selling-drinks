@@ -11,8 +11,13 @@
         android:icon="@drawable/ic_bill"
         android:title="Hóa đơn" />
     <item
-        android:id="@+id/thongKe"
+        android:id="@+id/loai"
+        android:enabled="true"
+        android:icon="@drawable/ic_bill"
+        android:title="Loại" />
+    <item
+        android:id="@+id/thongTinAdmin"
         android:enabled="true"
         android:icon="@drawable/ic_statistical"
-        android:title="Thống kê" />
+        android:title="Admin" />
 </menu>

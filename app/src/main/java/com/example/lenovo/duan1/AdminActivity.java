@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.lenovo.duan1.AdminFragment.HoaDonFragment;
+import com.example.lenovo.duan1.AdminFragment.LoaiFragment;
 import com.example.lenovo.duan1.AdminFragment.ThongKeFragment;
+import com.example.lenovo.duan1.AdminFragment.ThongTinAdminFragment;
 import com.example.lenovo.duan1.AdminFragment.TrangChuAdminFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.ThanhToanNguoiDungFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.ThongTinNguoiDungFragment;
@@ -46,8 +48,12 @@ public class AdminActivity extends AppCompatActivity {
                     fragment = new HoaDonFragment();
                     loadFragment(fragment);
                     return true;
-                case R.id.thongKe:
-                    fragment = new ThongKeFragment();
+                case R.id.loai:
+                    fragment = new LoaiFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.thongTinAdmin:
+                    fragment = new ThongTinAdminFragment();
                     loadFragment(fragment);
                     return true;
             }

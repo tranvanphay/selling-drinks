@@ -17,7 +17,7 @@ import com.example.lenovo.duan1.R;
 public class HoaDonFragment extends Fragment {
     TabLayout tabLayout;
 
-
+    // TAB layout ko sửa
     public HoaDonFragment() {
         // Required empty public constructor
     }
