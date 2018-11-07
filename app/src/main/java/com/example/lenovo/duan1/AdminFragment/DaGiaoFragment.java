@@ -2,10 +2,13 @@ package com.example.lenovo.duan1.AdminFragment;
 
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.example.lenovo.duan1.R;
 
@@ -13,8 +16,9 @@ import com.example.lenovo.duan1.R;
  * A simple {@link Fragment} subclass.
  */
 public class DaGiaoFragment extends Fragment {
-
-
+    ListView lvdagiao;
+    FloatingActionButton flb_dagiao;
+    android.support.v7.widget.SearchView search_dagiao;
     public DaGiaoFragment() {
         // Required empty public constructor
     }
@@ -24,7 +28,11 @@ public class DaGiaoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_da_giao, container, false);
+        View v=inflater.inflate(R.layout.fragment_da_giao,container,false);
+        lvdagiao=v.findViewById(R.id.listDagiao);
+        flb_dagiao=v.findViewById(R.id.flbdagiao);
+        search_dagiao=v.findViewById(R.id.searchDagiao);
+        return  v;
     }
 
 }
