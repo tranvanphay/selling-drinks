@@ -2,6 +2,8 @@ package com.example.lenovo.duan1;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.lenovo.duan1.model.AccountNguoiDung;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     Animation animation;
@@ -20,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
  EditText etUserName,etPassword;
  Button btDangNhap;
  TextView tvDangKy,tvQuenMK;
+ AccountNguoiDung accountNguoiDung;
+ DatabaseReference mData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +85,21 @@ public class LoginActivity extends AppCompatActivity {
                         String tendangnhap=et_ten_dang_nhap.getText().toString();
                         String matkhau=et_mat_khau.getText().toString();
                         String sodienthoai=et_sdt.getText().toString();
+                        accountNguoiDung=new AccountNguoiDung(tendangnhap,matkhau,sodienthoai,tennguoidung);
+                        mData=FirebaseDatabase.getInstance().getReference();
+                        mData.child("Account Người Dùng").push().setValue(accountNguoiDung, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                if(databaseError == null){
+                                    Toast.makeText(LoginActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(LoginActivity.this, "Đăng ký không thành công", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        dialog.dismiss();
+
+
                     }
                 });
                 image_close.setOnClickListener(new View.OnClickListener() {

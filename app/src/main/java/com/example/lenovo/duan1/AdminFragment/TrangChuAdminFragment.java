@@ -35,10 +35,10 @@ TextView tvRead;
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_trang_chu_admin,container,false);
         tvRead=view.findViewById(R.id.tvRead);
-        // Read from the database
+        // write to the database
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference myRef=firebaseDatabase.getReference();
-        myRef.child("Tên").setValue("123");
+        myRef.child("Tên").setValue("Trần Văn Phây");
         // Read from the database
         myRef.child("Tên").addValueEventListener(new ValueEventListener() {
             @Override

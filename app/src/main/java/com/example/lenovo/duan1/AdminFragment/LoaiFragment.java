@@ -4,6 +4,8 @@ package com.example.lenovo.duan1.AdminFragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,8 +15,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.lenovo.duan1.R;
+import com.example.lenovo.duan1.model.Loai;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +29,8 @@ import com.example.lenovo.duan1.R;
 public class LoaiFragment extends Fragment {
     ListView lv_loai;
     FloatingActionButton flb_loai;
-    Context c;
+    DatabaseReference mData;
+    Loai loai;
 
     public LoaiFragment() {
         // Required empty public constructor
@@ -54,6 +62,19 @@ public class LoaiFragment extends Fragment {
                     public void onClick(View v) {
                         String maloai=et_ma_loai.getText().toString();
                         String tenloai=et_ten_Loai.getText().toString();
+                        loai=new Loai(maloai,tenloai);
+                        mData=FirebaseDatabase.getInstance().getReference();
+                        mData.child("Loại").push().setValue(loai, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                if(databaseError == null){
+                                    Toast.makeText(getActivity(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(getActivity(), "Lỗi", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        dialog.dismiss();
                     }
                 });
 
