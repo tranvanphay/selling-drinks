@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "353701229991",
+    "firebase_url": "https://duan1-ac840.firebaseio.com",
+    "project_id": "duan1-ac840",
+    "storage_bucket": "duan1-ac840.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353701229991:android:a1f3b32addfaf001",
+        "android_client_info": {
+          "package_name": "com.example.lenovo.duan1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353701229991-k2gpfu221told09h4ncnsjrnq5rs3187.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lenovo.duan1",
+            "certificate_hash": "0365027ff05a4d6f1a3a127152d6f7501534de5c"
+          }
+        },
+        {
+          "client_id": "353701229991-bnhkgiuk7qkd5l6lgl695ndiskabotbi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk-42Zb1Kr48E8H2kLQ-z6ctZjx1yLuOQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353701229991-bnhkgiuk7qkd5l6lgl695ndiskabotbi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
