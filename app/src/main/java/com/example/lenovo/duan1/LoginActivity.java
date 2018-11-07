@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -55,17 +56,65 @@ public class LoginActivity extends AppCompatActivity {
         tvDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog=new Dialog(LoginActivity.this);
+                Button bt_dangky;
+                ImageView image_close;
+                final EditText et_ten_nguoi_dung,et_ten_dang_nhap,et_mat_khau,et_sdt;
+                final Dialog dialog=new Dialog(LoginActivity.this);
                 dialog.setContentView(R.layout.dialog_dang_ky);
+                et_ten_nguoi_dung=dialog.findViewById(R.id.et_tennguoidung);
+                et_ten_dang_nhap=dialog.findViewById(R.id.et_tendangnhap);
+                et_mat_khau=dialog.findViewById(R.id.et_matkhau);
+                et_sdt=dialog.findViewById(R.id.et_sodienthoai);
+                bt_dangky=dialog.findViewById(R.id.bt_dang_ky);
+                image_close=dialog.findViewById(R.id.img_close_form_register);
+                // Bắt sự kiện nút đăng ký
+                bt_dangky.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String tennguoidung=et_ten_nguoi_dung.getText().toString();
+                        String tendangnhap=et_ten_dang_nhap.getText().toString();
+                        String matkhau=et_mat_khau.getText().toString();
+                        String sodienthoai=et_sdt.getText().toString();
+                    }
+                });
+                image_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
                 dialog.show();
+
+
             }
         });
         tvQuenMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog=new Dialog(LoginActivity.this);
+                Button bt_xac_nhan;
+                ImageView img_close;
+                final EditText et_ten_dang_nhap,et_sdt;
+                final Dialog dialog=new Dialog(LoginActivity.this);
                 dialog.setContentView(R.layout.dialog_quen_mat_khau);
+                bt_xac_nhan=dialog.findViewById(R.id.bt_xac_nhan);
+                img_close=dialog.findViewById(R.id.img_close_forgot_form);
+                et_ten_dang_nhap=dialog.findViewById(R.id.et_tendn);
+                et_sdt=dialog.findViewById(R.id.et_sdt);
+                bt_xac_nhan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String tendangnhap=et_ten_dang_nhap.getText().toString();
+                        String sdt=et_sdt.getText().toString();
+                    }
+                });
+                img_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                    }
+                });
                 dialog.show();
+
             }
         });
 
