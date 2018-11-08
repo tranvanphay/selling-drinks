@@ -13,7 +13,7 @@
     <item
         android:id="@+id/loai"
         android:enabled="true"
-        android:icon="@drawable/ic_bill"
+        android:icon="@drawable/ic_type"
         android:title="Loại" />
     <item
         android:id="@+id/thongTinAdmin"

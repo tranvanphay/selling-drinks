@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         tvDangKy.setAnimation(animation);
 
 
-
+        etUserName.setText("admin");
         btDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
