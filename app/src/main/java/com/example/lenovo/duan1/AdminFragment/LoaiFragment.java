@@ -116,8 +116,14 @@ public class LoaiFragment extends Fragment {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                    adapter.notifyDataSetChanged();
-                lv_loai.setAdapter(adapter);
+                String key = dataSnapshot.getKey();
+                for (int i = 0; i < dsl.size(); i++) {
+                    if (dsl.get(i).key.equals(key)) {
+                        dsl.remove(i);
+                        break;
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
