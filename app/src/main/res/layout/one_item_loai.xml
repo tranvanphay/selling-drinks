@@ -33,9 +33,9 @@
         android:id="@+id/img_delete"
         android:layout_width="59dp"
         android:layout_height="64dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toEndOf="@+id/tv_one_item_loai"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_delete" />

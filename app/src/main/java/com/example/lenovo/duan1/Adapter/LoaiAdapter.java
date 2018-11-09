@@ -69,6 +69,7 @@ public class LoaiAdapter extends BaseAdapter {
                     public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
                         Toast.makeText(c, "Xóa thành công", Toast.LENGTH_SHORT).show();
 
+
                     }
                 });
 
