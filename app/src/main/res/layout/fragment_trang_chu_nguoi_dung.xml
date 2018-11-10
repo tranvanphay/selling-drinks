@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,4 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:id="@+id/view_flipper_nguoidung"></ViewFlipper>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duong Hoang Vu"
+        android:fontFamily="@font/koho_regular"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 </LinearLayout>
