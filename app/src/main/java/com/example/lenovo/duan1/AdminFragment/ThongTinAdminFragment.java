@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.lenovo.duan1.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -26,7 +28,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.net.URL;
 import java.util.Calendar;
 
 import static android.app.Activity.RESULT_OK;
@@ -69,7 +70,7 @@ public class ThongTinAdminFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Calendar calendar=Calendar.getInstance();
-                StorageReference mountainsRef = storageRef.child("image"+calendar.getTimeInMillis()+".png");
+                final StorageReference mountainsRef = storageRef.child("image"+calendar.getTimeInMillis()+".png");
                 imv.setDrawingCacheEnabled(true);
                 imv.buildDrawingCache();
                 Bitmap bitmap = ((BitmapDrawable) imv.getDrawable()).getBitmap();
@@ -77,7 +78,7 @@ public class ThongTinAdminFragment extends Fragment {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
                 byte[] data = baos.toByteArray();
 
-                UploadTask uploadTask = mountainsRef.putBytes(data);
+                final UploadTask uploadTask = mountainsRef.putBytes(data);
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
@@ -89,9 +90,38 @@ public class ThongTinAdminFragment extends Fragment {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                         // ...
-                        Task<Uri> download=taskSnapshot.getStorage().getDownloadUrl();
-                        Toast.makeText(getActivity(), "SUCCESS", Toast.LENGTH_SHORT).show();
-                        Log.d("Link hình: ",download+"");
+                        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                            @Override
+                            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                if (!task.isSuccessful()) {
+                                    throw task.getException();
+                                }
+
+                                // Continue with the task to get the download URL
+                                return mountainsRef.getDownloadUrl();
+                            }
+                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                if (task.isSuccessful()) {
+                                    Uri downloadUri = task.getResult();
+                                    Log.d("Link",downloadUri+"");
+                                } else {
+                                    // Handle failures
+                                    // ...
+                                }
+                            }
+                        });
+
+
+
+
+
+
+
+
+
+
 
                     }
                 });
