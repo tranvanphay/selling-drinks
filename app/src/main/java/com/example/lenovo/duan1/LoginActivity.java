@@ -1,5 +1,6 @@
 package com.example.lenovo.duan1;
 
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         linearLayoutLogin = findViewById(R.id.linearLayoutLogin);
         btnDangNhap = findViewById(R.id.btnDangNhap);
         btnDangKy = findViewById(R.id.btnDangKy);
+
 //        btn = findViewById(R.id.button);
         Animation animation_logo = AnimationUtils.loadAnimation(this,R.anim.anim_logo);
         Animation animation_title = AnimationUtils.loadAnimation(this,R.anim.anim_title);
