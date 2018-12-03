@@ -2,247 +2,74 @@ package com.example.lenovo.duan1;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.lenovo.duan1.model.AccountNguoiDung;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FacebookAuthProvider;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
-    Animation animation;
- ActionBar actionBar;
- EditText etUserName,etPassword;
- Button btDangNhap;
- TextView tvDangKy,tvQuenMK;
- AccountNguoiDung accountNguoiDung;
- DatabaseReference mData;
-
- private FirebaseAuth mAuth;
- private CallbackManager mCallbackManager;
- public static final String TAG="FACELOG";
+    TextView tvTitle;
+    ImageView ivLogo;
+    EditText etUsername, etPassword;
+    LinearLayout linearLayoutLogin;
+    Button btnDangNhap,btnDangKy;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mAuth = FirebaseAuth.getInstance();
-
-        etUserName=findViewById(R.id.etUserName);
-        etPassword=findViewById(R.id.etPassword);
-        btDangNhap=findViewById(R.id.btDangNhap);
-        tvDangKy=findViewById(R.id.tvDangKy);
-        tvQuenMK=findViewById(R.id.tvQuenMK);
-        actionBar = getSupportActionBar();
-        actionBar.hide();
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        animation = AnimationUtils.loadAnimation(this,R.anim.trans_anim_form);
-        etUserName.setAnimation(animation);
-        etPassword.setAnimation(animation);
-        btDangNhap.setAnimation(animation);
-        tvQuenMK.setAnimation(animation);
-        tvDangKy.setAnimation(animation);
+        tvTitle = findViewById(R.id.tvTitle);
+        ivLogo = findViewById(R.id.ivLogo);
+        etUsername = findViewById(R.id.etUsername);
+        etPassword = findViewById(R.id.etPassword);
+        linearLayoutLogin = findViewById(R.id.linearLayoutLogin);
+        btnDangNhap = findViewById(R.id.btnDangNhap);
+        btnDangKy = findViewById(R.id.btnDangKy);
+//        btn = findViewById(R.id.button);
+        Animation animation_logo = AnimationUtils.loadAnimation(this,R.anim.anim_logo);
+        Animation animation_title = AnimationUtils.loadAnimation(this,R.anim.anim_title);
+        Animation animation_dangnhap = AnimationUtils.loadAnimation(this,R.anim.anim_khunglogin);
+        Animation animation_buttondangnhap = AnimationUtils.loadAnimation(this,R.anim.anim_button_dangnhap);
+        Animation animation_buttondangky = AnimationUtils.loadAnimation(this,R.anim.anim_button_dangky);
 
 
-        etUserName.setText("admin");
-        btDangNhap.setOnClickListener(new View.OnClickListener() {
+        AnimationSet animationSet_logo = new AnimationSet(false);//false means don't share interpolators
+
+        animationSet_logo.addAnimation(animation_logo);
+        animationSet_logo.setFillAfter(true);
+        ivLogo.startAnimation(animationSet_logo);
+
+        tvTitle.startAnimation(animation_title);
+        linearLayoutLogin.startAnimation(animation_dangnhap);
+        btnDangNhap.startAnimation(animation_buttondangnhap);
+        btnDangKy.startAnimation(animation_buttondangky);
+
+
+        btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(etUserName.getText().toString().equals("admin")){
-                    Intent intent=new Intent(LoginActivity.this,AdminActivity.class);
-                    startActivity(intent);
-                }else {
-                    Intent intent=new Intent(LoginActivity.this,NguoiDungActivity.class);
-                    startActivity(intent);
-                }
+                startActivity(new Intent(LoginActivity.this,AdminActivity.class));
             }
         });
-        tvDangKy.setOnClickListener(new View.OnClickListener() {
+
+
+        btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Button bt_dangky;
-                ImageView image_close;
-                final EditText et_ten_nguoi_dung,et_ten_dang_nhap,et_mat_khau,et_sdt;
-                final Dialog dialog=new Dialog(LoginActivity.this);
-                dialog.setContentView(R.layout.dialog_dang_ky);
-                et_ten_nguoi_dung=dialog.findViewById(R.id.et_tennguoidung);
-                et_ten_dang_nhap=dialog.findViewById(R.id.et_tendangnhap);
-                et_mat_khau=dialog.findViewById(R.id.et_matkhau);
-                et_sdt=dialog.findViewById(R.id.et_sodienthoai);
-                bt_dangky=dialog.findViewById(R.id.bt_dang_ky);
-                image_close=dialog.findViewById(R.id.img_close_form_register);
-                // Bắt sự kiện nút đăng ký
-                bt_dangky.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String tennguoidung=et_ten_nguoi_dung.getText().toString();
-                        String tendangnhap=et_ten_dang_nhap.getText().toString();
-                        String matkhau=et_mat_khau.getText().toString();
-                        String sodienthoai=et_sdt.getText().toString();
-                        accountNguoiDung=new AccountNguoiDung(tendangnhap,matkhau,sodienthoai,tennguoidung);
-                        mData=FirebaseDatabase.getInstance().getReference();
-                        mData.child("Account Người Dùng").push().setValue(accountNguoiDung, new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                if(databaseError == null){
-                                    Toast.makeText(LoginActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                }else {
-                                    Toast.makeText(LoginActivity.this, "Đăng ký không thành công", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                        dialog.dismiss();
-
-
-                    }
-                });
-                image_close.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.cancel();
-                    }
-                });
+                Dialog dialog = new Dialog(LoginActivity.this);
+                dialog.setContentView(R.layout.dialog_dangky);
                 dialog.show();
 
 
             }
         });
-        tvQuenMK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Button bt_xac_nhan;
-                ImageView img_close;
-                final EditText et_ten_dang_nhap,et_sdt;
-                final Dialog dialog=new Dialog(LoginActivity.this);
-                dialog.setContentView(R.layout.dialog_quen_mat_khau);
-                bt_xac_nhan=dialog.findViewById(R.id.bt_xac_nhan);
-                img_close=dialog.findViewById(R.id.img_close_forgot_form);
-                et_ten_dang_nhap=dialog.findViewById(R.id.et_tendn);
-                et_sdt=dialog.findViewById(R.id.et_sdt);
-                bt_xac_nhan.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String tendangnhap=et_ten_dang_nhap.getText().toString();
-                        String sdt=et_sdt.getText().toString();
-                    }
-                });
-                img_close.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.cancel();
-                    }
-                });
-                dialog.show();
-
-            }
-        });
-//Facebook Login
-        mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = findViewById(R.id.login_facebook_button);
-        animation = AnimationUtils.loadAnimation(this,R.anim.trans_anim_form);
-        loginButton.setAnimation(animation);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Intent intent=new Intent(LoginActivity.this,NguoiDungActivity.class);
-                startActivity(intent);
-                finish();
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-                Toast.makeText(LoginActivity.this, "Hủy", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-                Toast.makeText(LoginActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Pass the activity result back to the Facebook SDK
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-
-    }
-
-
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-
-                        }
-
-                        // ...
-                    }
-                });
-    }
-
 
 }
+

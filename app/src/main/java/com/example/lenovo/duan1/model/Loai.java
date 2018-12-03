@@ -1,25 +1,12 @@
-package com.example.lenovo.duan1.model;
+package com.example.lenovo.duan1.Model;
 
-public class Loai {
-    public String key;
-    public String _idLoai;
-    public String tenLoai;
-    public Loai() {
-    }
-    public Loai(String _idLoai, String tenLoai) {
-        this._idLoai = _idLoai;
-        this.tenLoai = tenLoai;
-    }
 
-    public Loai(String tenLoai) {
-        this.tenLoai = tenLoai;
-    }
+import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 
-    public String getKey() {
-        return key;
-    }
+import java.util.List;
 
-    public void setKey(String key) {
-        this.key = key;
+public class Loai extends ExpandableGroup<SanPham> {
+    public Loai(String title, List<SanPham> items) {
+        super(title, items);
     }
 }
