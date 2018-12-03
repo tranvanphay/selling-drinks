@@ -1,46 +1,57 @@
 package com.example.lenovo.duan1.Adapter;
 
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.Model.SanPham;
 import com.example.lenovo.duan1.R;
-import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
-import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 
 import java.util.ArrayList;
 
-public class SanPhamAdapter extends ExpandableRecyclerViewAdapter<LoaiViewHolder,SanPhamViewHolder> {
-    public SanPhamAdapter(ArrayList<? extends ExpandableGroup> groups) {
-        super(groups);
+public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHolder> {
+    ArrayList<SanPham> listsanpham;
+    Context context;
+
+    public SanPhamAdapter(ArrayList<SanPham> listsanpham, Context context) {
+        this.listsanpham = listsanpham;
+        this.context = context;
     }
 
     @Override
-    public LoaiViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_recyclerview_loai,parent,false);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View itemView = layoutInflater.inflate(R.layout.oneitem_recyclerview_sanpham,parent,false);
 
-        return new LoaiViewHolder(v);
+        return new ViewHolder(itemView);
     }
 
     @Override
-    public SanPhamViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_recycler_view_sanpham,parent,false);
-
-
-        return new SanPhamViewHolder(v);
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.tvMaSanPham.setText(listsanpham.get(position).getMaSanPham());
+        holder.tvTenSanPham.setText(listsanpham.get(position).getTenSanPham());
+        holder.ivHinhSanPham.setImageResource(listsanpham.get(position).getHinhSanPham());
     }
 
     @Override
-    public void onBindChildViewHolder(SanPhamViewHolder holder, int flatPosition, ExpandableGroup group, int childIndex) {
-        final SanPham sanPham = (SanPham) group.getItems().get(childIndex);
-        holder.bind(sanPham);
+    public int getItemCount() {
+        return listsanpham.size();
     }
 
-    @Override
-    public void onBindGroupViewHolder(LoaiViewHolder holder, int flatPosition, ExpandableGroup group) {
-        final Loai loai = (Loai) group;
-        holder.bind(loai);
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView tvMaSanPham;
+        TextView tvTenSanPham;
+        ImageView ivHinhSanPham;
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tvMaSanPham = (TextView)itemView.findViewById(R.id.tvMaSanPham);
+            tvTenSanPham = (TextView)itemView.findViewById(R.id.tvTenSanPham);
+            ivHinhSanPham = (ImageView)itemView.findViewById(R.id.ivHinhSanPham);
+        }
     }
 }
+

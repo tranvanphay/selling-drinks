@@ -78,10 +78,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
                 android:fontFamily="@font/robotocondensedregular"
                 android:text="Welcome back, Sir!"
                 android:textAlignment="center"
-                android:layout_margin="4dp"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -98,10 +98,10 @@
             <LinearLayout
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/khung_quanlynguoidung"
                 android:orientation="horizontal"
-                android:padding="6dp"
-                android:layout_marginBottom="12dp">
+                android:padding="6dp">
 
                 <ImageView
                     android:layout_width="18dp"
@@ -127,10 +127,10 @@
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/khung_thongke"
                 android:orientation="horizontal"
-                android:padding="6dp"
-                android:layout_marginBottom="12dp">
+                android:padding="6dp">
 
                 <ImageView
                     android:layout_width="18dp"
@@ -195,14 +195,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@drawable/khung_tintuc">
+                android:background="@drawable/khung_tintuc"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/tintuc_line">
+                    android:background="@drawable/tintuc_line"
+                    android:orientation="horizontal">
 
 
                     <TextView
@@ -223,8 +223,8 @@
                         android:id="@+id/imageView3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:paddingRight="20dp"
                         android:layout_weight="1"
+                        android:paddingRight="20dp"
                         app:srcCompat="@drawable/more_icon" />
 
 
@@ -234,12 +234,12 @@
                     android:id="@+id/recyclerViewBangTin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginTop="24dp"
-                    android:padding="6dp"
                     android:layout_marginLeft="6dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginRight="6dp"
-                    android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginBottom="24dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp"></android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
 
@@ -249,18 +249,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="20dp"
-            android:orientation="vertical"
-            android:background="@drawable/khung_tintuc">
+            android:background="@drawable/khung_tintuc"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/tintuc_line">
+                android:background="@drawable/tintuc_line"
+                android:orientation="horizontal">
 
 
                 <TextView
@@ -277,24 +277,110 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/ivMenuThemLoai"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingRight="20dp"
                     android:layout_weight="1"
+                    android:paddingRight="20dp"
                     app:srcCompat="@drawable/more_icon" />
 
 
             </LinearLayout>
 
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerViewLoaiVaSanPham"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="26dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/loai_sanpham_title_line"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/loai_sanpham_title_line"
+                        android:fontFamily="@font/robotocondensedregular"
+                        android:paddingLeft="23dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:text="Loại"
+                        android:textColor="#d2495054"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/ivThemLoai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingRight="5dp"
+                        app:srcCompat="@drawable/add_loaivasanpham_icon" />
+
+
+                </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewLoai"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="26dp">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/loai_sanpham_title_line"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/loai_sanpham_title_line"
+                        android:fontFamily="@font/robotocondensedregular"
+                        android:paddingLeft="23dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:text="Sản phẩm"
+                        android:textColor="#d2495054"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/ivThemSanPham"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingRight="5dp"
+                        app:srcCompat="@drawable/add_loaivasanpham_icon" />
+
+
+                </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewSanPham"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="26dp" />
+            </LinearLayout>
+
         </LinearLayout>
 
 

@@ -4,8 +4,8 @@
         android:title="Thêm sản phẩm" />
     <item android:id="@+id/xemLoai"
         android:title="Xem" />
-    <item android:id="@+id/suaLoai"
-        android:title="Sửa" />
     <item android:id="@+id/xoaLoai"
         android:title="Xóa" />
+    <item android:id="@+id/suaLoai"
+        android:title="Sửa" />
 </menu>

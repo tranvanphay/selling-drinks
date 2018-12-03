@@ -1,54 +1,67 @@
 package com.example.lenovo.duan1.Model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+public class SanPham {
+    private String maSanPham;
+    private String maLoai;
+    private String tenSanPham;
+    private String chuThich;
+    private String giaTien;
+    private int hinhSanPham;
 
-public class SanPham implements Parcelable {
-    public String maSanPham;
-    public String maLoai;
-    public String tenSanPham;
-    public String chuThich;
-    public String giaTien;
-
-    public SanPham(String maSanPham, String maLoai, String tenSanPham, String chuThich, String giaTien) {
+    public SanPham(String maSanPham, String maLoai, String tenSanPham, String chuThich, String giaTien, int hinhSanPham) {
         this.maSanPham = maSanPham;
         this.maLoai = maLoai;
         this.tenSanPham = tenSanPham;
         this.chuThich = chuThich;
         this.giaTien = giaTien;
+        this.hinhSanPham = hinhSanPham;
     }
 
-    protected SanPham(Parcel in) {
-        maSanPham = in.readString();
-        maLoai = in.readString();
-        tenSanPham = in.readString();
-        chuThich = in.readString();
-        giaTien = in.readString();
+    public String getMaSanPham() {
+        return maSanPham;
     }
 
-    public static final Creator<SanPham> CREATOR = new Creator<SanPham>() {
-        @Override
-        public SanPham createFromParcel(Parcel in) {
-            return new SanPham(in);
-        }
-
-        @Override
-        public SanPham[] newArray(int size) {
-            return new SanPham[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
+    public void setMaSanPham(String maSanPham) {
+        this.maSanPham = maSanPham;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(maSanPham);
-        parcel.writeString(maLoai);
-        parcel.writeString(tenSanPham);
-        parcel.writeString(chuThich);
-        parcel.writeString(giaTien);
+    public String getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(String maLoai) {
+        this.maLoai = maLoai;
+    }
+
+    public String getTenSanPham() {
+        return tenSanPham;
+    }
+
+    public void setTenSanPham(String tenSanPham) {
+        this.tenSanPham = tenSanPham;
+    }
+
+    public String getChuThich() {
+        return chuThich;
+    }
+
+    public void setChuThich(String chuThich) {
+        this.chuThich = chuThich;
+    }
+
+    public String getGiaTien() {
+        return giaTien;
+    }
+
+    public void setGiaTien(String giaTien) {
+        this.giaTien = giaTien;
+    }
+
+    public int getHinhSanPham() {
+        return hinhSanPham;
+    }
+
+    public void setHinhSanPham(int hinhSanPham) {
+        this.hinhSanPham = hinhSanPham;
     }
 }
