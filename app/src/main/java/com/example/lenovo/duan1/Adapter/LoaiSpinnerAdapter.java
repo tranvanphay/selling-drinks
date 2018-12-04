@@ -12,10 +12,10 @@ import com.example.lenovo.duan1.R;
 
 import java.util.ArrayList;
 
-public class SanPhamSpinnerAdapter extends BaseAdapter {
+public class LoaiSpinnerAdapter extends BaseAdapter {
     ArrayList<Loai> dsl=new ArrayList<Loai>();
     Context c;
-    public SanPhamSpinnerAdapter(Context c , ArrayList<Loai> dsl){
+    public LoaiSpinnerAdapter(Context c , ArrayList<Loai> dsl){
         this.c=c;
         this.dsl=dsl;
     }

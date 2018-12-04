@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_marginBottom="50dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/test1">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -163,15 +164,18 @@
                 android:text="Menu"/>
 
             <Spinner
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
+                android:id="@+id/spn_loaiMenuNguoiDung"
+                android:layout_width="298dp"
+                android:layout_height="37dp"
                 android:layout_gravity="center_vertical"
-                android:layout_height="wrap_content"></Spinner>
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Go"/>
+            <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Go"/>-->
         </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

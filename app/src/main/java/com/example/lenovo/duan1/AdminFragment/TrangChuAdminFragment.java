@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +27,7 @@ import android.widget.Toast;
 import com.example.lenovo.duan1.Adapter.BangTinAdapter;
 import com.example.lenovo.duan1.Adapter.LoaiApdaterAdmin;
 import com.example.lenovo.duan1.Adapter.SanPhamAdapterAdmin;
-import com.example.lenovo.duan1.Adapter.SanPhamSpinnerAdapter;
+import com.example.lenovo.duan1.Adapter.LoaiSpinnerAdapter;
 import com.example.lenovo.duan1.LoginActivity;
 import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.Model.SanPham;
@@ -229,7 +228,7 @@ public class TrangChuAdminFragment extends Fragment {
                 final EditText edt_giaSanPham=dialogThemSanPham.findViewById(R.id.edt_giaSanPham);
                 Button bt_themSanPham=dialogThemSanPham.findViewById(R.id.bt_themSanPham);
                 dialogThemSanPham.show();
-                SanPhamSpinnerAdapter adapter=new SanPhamSpinnerAdapter(getActivity(),dsl);
+                LoaiSpinnerAdapter adapter=new LoaiSpinnerAdapter(getActivity(),dsl);
                 spn_maLoai.setAdapter(adapter);
                 imv_themAnhSanPham.setOnClickListener(new View.OnClickListener() {
                     @Override
