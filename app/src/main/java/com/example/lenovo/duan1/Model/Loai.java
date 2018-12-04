@@ -1,9 +1,12 @@
 package com.example.lenovo.duan1.Model;
 
 public class Loai {
-    private String maLoai;
-    private String tenLoai;
-    private String hinhLoai;
+    public String maLoai;
+    public String tenLoai;
+    public String hinhLoai;
+
+    public Loai() {
+    }
 
     public Loai(String maLoai, String tenLoai, String hinhLoai) {
         this.maLoai = maLoai;

@@ -1,8 +1,14 @@
 package com.example.lenovo.duan1;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +38,24 @@ public class LoginActivity extends AppCompatActivity {
         linearLayoutLogin = findViewById(R.id.linearLayoutLogin);
         btnDangNhap = findViewById(R.id.btnDangNhap);
         btnDangKy = findViewById(R.id.btnDangKy);
+        if (checkNetwork()) {
+            //Connected to the Internet
+
+        } else {
+            //Not connected
+            final AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
+            builder.setPositiveButton("Bật wifi", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    WifiManager wifiManager=(WifiManager)getSystemService(Context.WIFI_SERVICE);
+                    wifiManager.setWifiEnabled(true);
+                }
+            });
+            builder.setTitle("Lỗi");
+            builder.setMessage("Bạn chưa kết nối mạng!!!");
+            AlertDialog dialog=builder.create();
+            dialog.show();
+        }
 
 //        btn = findViewById(R.id.button);
         Animation animation_logo = AnimationUtils.loadAnimation(this,R.anim.anim_logo);
@@ -72,6 +96,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    private boolean checkNetwork(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 
 }
 

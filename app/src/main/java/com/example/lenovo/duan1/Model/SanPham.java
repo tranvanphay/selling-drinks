@@ -1,15 +1,17 @@
 package com.example.lenovo.duan1.Model;
 
 public class SanPham {
-    private String maSanPham;
-    private String maLoai;
-    private String tenSanPham;
-    private String chuThich;
-    private String giaTien;
-    private String hinhSanPham;
+    public String maSanPham;
+    public String maLoai;
+    public String tenSanPham;
+    public String chuThich;
+    public int giaTien;
+    public String hinhSanPham;
 
+    public SanPham() {
+    }
 
-    public SanPham(String maSanPham, String maLoai, String tenSanPham, String chuThich, String giaTien, String hinhSanPham) {
+    public SanPham(String maSanPham, String maLoai, String tenSanPham, String chuThich, int giaTien, String hinhSanPham) {
         this.maSanPham = maSanPham;
         this.maLoai = maLoai;
         this.tenSanPham = tenSanPham;
@@ -50,11 +52,11 @@ public class SanPham {
         this.chuThich = chuThich;
     }
 
-    public String getGiaTien() {
+    public int getGiaTien() {
         return giaTien;
     }
 
-    public void setGiaTien(String giaTien) {
+    public void setGiaTien(int giaTien) {
         this.giaTien = giaTien;
     }
 

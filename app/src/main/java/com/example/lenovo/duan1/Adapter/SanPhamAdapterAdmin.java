@@ -10,15 +10,16 @@ import android.widget.TextView;
 
 import com.example.lenovo.duan1.Model.SanPham;
 import com.example.lenovo.duan1.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmin.ViewHolder> {
-    ArrayList<SanPham> listsanpham;
+    ArrayList<SanPham> dssp;
     Context context;
 
-    public SanPhamAdapterAdmin(ArrayList<SanPham> listsanpham, Context context) {
-        this.listsanpham = listsanpham;
+    public SanPhamAdapterAdmin(ArrayList<SanPham> dssp, Context context) {
+        this.dssp = dssp;
         this.context = context;
     }
 
@@ -32,14 +33,14 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tvMaSanPham.setText(listsanpham.get(position).getMaSanPham());
-        holder.tvTenSanPham.setText(listsanpham.get(position).getTenSanPham());
-        holder.ivHinhSanPham.setImageResource(Integer.parseInt(listsanpham.get(position).getHinhSanPham()));
+        holder.tvMaSanPham.setText(dssp.get(position).maSanPham);
+        holder.tvTenSanPham.setText(dssp.get(position).tenSanPham);
+        Picasso.get().load(dssp.get(position).hinhSanPham).into(holder.ivHinhSanPham);
     }
 
     @Override
     public int getItemCount() {
-        return listsanpham.size();
+        return dssp.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

@@ -65,7 +65,7 @@
             android:padding="8dp">
 
             <ImageView
-                android:id="@+id/imv_themAnh"
+                android:id="@+id/imv_themAnhLoai"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 app:srcCompat="@drawable/ic_selecte_image" />

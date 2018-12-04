@@ -10,15 +10,16 @@ import android.widget.TextView;
 
 import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.ViewHolder> {
-    ArrayList<Loai> listloai;
+    ArrayList<Loai> dsl;
     Context context;
 
-    public LoaiApdaterAdmin(ArrayList<Loai> listloai, Context context) {
-        this.listloai = listloai;
+    public LoaiApdaterAdmin(ArrayList<Loai> dsl, Context context) {
+        this.dsl = dsl;
         this.context = context;
     }
 
@@ -32,14 +33,14 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tvMaLoai.setText(listloai.get(position).getMaLoai());
-        holder.tvTenLoai.setText(listloai.get(position).getTenLoai());
-        holder.ivHinhLoai.setImageResource(Integer.parseInt(listloai.get(position).getHinhLoai()));
+        holder.tvMaLoai.setText(dsl.get(position).maLoai);
+        holder.tvTenLoai.setText(dsl.get(position).tenLoai);
+        Picasso.get().load(dsl.get(position).hinhLoai).into(holder.ivHinhLoai);
     }
 
     @Override
     public int getItemCount() {
-        return listloai.size();
+        return dsl.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

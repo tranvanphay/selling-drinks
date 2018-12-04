@@ -66,21 +66,12 @@
             android:padding="8dp">
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:tooltipText="Chọn hình..."
-                app:srcCompat="@mipmap/ic_launcher_round" />
+                android:id="@+id/imv_themAnhSanPham"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:srcCompat="@drawable/ic_selecte_image" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/robotocondensedregular"
-                android:paddingLeft="4dp"
-                android:paddingTop="8dp"
-                android:paddingRight="4dp"
-                android:text="Chọn hình ảnh"
-                android:textSize="16sp" />
+
 
         </LinearLayout>
 
@@ -94,6 +85,7 @@
 
 
             <EditText
+                android:id="@+id/edt_maSanPham"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="8dp"
@@ -103,6 +95,7 @@
                 android:padding="10dp" />
 
             <EditText
+                android:id="@+id/edt_tenSanPham"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="8dp"
@@ -120,6 +113,7 @@
                 android:padding="10dp" />
 
             <EditText
+                android:id="@+id/edt_chuThich"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="8dp"
@@ -129,9 +123,11 @@
                 android:padding="10dp" />
 
             <EditText
+                android:id="@+id/edt_giaSanPham"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="8dp"
+                android:inputType="number"
                 android:background="@drawable/et_loai"
                 android:fontFamily="@font/robotocondensedregular"
                 android:hint="Nhập giá tiền"
@@ -139,6 +135,7 @@
 
 
             <Button
+                android:id="@+id/bt_themSanPham"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
