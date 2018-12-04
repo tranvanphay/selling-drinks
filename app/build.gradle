@@ -20,6 +20,8 @@ android {
 
 dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.5'
+    //Firebase Author
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
 
     //Thư viện Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'

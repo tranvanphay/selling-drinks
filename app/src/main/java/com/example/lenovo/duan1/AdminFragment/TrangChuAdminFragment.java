@@ -29,6 +29,7 @@ import com.example.lenovo.duan1.Adapter.BangTinAdapter;
 import com.example.lenovo.duan1.Adapter.LoaiApdaterAdmin;
 import com.example.lenovo.duan1.Adapter.SanPhamAdapterAdmin;
 import com.example.lenovo.duan1.Adapter.SanPhamSpinnerAdapter;
+import com.example.lenovo.duan1.LoginActivity;
 import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.Model.SanPham;
 import com.example.lenovo.duan1.R;
@@ -37,6 +38,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,10 +63,11 @@ import static android.app.Activity.RESULT_OK;
 public class TrangChuAdminFragment extends Fragment {
     private ArrayList<String> tenBangTin = new ArrayList<>();
     private ArrayList<String> hinhBangTin = new ArrayList<>();
+    FirebaseAuth mAuthor=FirebaseAuth.getInstance();
     ArrayList<Loai> dsl=new ArrayList<Loai>();
     ArrayList<SanPham> dssp=new ArrayList<SanPham>();
-    TextView tvCurrentDate;
-    ImageView ivThemLoai, ivThemSanPham,imv_themAnh,imv_themAnhSanPham;
+    TextView tvCurrentDate,tv_welcomeback;
+    ImageView ivThemLoai, ivThemSanPham,imv_themAnh,imv_themAnhSanPham,iv_Logout;
     RecyclerView recyclerViewBangTin,recyclerViewLoai,recyclerViewSanPham;
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -85,6 +88,9 @@ public class TrangChuAdminFragment extends Fragment {
         tvCurrentDate = view.findViewById(R.id.tvCurrentDate);
         ivThemLoai = view.findViewById(R.id.ivThemLoai);
         ivThemSanPham = view.findViewById(R.id.ivThemSanPham);
+        iv_Logout=view.findViewById(R.id.imv_Logout);
+        tv_welcomeback=view.findViewById(R.id.tv_welcomeback);
+        tv_welcomeback.setText("Welcome back "+mAuthor.getCurrentUser().getEmail());
         loadLoai();
         loadSanPham();
         viewLoai();
@@ -96,6 +102,15 @@ public class TrangChuAdminFragment extends Fragment {
         SimpleDateFormat df = new SimpleDateFormat("EEE, MMM d, yyyy");
         String formattedDate = df.format(c);
         tvCurrentDate.setText(formattedDate);
+        iv_Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+
+            }
+        });
 
         getBangTin();
 

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,17 +23,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     TextView tvTitle;
     ImageView ivLogo;
     EditText etUsername, etPassword;
+    EditText edt_EmailDangKy,edt_matKhauDangKy,edt_nhapLaiMatKhau;
     LinearLayout linearLayoutLogin;
     Button btnDangNhap,btnDangKy;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mAuth=FirebaseAuth.getInstance();
         tvTitle = findViewById(R.id.tvTitle);
         ivLogo = findViewById(R.id.ivLogo);
         etUsername = findViewById(R.id.etUsername);
@@ -82,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+                dangnhap();
             }
         });
 
@@ -90,20 +100,30 @@ public class LoginActivity extends AppCompatActivity {
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(LoginActivity.this);
-                dialog.setContentView(R.layout.dialog_dangky);
-                dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                final Dialog dialogDangKy = new Dialog(LoginActivity.this);
+                dialogDangKy.setContentView(R.layout.dialog_dangky);
+                edt_EmailDangKy=dialogDangKy.findViewById(R.id.edt_EmailDangKy);
+                edt_matKhauDangKy=dialogDangKy.findViewById(R.id.edt_PasswordDangKy);
+                edt_nhapLaiMatKhau=dialogDangKy.findViewById(R.id.edt_nhapLaiMatKhau);
+                Button bt_xacNhanDangKy=dialogDangKy.findViewById(R.id.bt_xacNhanDangKy);
+                dialogDangKy.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                         WindowManager.LayoutParams.MATCH_PARENT);
-                dialog.show();
-                ImageView ivCloseDialogDangKy = dialog.findViewById(R.id.ivCloseDialogDangKy);
-                ivCloseDialogDangKy.setOnClickListener(new View.OnClickListener() {
+                dialogDangKy.show();
+                bt_xacNhanDangKy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog.cancel();
+                        dangky();
+
                     }
                 });
 
-
+                ImageView ivCloseDialogDangKy = dialogDangKy.findViewById(R.id.ivCloseDialogDangKy);
+                ivCloseDialogDangKy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogDangKy.cancel();
+                    }
+                });
             }
         });
     }
@@ -111,6 +131,81 @@ public class LoginActivity extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+    private void dangky(){
+        String email=edt_EmailDangKy.getText().toString();
+        String matKhau=edt_matKhauDangKy.getText().toString();
+        String nhapLaiMatKhau=edt_nhapLaiMatKhau.getText().toString();
+        if(matKhau.equals(nhapLaiMatKhau)){
+            mAuth.createUserWithEmailAndPassword(email, matKhau)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                edt_EmailDangKy.setText("");
+                                edt_matKhauDangKy.setText("");
+                                edt_nhapLaiMatKhau.setText("");
+                                Toast.makeText(LoginActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(LoginActivity.this, "Lỗi đăng ký!", Toast.LENGTH_SHORT).show();
+                            }
+
+                            // ...
+                        }
+                    });
+        }else {
+            edt_nhapLaiMatKhau.setText("");
+            Toast.makeText(this, "Lỗi!!!", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+    private void dangnhap(){
+        String email=etUsername.getText().toString();
+        String password=etPassword.getText().toString();
+
+        if(email.equals("admin@admin.com")){
+
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Intent i =new Intent(LoginActivity.this,AdminActivity.class);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(LoginActivity.this, "Lỗi đăng nhập, kiểm tra lại tài khoản và mật khẩu", Toast.LENGTH_SHORT).show();
+                            }
+
+                            // ...
+                        }
+                    });
+
+        }else{
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Intent i =new Intent(LoginActivity.this,NguoiDungActivity.class);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(LoginActivity.this, "Lỗi đăng nhập, kiểm tra lại tài khoản và mật khẩu", Toast.LENGTH_SHORT).show();
+                            }
+
+                            // ...
+                        }
+                    });
+
+        }
+
+
+
     }
 
 
