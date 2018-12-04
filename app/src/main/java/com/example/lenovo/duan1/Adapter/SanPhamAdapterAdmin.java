@@ -13,11 +13,11 @@ import com.example.lenovo.duan1.R;
 
 import java.util.ArrayList;
 
-public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHolder> {
+public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmin.ViewHolder> {
     ArrayList<SanPham> listsanpham;
     Context context;
 
-    public SanPhamAdapter(ArrayList<SanPham> listsanpham, Context context) {
+    public SanPhamAdapterAdmin(ArrayList<SanPham> listsanpham, Context context) {
         this.listsanpham = listsanpham;
         this.context = context;
     }
@@ -25,7 +25,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View itemView = layoutInflater.inflate(R.layout.oneitem_recyclerview_sanpham,parent,false);
+        View itemView = layoutInflater.inflate(R.layout.oneitem_recyclerview_sanpham_admin,parent,false);
 
         return new ViewHolder(itemView);
     }
@@ -34,7 +34,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.tvMaSanPham.setText(listsanpham.get(position).getMaSanPham());
         holder.tvTenSanPham.setText(listsanpham.get(position).getTenSanPham());
-        holder.ivHinhSanPham.setImageResource(listsanpham.get(position).getHinhSanPham());
+        holder.ivHinhSanPham.setImageResource(Integer.parseInt(listsanpham.get(position).getHinhSanPham()));
     }
 
     @Override
@@ -48,9 +48,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         ImageView ivHinhSanPham;
         public ViewHolder(View itemView) {
             super(itemView);
-            tvMaSanPham = (TextView)itemView.findViewById(R.id.tvMaSanPham);
-            tvTenSanPham = (TextView)itemView.findViewById(R.id.tvTenSanPham);
-            ivHinhSanPham = (ImageView)itemView.findViewById(R.id.ivHinhSanPham);
+            tvMaSanPham = (TextView)itemView.findViewById(R.id.tvMaSanPhamAdmin);
+            tvTenSanPham = (TextView)itemView.findViewById(R.id.tvTenSanPhamAdmin);
+            ivHinhSanPham = (ImageView)itemView.findViewById(R.id.ivHinhSanPhamAdmin);
         }
     }
 }

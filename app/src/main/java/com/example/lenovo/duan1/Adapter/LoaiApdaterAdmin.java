@@ -13,11 +13,11 @@ import com.example.lenovo.duan1.R;
 
 import java.util.ArrayList;
 
-public class LoaiApdater extends RecyclerView.Adapter<LoaiApdater.ViewHolder> {
+public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.ViewHolder> {
     ArrayList<Loai> listloai;
     Context context;
 
-    public LoaiApdater(ArrayList<Loai> listloai, Context context) {
+    public LoaiApdaterAdmin(ArrayList<Loai> listloai, Context context) {
         this.listloai = listloai;
         this.context = context;
     }
@@ -25,7 +25,7 @@ public class LoaiApdater extends RecyclerView.Adapter<LoaiApdater.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View itemView = layoutInflater.inflate(R.layout.oneitem_recyclerview_loai,parent,false);
+        View itemView = layoutInflater.inflate(R.layout.oneitem_recyclerview_loai_admin,parent,false);
 
         return new ViewHolder(itemView);
     }
@@ -34,7 +34,7 @@ public class LoaiApdater extends RecyclerView.Adapter<LoaiApdater.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.tvMaLoai.setText(listloai.get(position).getMaLoai());
         holder.tvTenLoai.setText(listloai.get(position).getTenLoai());
-        holder.ivHinhLoai.setImageResource(listloai.get(position).getHinhLoai());
+        holder.ivHinhLoai.setImageResource(Integer.parseInt(listloai.get(position).getHinhLoai()));
     }
 
     @Override
@@ -48,9 +48,9 @@ public class LoaiApdater extends RecyclerView.Adapter<LoaiApdater.ViewHolder> {
         ImageView ivHinhLoai;
         public ViewHolder(View itemView) {
             super(itemView);
-            tvMaLoai = (TextView)itemView.findViewById(R.id.tvMaLoai);
-            tvTenLoai = (TextView)itemView.findViewById(R.id.tvTenLoai);
-            ivHinhLoai = (ImageView)itemView.findViewById(R.id.ivHinhLoai);
+            tvMaLoai = (TextView)itemView.findViewById(R.id.tvMaLoaiAdmin);
+            tvTenLoai = (TextView)itemView.findViewById(R.id.tvTenLoaiAdmin);
+            ivHinhLoai = (ImageView)itemView.findViewById(R.id.ivHinhLoaiAdmin);
         }
     }
 }

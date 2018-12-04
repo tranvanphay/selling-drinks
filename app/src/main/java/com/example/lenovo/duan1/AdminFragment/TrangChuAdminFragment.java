@@ -4,15 +4,21 @@ package com.example.lenovo.duan1.AdminFragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lenovo.duan1.Adapter.BangTinAdapter;
+import com.example.lenovo.duan1.Adapter.LoaiApdaterAdmin;
+import com.example.lenovo.duan1.Adapter.SanPhamAdapterAdmin;
+import com.example.lenovo.duan1.Model.Loai;
+import com.example.lenovo.duan1.Model.SanPham;
 import com.example.lenovo.duan1.R;
 
 import java.text.SimpleDateFormat;
@@ -47,7 +53,8 @@ public class TrangChuAdminFragment extends Fragment {
         ivThemLoai = view.findViewById(R.id.ivThemLoai);
         ivThemSanPham = view.findViewById(R.id.ivThemSanPham);
 
-
+        viewLoai();
+        viewSanPham();
 
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
@@ -120,7 +127,32 @@ public class TrangChuAdminFragment extends Fragment {
         BangTinAdapter bangTinAdapter = new BangTinAdapter(getActivity(), tenBangTin, hinhBangTin);
         recyclerViewBangTin.setAdapter(bangTinAdapter);
     }
+
+    public void viewLoai() {
+        recyclerViewLoai.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        recyclerViewLoai.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(),layoutManager.getOrientation());
+        recyclerViewLoai.addItemDecoration(dividerItemDecoration);
+        ArrayList<Loai> listloai = new ArrayList<>();
+        listloai.add(new Loai("1","Trà sữa",String.valueOf(R.drawable.test1)));
+        listloai.add(new Loai("2","Trà đào",String.valueOf(R.drawable.test1)));
+        LoaiApdaterAdmin loaiApdaterAdmin = new LoaiApdaterAdmin(listloai,getContext());
+        recyclerViewLoai.setAdapter(loaiApdaterAdmin);
+    }
+
+    public void viewSanPham() {
+        recyclerViewSanPham.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        recyclerViewSanPham.setLayoutManager(layoutManager);
+        ArrayList<SanPham> listsanpham = new ArrayList<>();
+        listsanpham.add(new SanPham("2","2","Trà sữa trà xanh","Ngon lắm","50000",String.valueOf(R.drawable.test1)));
+        listsanpham.add(new SanPham("1","1","Trà sữa trà đào","Ngon lắm","50000",String.valueOf(R.drawable.test1)));
+        SanPhamAdapterAdmin sanPhamAdapterAdmin = new SanPhamAdapterAdmin(listsanpham,getContext());
+        recyclerViewSanPham.setAdapter(sanPhamAdapterAdmin);
+    }
 }
+
 
 
 
