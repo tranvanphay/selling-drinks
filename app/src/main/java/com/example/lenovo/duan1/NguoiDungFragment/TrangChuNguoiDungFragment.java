@@ -29,6 +29,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -64,6 +66,7 @@ public class TrangChuNguoiDungFragment extends Fragment {
         loadLoai();
         loadSanPham();
         getBangTin();
+//        loadbyID();
         getViewSanPhamNguoiDung();
         return view;
     }
@@ -134,6 +137,43 @@ public class TrangChuNguoiDungFragment extends Fragment {
             }
         });
     }
+//    private void loadbyID(){
+//        int index=spn_loaiMenuNguoiDung.getSelectedItemPosition();
+//        String tenLoai=dslNguoiDung.get(index).tenLoai;
+//        Query query1=FirebaseDatabase.getInstance().getReference("SanPham").orderByChild("maLoai").equalTo(tenLoai);
+//        query1.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+//                SanPham sanPham=dataSnapshot.getValue(SanPham.class);
+//                dsspNguoiDung.add(new SanPham(sanPham.maSanPham,sanPham.maLoai,sanPham.tenSanPham,sanPham.chuThich,sanPham.giaTien,sanPham.hinhSanPham));
+//                recyclerViewSanPhamNguoiDung.setHasFixedSize(true);
+//                GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
+//                recyclerViewSanPhamNguoiDung.setLayoutManager(layoutManager);
+//                SanPhamAdapterNguoiDung sanPhamAdapterNguoiDung = new SanPhamAdapterNguoiDung(dsspNguoiDung,getContext());
+//                recyclerViewSanPhamNguoiDung.setAdapter(sanPhamAdapterNguoiDung);
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
     private void getBangTin() {
         hinhBangTin.add("http://www.the-alley.ca/images/main-bg-box/header-img.jpg");
