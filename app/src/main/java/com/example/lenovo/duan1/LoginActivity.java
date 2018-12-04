@@ -1,5 +1,6 @@
 package com.example.lenovo.duan1;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,6 +13,7 @@ import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -47,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             builder.setPositiveButton("Bật wifi", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    WifiManager wifiManager=(WifiManager)getSystemService(Context.WIFI_SERVICE);
+                    @SuppressLint("WifiManagerLeak") WifiManager wifiManager=(WifiManager)getSystemService(Context.WIFI_SERVICE);
                     wifiManager.setWifiEnabled(true);
                 }
             });
@@ -88,9 +90,18 @@ public class LoginActivity extends AppCompatActivity {
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog = new Dialog(LoginActivity.this);
+                final Dialog dialog = new Dialog(LoginActivity.this);
                 dialog.setContentView(R.layout.dialog_dangky);
+                dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                        WindowManager.LayoutParams.MATCH_PARENT);
                 dialog.show();
+                ImageView ivCloseDialogDangKy = dialog.findViewById(R.id.ivCloseDialogDangKy);
+                ivCloseDialogDangKy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
 
 
             }
