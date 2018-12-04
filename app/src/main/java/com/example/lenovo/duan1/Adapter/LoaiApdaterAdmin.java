@@ -3,10 +3,13 @@ package com.example.lenovo.duan1.Adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.R;
@@ -43,15 +46,16 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
         return dsl.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMaLoai;
         TextView tvTenLoai;
         ImageView ivHinhLoai;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            tvMaLoai = (TextView)itemView.findViewById(R.id.tvMaLoaiAdmin);
-            tvTenLoai = (TextView)itemView.findViewById(R.id.tvTenLoaiAdmin);
-            ivHinhLoai = (ImageView)itemView.findViewById(R.id.ivHinhLoaiAdmin);
+            tvMaLoai = (TextView) itemView.findViewById(R.id.tvMaLoaiAdmin);
+            tvTenLoai = (TextView) itemView.findViewById(R.id.tvTenLoaiAdmin);
+            ivHinhLoai = (ImageView) itemView.findViewById(R.id.ivHinhLoaiAdmin);
         }
     }
 }

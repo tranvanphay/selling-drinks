@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.lenovo.duan1.AdminFragment.HoaDonFragment;
 import com.example.lenovo.duan1.AdminFragment.ThongTinAdminFragment;
@@ -19,12 +22,13 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation_admin);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_admin);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         loadFragment(new TrangChuAdminFragment());
 
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -54,4 +58,28 @@ public class AdminActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+//    public void menuLoai(View view) {
+//        final ImageView ivMenuLoai = view.findViewById(R.id.ivMenuLoaiAdmin);
+//        ivMenuLoai.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                android.support.v7.widget.PopupMenu popupMenuLoai = new android.support.v7.widget.PopupMenu(getApplicationContext(), ivMenuLoai);
+//                popupMenuLoai.getMenuInflater().inflate(R.menu.menu_txsloai, popupMenuLoai.getMenu());
+//
+//                popupMenuLoai.setOnMenuItemClickListener(new android.support.v7.widget.PopupMenu.OnMenuItemClickListener() {
+//                    @Override
+//                    public boolean onMenuItemClick(MenuItem item) {
+//                        switch (item.getItemId()) {
+//                            case R.id.xemLoai:
+//                                Toast.makeText(getApplicationContext(), "Xem loại", Toast.LENGTH_SHORT).show();
+//                                break;
+//
+//                        }
+//                        return true;
+//                    }
+//                });
+//            }
+//        });
+//    }
 }
