@@ -1,6 +1,8 @@
 package com.example.lenovo.duan1.Adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,9 @@ import android.widget.Toast;
 import com.example.lenovo.duan1.Model.GioHang;
 import com.example.lenovo.duan1.Model.SanPham;
 import com.example.lenovo.duan1.R;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -36,28 +41,47 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.tvTenSanPhamGioHang.setText(dsgh.get(position).tenSanPham);
-        holder.tvSoLuongSanPhamGioHang.setText(dsgh.get(position).soLuong);
-        holder.tvGiaTienSanPhamGioHang.setText(dsgh.get(position).giaTien);
-        Picasso.get().load(dsgh.get(position).linkHinh).into(holder.ivHinhSanPhamGioHang);
+        holder.tvSoLuongSanPhamGioHang.setText(String.valueOf(dsgh.get(position).soLuong));
+        holder.tvGiaTienSanPhamGioHang.setText(String.valueOf(dsgh.get(position).giaTien));
+        holder.imv_xoaGioHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("GioHang");
+                GioHang gioHang=dsgh.get(position);
+                myRef.child(gioHang.getKeyGioHang()).removeValue(new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                        Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                });
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
         return dsgh.size();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView tvTenSanPhamGioHang;
         TextView tvSoLuongSanPhamGioHang;
         TextView tvGiaTienSanPhamGioHang;
-        ImageView ivHinhSanPhamGioHang;
+        ImageView imv_xoaGioHang;
         public ViewHolder(View itemView) {
             super(itemView);
             tvTenSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvTenSanPhamGioHang);
             tvSoLuongSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvSoLuongSanPhamGioHang);
             tvGiaTienSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvGiaTienSanPhamGioHang);
-            ivHinhSanPhamGioHang = (ImageView)itemView.findViewById(R.id.ivHinhSanPhamGioHang);
+            imv_xoaGioHang = (ImageView) itemView.findViewById(R.id.imv_xoaGioHang);
+
         }
     }
+
 }
 

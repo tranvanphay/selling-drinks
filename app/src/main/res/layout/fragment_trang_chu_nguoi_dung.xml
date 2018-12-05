@@ -172,14 +172,15 @@
                 android:layout_width="298dp"
                 android:layout_height="37dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1" />
 
-            <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Go"/>-->
+            <Button
+                android:id="@+id/bt_locLoai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lọc"/>
         </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -65,9 +65,8 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
                         String tenSanPham=sanPham.tenSanPham;
                         int soLuong= Integer.parseInt(et_soluong.getText().toString());
                         int giaTien=sanPham.giaTien*soLuong;
-                        String linkHinh=sanPham.hinhSanPham;
                         String user=mAuth.getCurrentUser().getEmail();
-                        final GioHang gioHang=new GioHang(tenSanPham,soLuong,giaTien,linkHinh,user);
+                        final GioHang gioHang=new GioHang(tenSanPham,soLuong,giaTien,user);
                         mData.child("GioHang").push().setValue(gioHang, new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {

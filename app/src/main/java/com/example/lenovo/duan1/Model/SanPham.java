@@ -7,6 +7,7 @@ public class SanPham {
     public String chuThich;
     public int giaTien;
     public String hinhSanPham;
+    public String keySanPham;
 
     public SanPham() {
     }
@@ -18,6 +19,14 @@ public class SanPham {
         this.chuThich = chuThich;
         this.giaTien = giaTien;
         this.hinhSanPham = hinhSanPham;
+    }
+
+    public String getKeySanPham() {
+        return keySanPham;
+    }
+
+    public void setKeySanPham(String keySanPham) {
+        this.keySanPham = keySanPham;
     }
 
     public String getMaSanPham() {

@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.ViewFlipper;
@@ -46,6 +47,7 @@ public class TrangChuNguoiDungFragment extends Fragment {
     ArrayList<SanPham> dsspNguoiDung = new ArrayList<SanPham>();
     ArrayList<Loai> dslNguoiDung=new ArrayList<Loai>();
     Spinner spn_loaiMenuNguoiDung;
+    Button bt_locLoai;
     RecyclerView recyclerViewBangTin,recyclerViewSanPhamNguoiDung;
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
 
@@ -63,10 +65,17 @@ public class TrangChuNguoiDungFragment extends Fragment {
         recyclerViewBangTin = view.findViewById(R.id.recyclerViewBangTinNguoiDung);
         recyclerViewSanPhamNguoiDung = view.findViewById(R.id.recyclerViewSanPhamNguoiDung);
         spn_loaiMenuNguoiDung=view.findViewById(R.id.spn_loaiMenuNguoiDung);
+        bt_locLoai=view.findViewById(R.id.bt_locLoai);
+//        bt_locLoai.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                loadbyID();
+//
+//            }
+//        });
         loadLoai();
         loadSanPham();
         getBangTin();
-//        loadbyID();
         getViewSanPhamNguoiDung();
         return view;
     }
@@ -137,43 +146,52 @@ public class TrangChuNguoiDungFragment extends Fragment {
             }
         });
     }
-//    private void loadbyID(){
-//        int index=spn_loaiMenuNguoiDung.getSelectedItemPosition();
-//        String tenLoai=dslNguoiDung.get(index).tenLoai;
-//        Query query1=FirebaseDatabase.getInstance().getReference("SanPham").orderByChild("maLoai").equalTo(tenLoai);
-//        query1.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
-//                SanPham sanPham=dataSnapshot.getValue(SanPham.class);
-//                dsspNguoiDung.add(new SanPham(sanPham.maSanPham,sanPham.maLoai,sanPham.tenSanPham,sanPham.chuThich,sanPham.giaTien,sanPham.hinhSanPham));
-//                recyclerViewSanPhamNguoiDung.setHasFixedSize(true);
-//                GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
-//                recyclerViewSanPhamNguoiDung.setLayoutManager(layoutManager);
-//                SanPhamAdapterNguoiDung sanPhamAdapterNguoiDung = new SanPhamAdapterNguoiDung(dsspNguoiDung,getContext());
-//                recyclerViewSanPhamNguoiDung.setAdapter(sanPhamAdapterNguoiDung);
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    private void loadbyID(){
+        int index=spn_loaiMenuNguoiDung.getSelectedItemPosition();
+        String tenLoai=dslNguoiDung.get(index).tenLoai;
+        Query query1=FirebaseDatabase.getInstance().getReference("SanPham").orderByChild("maLoai").equalTo(tenLoai);
+        query1.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+                SanPham sanPham=dataSnapshot.getValue(SanPham.class);
+                sanPham.setKeySanPham(dataSnapshot.getKey());
+                dsspNguoiDung.add(new SanPham(sanPham.maSanPham,sanPham.maLoai,sanPham.tenSanPham,sanPham.chuThich,sanPham.giaTien,sanPham.hinhSanPham));
+                recyclerViewSanPhamNguoiDung.setHasFixedSize(true);
+                GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
+                recyclerViewSanPhamNguoiDung.setLayoutManager(layoutManager);
+                SanPhamAdapterNguoiDung sanPhamAdapterNguoiDung = new SanPhamAdapterNguoiDung(dsspNguoiDung,getContext());
+                recyclerViewSanPhamNguoiDung.setAdapter(sanPhamAdapterNguoiDung);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String key = dataSnapshot.getKey();
+                for (int i = 0; i < dsspNguoiDung.size(); i++) {
+                    if (dsspNguoiDung.get(i).getKeySanPham().equals(key)) {
+                        dsspNguoiDung.remove(i);
+                        break;
+                    }
+                }
+                recyclerViewSanPhamNguoiDung.notifyAll();
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void getBangTin() {
         hinhBangTin.add("http://www.the-alley.ca/images/main-bg-box/header-img.jpg");
