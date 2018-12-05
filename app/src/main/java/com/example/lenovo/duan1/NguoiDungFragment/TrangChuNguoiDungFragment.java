@@ -65,14 +65,14 @@ public class TrangChuNguoiDungFragment extends Fragment {
         recyclerViewBangTin = view.findViewById(R.id.recyclerViewBangTinNguoiDung);
         recyclerViewSanPhamNguoiDung = view.findViewById(R.id.recyclerViewSanPhamNguoiDung);
         spn_loaiMenuNguoiDung=view.findViewById(R.id.spn_loaiMenuNguoiDung);
-        bt_locLoai=view.findViewById(R.id.bt_locLoai);
-//        bt_locLoai.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                loadbyID();
-//
-//            }
-//        });
+        bt_locLoai=view.findViewById(R.id.btnLocLoai);
+        bt_locLoai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadbyID();
+
+            }
+        });
         loadLoai();
         loadSanPham();
         getBangTin();

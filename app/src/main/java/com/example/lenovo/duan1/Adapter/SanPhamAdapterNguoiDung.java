@@ -54,9 +54,9 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
             @Override
             public void onClick(View v) {
                 final Dialog dialog=new Dialog(context);
-                dialog.setContentView(R.layout.dialog_so_luong);
-                final EditText et_soluong=dialog.findViewById(R.id.et_soluong);
-                Button bt_them=dialog.findViewById(R.id.button);
+                dialog.setContentView(R.layout.dialog_thongtinsanpham);
+                final EditText et_soluong=dialog.findViewById(R.id.etSoLuongSanPham);
+                Button bt_them=dialog.findViewById(R.id.btnThemSanPhamVaoGioHang);
                 dialog.show();
                 bt_them.setOnClickListener(new View.OnClickListener() {
                     @Override
