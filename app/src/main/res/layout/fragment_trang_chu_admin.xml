@@ -298,7 +298,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@drawable/loai_sanpham_title_line"
+                    android:background="#c8bccad0"
                     android:orientation="horizontal">
 
 
@@ -306,7 +306,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/loai_sanpham_title_line"
                         android:fontFamily="@font/robotocondensedregular"
                         android:paddingLeft="23dp"
                         android:paddingTop="12dp"
@@ -321,9 +320,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:paddingRight="5dp"
+                        android:layout_marginRight="5dp"
                         app:srcCompat="@drawable/add_loaivasanpham_icon" />
-
 
                 </LinearLayout>
 
@@ -343,7 +341,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@drawable/loai_sanpham_title_line"
+                    android:background="#c8bccad0"
                     android:orientation="horizontal">
 
 
@@ -351,7 +349,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/loai_sanpham_title_line"
                         android:fontFamily="@font/robotocondensedregular"
                         android:paddingLeft="23dp"
                         android:paddingTop="12dp"
@@ -366,7 +363,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:paddingRight="5dp"
+                        android:layout_marginRight="5dp"
                         app:srcCompat="@drawable/add_loaivasanpham_icon" />
 
 

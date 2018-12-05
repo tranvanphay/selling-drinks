@@ -369,8 +369,6 @@ public class TrangChuAdminFragment extends Fragment {
                 recyclerViewLoai.setHasFixedSize(true);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
                 recyclerViewLoai.setLayoutManager(layoutManager);
-                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(),layoutManager.getOrientation());
-                recyclerViewLoai.addItemDecoration(dividerItemDecoration);
                 LoaiApdaterAdmin loaiApdaterAdmin = new LoaiApdaterAdmin(dsl,getContext());
                 recyclerViewLoai.setAdapter(loaiApdaterAdmin);
             }
@@ -459,8 +457,6 @@ public class TrangChuAdminFragment extends Fragment {
         recyclerViewLoai.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         recyclerViewLoai.setLayoutManager(layoutManager);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(),layoutManager.getOrientation());
-        recyclerViewLoai.addItemDecoration(dividerItemDecoration);
         LoaiApdaterAdmin loaiApdaterAdmin = new LoaiApdaterAdmin(dsl,getContext());
         recyclerViewLoai.setAdapter(loaiApdaterAdmin);
     }

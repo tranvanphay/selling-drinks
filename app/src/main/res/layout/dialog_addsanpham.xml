@@ -102,15 +102,15 @@
                 android:background="@drawable/et_loai"
                 android:fontFamily="@font/robotocondensedregular"
                 android:hint="Nhập tên sản phẩm"
+                android:maxLines="1"
                 android:padding="10dp" />
-
             <Spinner
                 android:id="@+id/spnMaLoai"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:layout_height="50dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/et_loai"
+                android:background="#33858eb4"
                 android:fontFamily="@font/robotocondensedregular"
                 android:padding="10dp" />
 

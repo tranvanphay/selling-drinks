@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.SearchView>
 
-    <ListView
-        android:id="@+id/lv_giohang"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewSanPhamGioHang"
         android:layout_width="match_parent"
-        android:layout_height="456dp" />
+        android:layout_height="match_parent" />
 </LinearLayout>
