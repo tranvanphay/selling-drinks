@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lenovo.duan1.ItemClickListener;
 import com.example.lenovo.duan1.Model.GioHang;
 import com.example.lenovo.duan1.Model.SanPham;
 import com.example.lenovo.duan1.R;
@@ -21,7 +22,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHolder> {
+public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHolder>  {
     ArrayList<GioHang> dsgh;
     Context context;
 
@@ -59,6 +60,12 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 });
             }
         });
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int posittion) {
+
+            }
+        });
 
     }
 
@@ -68,18 +75,28 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvTenSanPhamGioHang;
         TextView tvSoLuongSanPhamGioHang;
         TextView tvGiaTienSanPhamGioHang;
         ImageView imv_xoaGioHang;
+        private ItemClickListener itemClickListener;
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             tvTenSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvTenSanPhamGioHang);
             tvSoLuongSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvSoLuongSanPhamGioHang);
             tvGiaTienSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvGiaTienSanPhamGioHang);
             imv_xoaGioHang = (ImageView) itemView.findViewById(R.id.imv_xoaGioHang);
 
+        }
+        public void setItemClickListener(ItemClickListener itemClickListener){
+            this.itemClickListener=itemClickListener;
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemClickListener.onClick(v,getAdapterPosition());
         }
     }
 
