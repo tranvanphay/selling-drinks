@@ -1,17 +1,20 @@
 package com.example.lenovo.duan1.Adapter;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,18 +28,18 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
 public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder> {
     ArrayList<HoaDon> dshd=new ArrayList<HoaDon>();
-    ArrayList<GioHang> dsgh=new ArrayList<GioHang>();
+//    ArrayList<GioHang> dsgh=new ArrayList<GioHang>();
+//ArrayList<GioHang> dsgh;
     Context context;
     ListView lv_sanPhamHoaDon;
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
     SanPhamAdapterHoaDon sanPhamAdapterHoaDon;
-
+    String keyHoaDon;
     public HoaDonAdapter(ArrayList<HoaDon> dshd, Context context) {
         this.dshd = dshd;
         this.context = context;
@@ -51,52 +54,71 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.tv_tenNguoiNhanHoaDon.setText(dshd.get(position).tenNguoiNhan);
         holder.tv_sdtNhanHoaDon.setText(dshd.get(position).soDienThoai);
         holder.tv_diaChiNhanHangHoaDon.setText(dshd.get(position).diaChiNhanHang);
         holder.tv_chuThichNhanHangHoaDon.setText(dshd.get(position).chuThichDatHang);
+        holder.imv_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(Intent.ACTION_CALL);
+                String sdt=dshd.get(position).soDienThoai;
+                if(sdt.trim().isEmpty() || sdt.length()<10 ||sdt.length()>10){
+                    Toast.makeText(context, "Sai số ", Toast.LENGTH_SHORT).show();
+                }else {
+                    i.setData(Uri.parse("tel:"+sdt));
+                }
+
+                if(ActivityCompat.checkSelfPermission(context,Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                 requestPermission();
+                }else {
+                    context.startActivity(i);
+                }
+            }
+        });
        holder.setItemClickListener(new ItemClickListener() {
            @Override
            public void onClick(View view, int posittion) {
-               String user= dshd.get(position).user;
+               final ArrayList<GioHang> dsgh=new ArrayList<GioHang>();
                Dialog dialog=new Dialog(context);
                dialog.setContentView(R.layout.dialog_san_pham_hoa_don);
                lv_sanPhamHoaDon=dialog.findViewById(R.id.lv_sanPhamHoaDon);
-              String keyHoaDon=dshd.get(position).getKeyHoaDon();
-               Query query=FirebaseDatabase.getInstance().getReference("HoaDon").child(keyHoaDon).child("gioHang").orderByChild("user").equalTo(user);
-               query.addChildEventListener(new ChildEventListener() {
+              keyHoaDon=dshd.get(position).getKeyHoaDon();
+               mData.child("HoaDon").child(keyHoaDon).child("gioHang").addChildEventListener(new ChildEventListener() {
                    @Override
-                   public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+                   public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                        GioHang giohang=dataSnapshot.getValue(GioHang.class);
                        giohang.setKeyGioHang(dataSnapshot.getKey());
+
                        dsgh.add(giohang);
 
+                       sanPhamAdapterHoaDon = new SanPhamAdapterHoaDon(dsgh,context);
+
+                       lv_sanPhamHoaDon.setAdapter(sanPhamAdapterHoaDon);
+                       sanPhamAdapterHoaDon.notifyDataSetChanged();
                    }
 
                    @Override
-                   public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+                   public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                       sanPhamAdapterHoaDon.notifyDataSetChanged();
                    }
 
                    @Override
                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                        String key = dataSnapshot.getKey();
                        for (int i = 0; i < dsgh.size(); i++) {
-                           if (dsgh.get(i).keyGioHang.equals(key)) {
+                           if (dsgh.get(i).getKeyGioHang().equals(key)) {
                                dsgh.remove(i);
                                break;
                            }
 
                        }
                        sanPhamAdapterHoaDon.notifyDataSetChanged();
-
-
                    }
 
                    @Override
-                   public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+                   public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                    }
 
@@ -107,56 +129,19 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
                });
 
 
-//               mData.child("HoaDon").child(keyHoaDon).child("gioHang").addChildEventListener(new ChildEventListener() {
-//                   @Override
-//                   public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//                       GioHang giohang=dataSnapshot.getValue(GioHang.class);
-//                       giohang.setKeyGioHang(dataSnapshot.getKey());
-//                       dsgh.add(giohang);
-//
-//                   }
-//
-//                   @Override
-//                   public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//                   }
-//
-//                   @Override
-//                   public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-//                       String key = dataSnapshot.getKey();
-//                       for (int i = 0; i < dsgh.size(); i++) {
-//                           if (dsgh.get(i).getKeyGioHang().equals(key)) {
-//                               dsgh.remove(i);
-//                               break;
-//                           }
-//
-//                       }
-//                       sanPhamAdapterHoaDon.notifyDataSetChanged();
-//                   }
-//
-//                   @Override
-//                   public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//                   }
-//
-//                   @Override
-//                   public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                   }
-//               });
                dialog.show();
-               sanPhamAdapterHoaDon = new SanPhamAdapterHoaDon(dsgh,context);
-               lv_sanPhamHoaDon.setAdapter(sanPhamAdapterHoaDon);
+
            }
        });
 
-
-
-
-
-
-
     }
+
+    private void requestPermission(){
+        ActivityCompat.requestPermissions((Activity) context,new String[]{Manifest.permission.CALL_PHONE},1);
+    }
+
+
+
 
     @Override
     public int getItemCount() {
@@ -168,6 +153,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         TextView tv_sdtNhanHoaDon;
         TextView tv_diaChiNhanHangHoaDon;
         TextView tv_chuThichNhanHangHoaDon;
+        ImageView imv_call;
         private ItemClickListener itemClickListener;
 
         public ViewHolder(View itemView) {
@@ -177,7 +163,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
             tv_sdtNhanHoaDon=(TextView)itemView.findViewById(R.id.tv_sdtNhanHoaDon);
             tv_diaChiNhanHangHoaDon=(TextView)itemView.findViewById(R.id.tv_diaChiNhanHangHoaDon);
             tv_chuThichNhanHangHoaDon=(TextView)itemView.findViewById(R.id.tv_chuThichNhanHangHoaDon);
-
+            imv_call=(ImageView)itemView.findViewById(R.id.imv_call);
 
         }
         public void setItemClickListener(ItemClickListener itemClickListener){
@@ -189,5 +175,9 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
             itemClickListener.onClick(v,getAdapterPosition());
 
         }
+
+
+
+
     }
 }
