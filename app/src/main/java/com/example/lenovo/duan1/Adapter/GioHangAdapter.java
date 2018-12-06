@@ -95,9 +95,10 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                     bt_oke.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            int soLuongCu=dsgh.get(position).soLuong;
                             int soLuong=Integer.parseInt(et_soLuongNhapLai.getText().toString());
                             String tenSanPham=dsgh.get(position).tenSanPham;
-                            int giaTien=dsgh.get(position).giaTien;
+                            int giaTien=(dsgh.get(position).giaTien/soLuongCu)*soLuong;
                             String user=mAuhtor.getCurrentUser().getEmail();
                             String key=dsgh.get(position).getKeyGioHang();
                             GioHang gioHang=new GioHang(tenSanPham,soLuong,giaTien,user);

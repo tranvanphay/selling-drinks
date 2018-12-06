@@ -30,6 +30,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LoginActivity extends AppCompatActivity {
     TextView tvTitle;
     ImageView ivLogo;
@@ -136,15 +139,35 @@ public class LoginActivity extends AppCompatActivity {
         String email=edt_EmailDangKy.getText().toString();
         String matKhau=edt_matKhauDangKy.getText().toString();
         String nhapLaiMatKhau=edt_nhapLaiMatKhau.getText().toString();
-        if(matKhau.equals(nhapLaiMatKhau)){
+
+        String emailPattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern regex = Pattern.compile(emailPattern);
+        Matcher matcher = regex.matcher(email);
+        if(matKhau != nhapLaiMatKhau){
+            edt_nhapLaiMatKhau.setText("");
+            Toast.makeText(this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
+        }
+        if (matKhau.trim().isEmpty()){
+            Toast.makeText(this, "Mật khẩu không được để trống", Toast.LENGTH_SHORT).show();
+        }
+        if(edt_nhapLaiMatKhau.getText().toString().isEmpty()){
+            Toast.makeText(this, "Vui lòng nhập lại mật khẩu", Toast.LENGTH_SHORT).show();
+        }
+        if(matKhau.length()<5){
+            edt_nhapLaiMatKhau.setText("");
+            edt_matKhauDangKy.setText("");
+            Toast.makeText(this, "Mật khẩu phải lớn hơn 5 ký tự", Toast.LENGTH_SHORT).show();
+        }
+
+        if(matcher.find() && matKhau.equals(nhapLaiMatKhau)){
             mAuth.createUserWithEmailAndPassword(email, matKhau)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                edt_EmailDangKy.setText("");
                                 edt_matKhauDangKy.setText("");
                                 edt_nhapLaiMatKhau.setText("");
+                                edt_EmailDangKy.setText("");
                                 Toast.makeText(LoginActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -154,9 +177,11 @@ public class LoginActivity extends AppCompatActivity {
                             // ...
                         }
                     });
-        }else {
-            edt_nhapLaiMatKhau.setText("");
-            Toast.makeText(this, "Lỗi!!!", Toast.LENGTH_SHORT).show();
+        }
+
+        else {
+            edt_EmailDangKy.setText("");
+            Toast.makeText(this, "Sai định dạng email", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -184,7 +209,16 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
 
-        }else{
+        }if(etUsername.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Bạn chưa nhập email", Toast.LENGTH_SHORT).show();
+        }
+        if(etPassword.getText().toString().isEmpty()){
+            Toast.makeText(this, "Bạn chưa nhập mật khẩu", Toast.LENGTH_SHORT).show();
+        }
+        if (etPassword.getText().toString().length()<6){
+            Toast.makeText(this, "Mật khẩu phải lớn hơn 5 ký tự", Toast.LENGTH_SHORT).show();
+        }
+        else{
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -193,6 +227,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent i =new Intent(LoginActivity.this,NguoiDungActivity.class);
                                 startActivity(i);
                                 finish();
+                                Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(LoginActivity.this, "Lỗi đăng nhập, kiểm tra lại tài khoản và mật khẩu", Toast.LENGTH_SHORT).show();

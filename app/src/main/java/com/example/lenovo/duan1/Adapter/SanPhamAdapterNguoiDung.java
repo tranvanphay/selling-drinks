@@ -56,29 +56,49 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
                 final Dialog dialog=new Dialog(context);
                 dialog.setContentView(R.layout.dialog_thongtinsanpham);
                 final EditText et_soluong=dialog.findViewById(R.id.etSoLuongSanPham);
+                ImageView ivCloseDialogThemSanPham=dialog.findViewById(R.id.ivCloseDialogThemSanPham);
+                ImageView ivHinhThongTinSanPham=dialog.findViewById(R.id.ivHinhThongTinSanPham);
+                TextView tvTenSanPhamThemVaoGioHang=dialog.findViewById(R.id.tvTenSanPhamThemVaoGioHang);
+                TextView tvChuThichSanPhamThemVaoGioHang=dialog.findViewById(R.id.tvChuThichSanPhamThemVaoGioHang);
+                ivCloseDialogThemSanPham.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+                tvTenSanPhamThemVaoGioHang.setText(dsspNguoiDung.get(position).getTenSanPham());
+                tvChuThichSanPhamThemVaoGioHang.setText(dsspNguoiDung.get(position).getChuThich());
+                Picasso.get().load(dsspNguoiDung.get(position).getHinhSanPham()).into(ivHinhThongTinSanPham);
                 Button bt_them=dialog.findViewById(R.id.btnThemSanPhamVaoGioHang);
                 dialog.show();
                 bt_them.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SanPham sanPham=dsspNguoiDung.get(position);
-                        String tenSanPham=sanPham.tenSanPham;
-                        int soLuong= Integer.parseInt(et_soluong.getText().toString());
-                        int giaTien=sanPham.giaTien*soLuong;
-                        String user=mAuth.getCurrentUser().getEmail();
-                        final GioHang gioHang=new GioHang(tenSanPham,soLuong,giaTien,user);
-                        mData.child("GioHang").push().setValue(gioHang, new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                if(databaseError == null){
-                                    Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-                                    et_soluong.setText("");
-                                    dialog.dismiss();
-                                }else {
-                                    Toast.makeText(context, "Lỗi!!!", Toast.LENGTH_SHORT).show();
+                        SanPham sanPham = dsspNguoiDung.get(position);
+                        String tenSanPham = sanPham.tenSanPham;
+                        if (et_soluong.getText().toString().isEmpty() || Integer.parseInt(et_soluong.getText().toString())==0) {
+                            et_soluong.setText("");
+                            Toast.makeText(context, "Vui lòng nhập số lượng", Toast.LENGTH_SHORT).show();
+                        } else {
+                            int soLuong = Integer.parseInt(et_soluong.getText().toString());
+
+
+                            int giaTien = sanPham.giaTien * soLuong;
+                            String user = mAuth.getCurrentUser().getEmail();
+                            final GioHang gioHang = new GioHang(tenSanPham, soLuong, giaTien, user);
+                            mData.child("GioHang").push().setValue(gioHang, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                    if (databaseError == null) {
+                                        Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                                        et_soluong.setText("");
+                                        dialog.dismiss();
+                                    } else {
+                                        Toast.makeText(context, "Lỗi!!!", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
                 });
 

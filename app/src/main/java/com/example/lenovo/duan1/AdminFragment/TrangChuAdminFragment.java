@@ -190,20 +190,29 @@ public class TrangChuAdminFragment extends Fragment {
                                                             String maLoai = edt_maLoai.getText().toString();
                                                             String tenLoai = edt_tenLoai.getText().toString();
                                                             String hinhLoai = downloadUri.toString();
-                                                            Loai loai = new Loai(maLoai, tenLoai, hinhLoai);
+                                                            if(maLoai.isEmpty()){
+                                                                Toast.makeText(getActivity(), "Mã loại không được để trống", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                            if(tenLoai.isEmpty()){
+                                                                Toast.makeText(getActivity(), "Tên loại không được để trống", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                            else{
+                                                                Loai loai = new Loai(maLoai, tenLoai, hinhLoai);
 
-                                                            mData.child("Loai").push().setValue(loai, new DatabaseReference.CompletionListener() {
-                                                                @Override
-                                                                public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                                                    if (databaseError == null) {
-                                                                        Toast.makeText(getActivity(), "Lưu loại thành công", Toast.LENGTH_SHORT).show();
-                                                                        edt_maLoai.setText("");
-                                                                        edt_tenLoai.setText("");
-                                                                    } else {
-                                                                        Toast.makeText(getActivity(), "Lỗi!!!", Toast.LENGTH_SHORT).show();
+                                                                mData.child("Loai").push().setValue(loai, new DatabaseReference.CompletionListener() {
+                                                                    @Override
+                                                                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                                                        if (databaseError == null) {
+                                                                            Toast.makeText(getActivity(), "Lưu loại thành công", Toast.LENGTH_SHORT).show();
+                                                                            edt_maLoai.setText("");
+                                                                            edt_tenLoai.setText("");
+                                                                        } else {
+                                                                            Toast.makeText(getActivity(), "Lỗi!!!", Toast.LENGTH_SHORT).show();
+                                                                        }
                                                                     }
-                                                                }
-                                                            });
+                                                                });
+                                                            }
+
                                                             Log.d("Link", downloadUri + "");
                                                         } else {
                                                             // Handle failures
@@ -296,25 +305,43 @@ public class TrangChuAdminFragment extends Fragment {
                                                             int index = spn_maLoai.getSelectedItemPosition();
                                                             String tenLoai = dsl.get(index).tenLoai;
                                                             String chuThich = edt_chuThich.getText().toString();
-                                                            int giaSanPham = Integer.parseInt(edt_giaSanPham.getText().toString());
-                                                            String hinhSanPham = downloadUri.toString();
-                                                            SanPham sanPham = new SanPham(maSanPham, tenLoai, tenSanPham, chuThich, giaSanPham, hinhSanPham);
-                                                            mData.child("SanPham").push().setValue(sanPham, new DatabaseReference.CompletionListener() {
-                                                                @Override
-                                                                public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                                                    if (databaseError == null) {
-                                                                        Toast.makeText(getActivity(), "Lưu sản phẩm thành công", Toast.LENGTH_SHORT).show();
-                                                                        edt_maSanPham.setText("");
-                                                                        edt_tenSanPham.setText("");
-                                                                        spn_maLoai.setSelection(0);
-                                                                        edt_chuThich.setText("");
-                                                                        edt_giaSanPham.setText("");
 
-                                                                    } else {
-                                                                        Toast.makeText(getActivity(), "Lỗi!!!", Toast.LENGTH_SHORT).show();
+                                                            String hinhSanPham = downloadUri.toString();
+                                                            if(maSanPham.trim().isEmpty()){
+                                                                Toast.makeText(getActivity(), "Mã sản phẩm không được để trống", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                            if(tenSanPham.trim().isEmpty()){
+                                                                Toast.makeText(getActivity(), "Tên sản phẩm không được trống", Toast.LENGTH_SHORT).show();
+
+                                                            }
+                                                            if(chuThich.trim().isEmpty()){
+                                                                Toast.makeText(getActivity(), "Bạn chưa nhập chú thích", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                            if(edt_giaSanPham.getText().toString().trim().isEmpty()|| Integer.parseInt(edt_giaSanPham.getText().toString())<1000){
+                                                                edt_giaSanPham.setText("");
+                                                                Toast.makeText(getActivity(), "Giá tiền không được trống hoặc nhỏ hơn 1000", Toast.LENGTH_SHORT).show();
+
+                                                            }else {
+                                                                int giaSanPham = Integer.parseInt(edt_giaSanPham.getText().toString());
+                                                                SanPham sanPham = new SanPham(maSanPham, tenLoai, tenSanPham, chuThich, giaSanPham, hinhSanPham);
+                                                                mData.child("SanPham").push().setValue(sanPham, new DatabaseReference.CompletionListener() {
+                                                                    @Override
+                                                                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                                                        if (databaseError == null) {
+                                                                            Toast.makeText(getActivity(), "Lưu sản phẩm thành công", Toast.LENGTH_SHORT).show();
+                                                                            edt_maSanPham.setText("");
+                                                                            edt_tenSanPham.setText("");
+                                                                            spn_maLoai.setSelection(0);
+                                                                            edt_chuThich.setText("");
+                                                                            edt_giaSanPham.setText("");
+
+                                                                        } else {
+                                                                            Toast.makeText(getActivity(), "Lỗi!!!", Toast.LENGTH_SHORT).show();
+                                                                        }
                                                                     }
-                                                                }
-                                                            });
+                                                                });
+                                                            }
+
                                                             Log.d("Link", downloadUri + "");
                                                         } else {
                                                             // Handle failures

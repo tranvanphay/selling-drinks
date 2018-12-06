@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class ChuaGiaoFragment extends Fragment {
     RecyclerView recyclerViewChuaGiao;
     ArrayList<HoaDon> dshd=new ArrayList<HoaDon>();
+    HoaDonAdapter hoaDonAdapter;
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
     public ChuaGiaoFragment() {
 
@@ -48,6 +49,7 @@ public class ChuaGiaoFragment extends Fragment {
 
     }
         private void loadHoaDon(){
+
             mData.child("HoaDon").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -57,7 +59,7 @@ public class ChuaGiaoFragment extends Fragment {
                     recyclerViewChuaGiao.setHasFixedSize(true);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
                     recyclerViewChuaGiao.setLayoutManager(layoutManager);
-                    HoaDonAdapter hoaDonAdapter = new HoaDonAdapter(dshd,getContext());
+                    hoaDonAdapter = new HoaDonAdapter(dshd,getContext());
                     recyclerViewChuaGiao.setAdapter(hoaDonAdapter);
                 }
 
@@ -68,7 +70,15 @@ public class ChuaGiaoFragment extends Fragment {
 
                 @Override
                 public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                    String key = dataSnapshot.getKey();
+                    for (int i = 0; i < dshd.size(); i++) {
+                        if (dshd.get(i).getKeyHoaDon().equals(key)) {
+                            dshd.remove(i);
+                            break;
+                        }
 
+                    }
+                    hoaDonAdapter.notifyDataSetChanged();
                 }
 
                 @Override

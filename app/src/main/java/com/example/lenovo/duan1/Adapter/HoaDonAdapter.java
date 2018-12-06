@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -81,9 +82,10 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
            @Override
            public void onClick(View view, int posittion) {
                final ArrayList<GioHang> dsgh=new ArrayList<GioHang>();
-               Dialog dialog=new Dialog(context);
+               final Dialog dialog=new Dialog(context);
                dialog.setContentView(R.layout.dialog_san_pham_hoa_don);
                lv_sanPhamHoaDon=dialog.findViewById(R.id.lv_sanPhamHoaDon);
+               Button bt_giaoHang=dialog.findViewById(R.id.bt_giaoHang);
               keyHoaDon=dshd.get(position).getKeyHoaDon();
                mData.child("HoaDon").child(keyHoaDon).child("gioHang").addChildEventListener(new ChildEventListener() {
                    @Override
@@ -127,7 +129,30 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 
                    }
                });
+                bt_giaoHang.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String tenNguoiNhan=dshd.get(position).tenNguoiNhan;
+                        String soDienThoai=dshd.get(position).soDienThoai;
+                        String diaChiNhanHang=dshd.get(position).diaChiNhanHang;
+                        String chuThich=dshd.get(position).chuThichDatHang;
+                        String user=dshd.get(position).user;
+                        HoaDon hoaDonDaGiao=new HoaDon(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsgh,user);
+                        mData.child("HoaDonDaGiao").push().setValue(hoaDonDaGiao, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                if(databaseError == null){
+                                    mData.child("HoaDon").child(dshd.get(position).getKeyHoaDon()).removeValue();
+                                    dialog.dismiss();
+                                    Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
 
+                                }else {
+                                    Toast.makeText(context, "Lỗi!!!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
 
                dialog.show();
 

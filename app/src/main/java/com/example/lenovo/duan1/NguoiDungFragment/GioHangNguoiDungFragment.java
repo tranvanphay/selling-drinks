@@ -138,6 +138,19 @@ public class GioHangNguoiDungFragment extends Fragment {
                 String sdt=et_sdt.getText().toString();
                 String diaChi=et_diachi.getText().toString();
                 String chuThich=et_chuThich.getText().toString();
+                if(sdt.length()<10 || sdt.length()>10 ){
+                    et_sdt.setText("");
+                    Toast.makeText(getActivity(), "Sai số điện thoại", Toast.LENGTH_SHORT).show();
+                }
+                if(tenDatHang.trim().isEmpty()){
+                    et_Ten.setText("");
+                    Toast.makeText(getActivity(), "Tên không được để trống", Toast.LENGTH_SHORT).show();
+                }
+                if (diaChi.trim().isEmpty()){
+                    et_chuThich.setText("");
+                    Toast.makeText(getActivity(), "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
+                }
+                else {
                 HoaDon hoaDon=new HoaDon(tenDatHang,sdt,diaChi,chuThich,dsgh,user);
                 mData.child("HoaDon").push().setValue(hoaDon, new DatabaseReference.CompletionListener() {
                     @Override
@@ -156,6 +169,7 @@ public class GioHangNguoiDungFragment extends Fragment {
                     }
                 });
 
+            }
             }
         });
         dialog.show();
