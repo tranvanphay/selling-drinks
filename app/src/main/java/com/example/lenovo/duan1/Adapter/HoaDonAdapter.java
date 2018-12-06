@@ -40,9 +40,9 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         holder.tv_sdtNhanHoaDon.setText(dshd.get(position).soDienThoai);
         holder.tv_diaChiNhanHangHoaDon.setText(dshd.get(position).diaChiNhanHang);
         holder.tv_chuThichNhanHangHoaDon.setText(dshd.get(position).chuThichDatHang);
-        HoaDon hoaDon=new HoaDon();
-        SanPhamAdapterHoaDon adapter=new SanPhamAdapterHoaDon(hoaDon.gioHang,context);
-        holder.lv_sanPhamHoaDon.setAdapter(adapter);
+//        HoaDon hoaDon=new HoaDon();
+//        SanPhamAdapterHoaDon adapter=new SanPhamAdapterHoaDon(hoaDon.gioHang,context);
+//        holder.lv_sanPhamHoaDon.setAdapter(adapter);
 
 
 

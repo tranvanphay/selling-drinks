@@ -94,6 +94,7 @@ public class GioHangNguoiDungFragment extends Fragment {
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
 
+                gioHangAdapter.notifyDataSetChanged();
             }
 
             @Override

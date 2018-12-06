@@ -17,13 +17,8 @@ public class GioHang {
         this.user = user;
     }
 
-    public GioHang(String tenSanPham, int soLuong, int giaTien, String user, String keyGioHang) {
-        this.tenSanPham = tenSanPham;
-        this.soLuong = soLuong;
-        this.giaTien = giaTien;
-        this.user = user;
-        this.keyGioHang = keyGioHang;
-    }
+
+
 
     public String getKeyGioHang() {
         return keyGioHang;
