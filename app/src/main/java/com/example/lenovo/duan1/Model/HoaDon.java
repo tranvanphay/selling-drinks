@@ -9,6 +9,7 @@ public class HoaDon {
     public String chuThichDatHang;
     public ArrayList<GioHang> gioHang;
     public String user;
+    public String keyHoaDon;
 
     public HoaDon() {
     }
@@ -20,5 +21,13 @@ public class HoaDon {
         this.chuThichDatHang = chuThichDatHang;
         this.gioHang = gioHang;
         this.user = user;
+    }
+
+    public String getKeyHoaDon() {
+        return keyHoaDon;
+    }
+
+    public void setKeyHoaDon(String keyHoaDon) {
+        this.keyHoaDon = keyHoaDon;
     }
 }

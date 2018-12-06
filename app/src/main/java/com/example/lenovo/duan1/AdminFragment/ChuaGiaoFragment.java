@@ -3,21 +3,16 @@ package com.example.lenovo.duan1.AdminFragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.lenovo.duan1.Adapter.HoaDonAdapter;
-import com.example.lenovo.duan1.Adapter.LoaiApdaterAdmin;
-import com.example.lenovo.duan1.Adapter.SanPhamAdapterHoaDon;
 import com.example.lenovo.duan1.Model.HoaDon;
-import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -57,6 +52,7 @@ public class ChuaGiaoFragment extends Fragment {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     HoaDon hoaDon=dataSnapshot.getValue(HoaDon.class);
+                    hoaDon.setKeyHoaDon(dataSnapshot.getKey());
                     dshd.add(hoaDon);
                     recyclerViewChuaGiao.setHasFixedSize(true);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
