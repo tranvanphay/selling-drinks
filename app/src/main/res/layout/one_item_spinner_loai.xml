@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="TextView"
+        android:gravity="center"
         android:textSize="14sp"
-        android:fontFamily="@font/robotocondensedregular"
+        android:fontFamily="@font/opensanscondensedbold"
         android:textAlignment="center"/>
 </LinearLayout>

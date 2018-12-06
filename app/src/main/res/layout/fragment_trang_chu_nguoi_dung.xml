@@ -29,7 +29,6 @@
                 android:layout_marginBottom="8dp"
                 android:elevation="6dp"
                 android:scaleType="centerCrop"
-
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +93,7 @@
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/charmonmanregular"
                 android:padding="4dp"
@@ -112,9 +111,9 @@
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/volkhovregular"
+                android:fontFamily="@font/robotocondensedregular"
                 android:lineSpacingExtra="6dp"
                 android:lineSpacingMultiplier="1"
                 android:padding="4dp"
@@ -123,30 +122,26 @@
                 android:textSize="12sp"
                 android:textStyle="italic" />
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="80dp"
-                android:background="@drawable/gachchancuatungphan">
+                android:background="@drawable/khung_tintuc_nguoidung">
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/robotocondensedregular"
-                    android:padding="4dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/opensanscondensedbold"
+                    android:padding="10dp"
                     android:text="Tin tức"
-                    android:textColor="#262626"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </android.support.constraint.ConstraintLayout>
+                    android:textColor="#EEF4F2"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerViewBangTinNguoiDung"
@@ -157,8 +152,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="12dp"
-                android:layout_marginRight="12dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="12dp"
                 android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
             </android.support.v7.widget.RecyclerView>
@@ -172,57 +167,50 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:background="@drawable/gachchancuatungphan2">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/khung_menu">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="8dp"
-                        android:fontFamily="@font/robotocondensedregular"
-                        android:padding="4dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:fontFamily="@font/opensanscondensedbold"
+                        android:padding="10dp"
                         android:text="Menu"
-                        android:textColor="#262626"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-                </android.support.constraint.ConstraintLayout>
+                        android:textColor="#515151"
+                        android:textSize="18sp" />
 
                 <Spinner
                     android:id="@+id/spn_loaiMenuNguoiDung"
-                    android:layout_width="300dp"
-                    android:background="@drawable/gachchancuatungphan"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1" />
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:background="#9effffff"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="100dp"/>
 
                 <Button
                     android:id="@+id/btnLocLoai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="20dp"
-                    android:text="Lọc" />
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_locloai"
+                    android:text="Lọc"
+                    android:fontFamily="@font/opensanscondensedbold"
+                    android:textColor="#515151"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerViewSanPhamNguoiDung"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"></android.support.v7.widget.RecyclerView>
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"></android.support.v7.widget.RecyclerView>
         </LinearLayout>
 
 
