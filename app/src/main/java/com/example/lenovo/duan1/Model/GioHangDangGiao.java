@@ -2,7 +2,7 @@ package com.example.lenovo.duan1.Model;
 
 import java.util.ArrayList;
 
-public class GioHangDaGiao {
+public class GioHangDangGiao {
     public String tenSanPham;
     public int soLuong;
     public int giaTien;
@@ -10,10 +10,10 @@ public class GioHangDaGiao {
     public String keyGioHang;
     ArrayList<SanPham> sanPhams;
 
-    public GioHangDaGiao() {
+    public GioHangDangGiao() {
     }
 
-    public GioHangDaGiao(String tenSanPham, int soLuong, int giaTien, String user, ArrayList<SanPham> sanPhams) {
+    public GioHangDangGiao(String tenSanPham, int soLuong, int giaTien, String user, ArrayList<SanPham> sanPhams) {
         this.tenSanPham = tenSanPham;
         this.soLuong = soLuong;
         this.giaTien = giaTien;

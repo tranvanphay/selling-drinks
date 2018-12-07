@@ -31,6 +31,7 @@ public class HoaDonFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tablayoutHoaDon);
 
         tabLayout.addTab(tabLayout.newTab().setText("Chưa giao"));
+        tabLayout.addTab(tabLayout.newTab().setText("Đang giao"));
         tabLayout.addTab(tabLayout.newTab().setText("Đã giao"));
 
         loadFragment(new ChuaGiaoFragment());
@@ -45,7 +46,11 @@ public class HoaDonFragment extends Fragment {
                         loadFragment(fragment);
                         break;
                     case 1:
-                        fragment = new DaGiaoFragment();
+                        fragment = new DangGiaoFragment();
+                        loadFragment(fragment);
+                        break;
+                    case 2:
+                        fragment=new DaGiaoFragment();
                         loadFragment(fragment);
                         break;
                 }
@@ -63,58 +68,9 @@ public class HoaDonFragment extends Fragment {
         });
 
 
-                                         //        final MyFragmentAdapter adapter = new MyFragmentAdapter(getChildFragmentManager());
-//        viewPager.setAdapter(adapter);
-
-//
-//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-//
-
         return view;
     }
 
-//    class MyFragmentAdapter extends FragmentStatePagerAdapter {
-//        public MyFragmentAdapter(FragmentManager fm) {
-//            super(fm);
-//        }
-//
-//        @Override
-//        public Fragment getItem(int position) {
-//            Fragment fragment;
-//            switch (position) {
-//                case 0:
-//                    fragment = new ChuaGiaoFragment();
-//                    break;
-//                case 1:
-//                    fragment = new DaGiaoFragment();
-//                    break;
-//                default:
-//                    return null;
-//            }
-//            return fragment;
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return 2;
-//        }
-//    }
 
     private void loadFragment(Fragment fragment) {
         // load fragment

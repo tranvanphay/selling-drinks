@@ -2,19 +2,19 @@ package com.example.lenovo.duan1.Model;
 
 import java.util.ArrayList;
 
-public class HoaDonDaGiao {
+public class HoaDonDangGiao {
     public String tenNguoiNhan;
     public String soDienThoai;
     public String diaChiNhanHang;
     public String chuThichDatHang;
-    public ArrayList<GioHangDangGiao> gioHang;
+    public ArrayList<GioHang> gioHang;
     public String user;
-    public String keyHoaDonDaGiao;
+    public String keyHoaDonDangGiao;
 
-    public HoaDonDaGiao() {
+    public HoaDonDangGiao() {
     }
 
-    public HoaDonDaGiao(String tenNguoiNhan, String soDienThoai, String diaChiNhanHang, String chuThichDatHang, ArrayList<GioHangDangGiao> gioHang, String user) {
+    public HoaDonDangGiao(String tenNguoiNhan, String soDienThoai, String diaChiNhanHang, String chuThichDatHang, ArrayList<GioHang> gioHang, String user) {
         this.tenNguoiNhan = tenNguoiNhan;
         this.soDienThoai = soDienThoai;
         this.diaChiNhanHang = diaChiNhanHang;
@@ -23,11 +23,11 @@ public class HoaDonDaGiao {
         this.user = user;
     }
 
-    public String getKeyHoaDonDaGiao() {
-        return keyHoaDonDaGiao;
+    public String getKeyHoaDonDangGiao() {
+        return keyHoaDonDangGiao;
     }
 
-    public void setKeyHoaDonDaGiao(String keyHoaDonDaGiao) {
-        this.keyHoaDonDaGiao = keyHoaDonDaGiao;
+    public void setKeyHoaDonDangGiao(String keyHoaDonDangGiao) {
+        this.keyHoaDonDangGiao = keyHoaDonDangGiao;
     }
 }

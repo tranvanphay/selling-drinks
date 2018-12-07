@@ -9,10 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
-import com.example.lenovo.duan1.Adapter.HoaDonDaGiaoAdapter;
+import com.example.lenovo.duan1.Adapter.HoaDonAdapter;
 import com.example.lenovo.duan1.Adapter.HoaDonDangGiaoAdapter;
-import com.example.lenovo.duan1.Model.HoaDonDaGiao;
+import com.example.lenovo.duan1.Model.HoaDon;
 import com.example.lenovo.duan1.Model.HoaDonDangGiao;
 import com.example.lenovo.duan1.R;
 import com.google.firebase.database.ChildEventListener;
@@ -27,14 +28,13 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DaGiaoFragment extends Fragment {
+public class DangGiaoFragment extends Fragment {
+
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
-    ArrayList<HoaDonDaGiao> dshdDaGiao=new ArrayList<HoaDonDaGiao>();
-    RecyclerView recyclerViewDaGiao;
-    HoaDonDaGiaoAdapter hoaDonDaGiaoAdapter;
-
-
-    public DaGiaoFragment() {
+    ArrayList<HoaDonDangGiao> dshdDangGiao=new ArrayList<HoaDonDangGiao>();
+    RecyclerView recyclerViewDangGiao;
+    HoaDonDangGiaoAdapter hoaDonDangGiaoAdapter;
+    public DangGiaoFragment() {
         // Required empty public constructor
     }
 
@@ -43,27 +43,23 @@ public class DaGiaoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_da_giao,container,false);
-        recyclerViewDaGiao=v.findViewById(R.id.recyclerViewDaGiao);
-        loadHoaDonDaGiao();
+        View v=inflater.inflate(R.layout.fragment_dang_giao,container,false);
+        recyclerViewDangGiao=v.findViewById(R.id.recyclerViewDangGiao);
+        loadHoaDonDangGiao();
         return  v;
     }
-
-    private void loadHoaDonDaGiao() {
-
-
-
-        mData.child("HoaDonDaGiao").addChildEventListener(new ChildEventListener() {
+    private void loadHoaDonDangGiao(){
+        mData.child("HoaDonDangGiao").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                HoaDonDaGiao hoaDonDaGiao=dataSnapshot.getValue(HoaDonDaGiao.class);
-                hoaDonDaGiao.setKeyHoaDonDaGiao(dataSnapshot.getKey());
-                dshdDaGiao.add(hoaDonDaGiao);
-                recyclerViewDaGiao.setHasFixedSize(true);
+                HoaDonDangGiao hoaDonDangGiao=dataSnapshot.getValue(HoaDonDangGiao.class);
+                hoaDonDangGiao.setKeyHoaDonDangGiao(dataSnapshot.getKey());
+                dshdDangGiao.add(hoaDonDangGiao);
+                recyclerViewDangGiao.setHasFixedSize(true);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-                recyclerViewDaGiao.setLayoutManager(layoutManager);
-                hoaDonDaGiaoAdapter = new HoaDonDaGiaoAdapter(dshdDaGiao,getContext());
-                recyclerViewDaGiao.setAdapter(hoaDonDaGiaoAdapter);
+                recyclerViewDangGiao.setLayoutManager(layoutManager);
+                hoaDonDangGiaoAdapter = new HoaDonDangGiaoAdapter(dshdDangGiao,getContext());
+                recyclerViewDangGiao.setAdapter(hoaDonDangGiaoAdapter);
             }
 
             @Override
@@ -74,14 +70,14 @@ public class DaGiaoFragment extends Fragment {
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 String key = dataSnapshot.getKey();
-                for (int i = 0; i < dshdDaGiao.size(); i++) {
-                    if (dshdDaGiao.get(i).getKeyHoaDonDaGiao().equals(key)) {
-                        dshdDaGiao.remove(i);
+                for (int i = 0; i < dshdDangGiao.size(); i++) {
+                    if (dshdDangGiao.get(i).getKeyHoaDonDangGiao().equals(key)) {
+                        dshdDangGiao.remove(i);
                         break;
                     }
 
                 }
-                hoaDonDaGiaoAdapter.notifyDataSetChanged();
+                hoaDonDangGiaoAdapter.notifyDataSetChanged();
             }
 
             @Override

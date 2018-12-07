@@ -74,24 +74,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 Dialog dialog=new Dialog(context);
                 dialog.setContentView(R.layout.dialog_sua_gio_hang);
                 final EditText et_soLuongNhapLai=dialog.findViewById(R.id.edt_soLuongThayDoi);
-                ImageView imv_tru=dialog.findViewById(R.id.imv_tru);
-                ImageView imv_cong=dialog.findViewById(R.id.imv_cong);
                 Button bt_oke=dialog.findViewById(R.id.bt_xacNhanSuaGioHang);
                 et_soLuongNhapLai.setText(String.valueOf(dsgh.get(position).soLuong));
-//                imv_tru.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        int i=Integer.parseInt(et_soLuongNhapLai.getText());
-//                        et_soLuongNhapLai.setText(String.valueOf(i--));
-//                    }
-//                });
-//                imv_cong.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        int z=dsgh.get(position).soLuong;
-//                        et_soLuongNhapLai.setText(String.valueOf(z++));
-//                    }
-//                });
                     bt_oke.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

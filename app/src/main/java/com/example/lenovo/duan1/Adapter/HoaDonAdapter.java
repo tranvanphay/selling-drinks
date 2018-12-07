@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.lenovo.duan1.ItemClickListener;
 import com.example.lenovo.duan1.Model.GioHang;
 import com.example.lenovo.duan1.Model.HoaDon;
+import com.example.lenovo.duan1.Model.HoaDonDangGiao;
 import com.example.lenovo.duan1.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -34,8 +35,6 @@ import java.util.ArrayList;
 
 public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder> {
     ArrayList<HoaDon> dshd=new ArrayList<HoaDon>();
-//    ArrayList<GioHang> dsgh=new ArrayList<GioHang>();
-//ArrayList<GioHang> dsgh;
     Context context;
     ListView lv_sanPhamHoaDon;
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
@@ -50,7 +49,6 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View itemView = layoutInflater.inflate(R.layout.one_item_chua_giao, parent, false);
-
         return new HoaDonAdapter.ViewHolder(itemView);
     }
 
@@ -137,8 +135,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
                         String diaChiNhanHang=dshd.get(position).diaChiNhanHang;
                         String chuThich=dshd.get(position).chuThichDatHang;
                         String user=dshd.get(position).user;
-                        HoaDon hoaDonDaGiao=new HoaDon(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsgh,user);
-                        mData.child("HoaDonDaGiao").push().setValue(hoaDonDaGiao, new DatabaseReference.CompletionListener() {
+                        HoaDonDangGiao hoaDonDangGiao=new HoaDonDangGiao(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsgh,user);
+                        mData.child("HoaDonDangGiao").push().setValue(hoaDonDangGiao, new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
                                 if(databaseError == null){

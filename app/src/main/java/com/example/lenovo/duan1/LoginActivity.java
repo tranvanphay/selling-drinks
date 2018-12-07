@@ -190,14 +190,14 @@ public class LoginActivity extends AppCompatActivity {
         String email=etUsername.getText().toString();
         String password=etPassword.getText().toString();
 
-        if(email.equals("admin@admin.com")){
+        if(email.equals("admin@admin.com")) {
 
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Intent i =new Intent(LoginActivity.this,AdminActivity.class);
+                                Intent i = new Intent(LoginActivity.this, AdminActivity.class);
                                 startActivity(i);
                                 finish();
                             } else {
@@ -208,16 +208,16 @@ public class LoginActivity extends AppCompatActivity {
                             // ...
                         }
                     });
-
-        }if(etUsername.getText().toString().trim().isEmpty()){
-            Toast.makeText(this, "Bạn chưa nhập email", Toast.LENGTH_SHORT).show();
         }
-        if(etPassword.getText().toString().isEmpty()){
-            Toast.makeText(this, "Bạn chưa nhập mật khẩu", Toast.LENGTH_SHORT).show();
-        }
-        if (etPassword.getText().toString().length()<6){
-            Toast.makeText(this, "Mật khẩu phải lớn hơn 5 ký tự", Toast.LENGTH_SHORT).show();
-        }
+//        }if(etUsername.getText().toString().trim().isEmpty()){
+//            Toast.makeText(this, "Bạn chưa nhập email", Toast.LENGTH_SHORT).show();
+//        }
+//        if(etPassword.getText().toString().isEmpty()){
+//            Toast.makeText(this, "Bạn chưa nhập mật khẩu", Toast.LENGTH_SHORT).show();
+//        }
+//        if (etPassword.getText().toString().length()<6){
+//            Toast.makeText(this, "Mật khẩu phải lớn hơn 5 ký tự", Toast.LENGTH_SHORT).show();
+//        }
         else{
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

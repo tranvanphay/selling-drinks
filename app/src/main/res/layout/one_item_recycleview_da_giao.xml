@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_margin="20dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_tenNguoiNhanDaGiao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="10pt"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_sdtNhanDaGiao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="10pt"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_diaChiNhanHangDaGiao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="10pt"
+        />
+
+    <TextView
+        android:id="@+id/tv_chuThichNhanHangDaGiao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="10pt"
+        />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imv_xoaHoaDonDaGiao"
+        android:layout_width="41dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/delete_icon" />
+</LinearLayout>
+
+
+
+

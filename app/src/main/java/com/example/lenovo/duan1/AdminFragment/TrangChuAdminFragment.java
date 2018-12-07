@@ -105,7 +105,7 @@ public class TrangChuAdminFragment extends Fragment {
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 
-        SimpleDateFormat df = new SimpleDateFormat("EEE, MMM d, yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("EEE, MMM d, yyyy, hh:mm");
         String formattedDate = df.format(c);
         tvCurrentDate.setText(formattedDate);
         iv_Logout.setOnClickListener(new View.OnClickListener() {

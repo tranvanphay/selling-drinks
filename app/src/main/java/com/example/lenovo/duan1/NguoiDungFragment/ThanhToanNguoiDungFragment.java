@@ -105,7 +105,7 @@ public class ThanhToanNguoiDungFragment extends Fragment {
 //                    fragment = new ChuaGiaoFragment();
 //                    break;
 //                case 1:
-//                    fragment = new DaGiaoFragment();
+//                    fragment = new DangGiaoFragment();
 //                    break;
 //                default:
 //                    return null;

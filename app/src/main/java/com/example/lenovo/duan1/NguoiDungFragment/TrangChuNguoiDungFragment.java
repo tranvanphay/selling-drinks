@@ -76,7 +76,6 @@ public class TrangChuNguoiDungFragment extends Fragment {
         loadLoai();
         loadSanPham();
         getBangTin();
-        getViewSanPhamNguoiDung();
         return view;
     }
     private void loadLoai(){
@@ -148,6 +147,7 @@ public class TrangChuNguoiDungFragment extends Fragment {
     }
     private void loadbyID(){
         int index=spn_loaiMenuNguoiDung.getSelectedItemPosition();
+        final ArrayList<SanPham> dsspLoc=new ArrayList<>();
         String tenLoai=dslNguoiDung.get(index).tenLoai;
         Query query1=FirebaseDatabase.getInstance().getReference("SanPham").orderByChild("maLoai").equalTo(tenLoai);
         query1.addChildEventListener(new ChildEventListener() {
@@ -155,11 +155,11 @@ public class TrangChuNguoiDungFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
                 SanPham sanPham=dataSnapshot.getValue(SanPham.class);
                 sanPham.setKeySanPham(dataSnapshot.getKey());
-                dsspNguoiDung.add(new SanPham(sanPham.maSanPham,sanPham.maLoai,sanPham.tenSanPham,sanPham.chuThich,sanPham.giaTien,sanPham.hinhSanPham));
+                dsspLoc.add(new SanPham(sanPham.maSanPham,sanPham.maLoai,sanPham.tenSanPham,sanPham.chuThich,sanPham.giaTien,sanPham.hinhSanPham));
                 recyclerViewSanPhamNguoiDung.setHasFixedSize(true);
                 GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
                 recyclerViewSanPhamNguoiDung.setLayoutManager(layoutManager);
-                SanPhamAdapterNguoiDung sanPhamAdapterNguoiDung = new SanPhamAdapterNguoiDung(dsspNguoiDung,getContext());
+                SanPhamAdapterNguoiDung sanPhamAdapterNguoiDung = new SanPhamAdapterNguoiDung(dsspLoc,getContext());
                 recyclerViewSanPhamNguoiDung.setAdapter(sanPhamAdapterNguoiDung);
             }
 
@@ -171,9 +171,9 @@ public class TrangChuNguoiDungFragment extends Fragment {
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 String key = dataSnapshot.getKey();
-                for (int i = 0; i < dsspNguoiDung.size(); i++) {
-                    if (dsspNguoiDung.get(i).getKeySanPham().equals(key)) {
-                        dsspNguoiDung.remove(i);
+                for (int i = 0; i < dsspLoc.size(); i++) {
+                    if (dsspLoc.get(i).getKeySanPham().equals(key)) {
+                        dsspLoc.remove(i);
                         break;
                     }
                 }
@@ -215,11 +215,5 @@ public class TrangChuNguoiDungFragment extends Fragment {
         BangTinAdapter bangTinAdapter = new BangTinAdapter(getActivity(), tenBangTin, hinhBangTin);
         recyclerViewBangTin.setAdapter(bangTinAdapter);
     }
-    public void getViewSanPhamNguoiDung() {
-        recyclerViewSanPhamNguoiDung.setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
-        recyclerViewSanPhamNguoiDung.setLayoutManager(layoutManager);
-        SanPhamAdapterNguoiDung sanPhamAdapterNguoiDung = new SanPhamAdapterNguoiDung(dsspNguoiDung,getContext());
-        recyclerViewSanPhamNguoiDung.setAdapter(sanPhamAdapterNguoiDung);
-    }
+
 }
