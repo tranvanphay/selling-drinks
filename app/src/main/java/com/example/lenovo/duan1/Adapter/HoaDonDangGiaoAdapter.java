@@ -124,7 +124,7 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
                             String user=dshdDangGiao.get(position).user;
 
                             Date ngay = Calendar.getInstance().getTime();
-                            SimpleDateFormat ngayFM = new SimpleDateFormat("dd");
+                            SimpleDateFormat ngayFM = new SimpleDateFormat("dd/MM?yyyy");
                             String ngayDaGiao = ngayFM.format(ngay);
 
                             Date thang = Calendar.getInstance().getTime();
