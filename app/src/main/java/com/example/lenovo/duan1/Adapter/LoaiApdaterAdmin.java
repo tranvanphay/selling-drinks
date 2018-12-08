@@ -1,5 +1,6 @@
 package com.example.lenovo.duan1.Adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View itemView = layoutInflater.inflate(R.layout.oneitem_recyclerview_loai_admin,parent,false);
+        View itemView = layoutInflater.inflate(R.layout.oneitem_recyclerview_loai_admin, parent, false);
 
         return new ViewHolder(itemView);
     }
@@ -39,6 +40,41 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
         holder.tvMaLoai.setText(dsl.get(position).maLoai);
         holder.tvTenLoai.setText(dsl.get(position).tenLoai);
         Picasso.get().load(dsl.get(position).hinhLoai).into(holder.ivHinhLoai);
+        holder.ivHinhLoai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final ImageView ivXoaSuaLoai = v.findViewById(R.id.ivMenuLoaiAdmin);
+                ivXoaSuaLoai.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(context, ivXoaSuaLoai);
+                        popupMenu.getMenuInflater().inflate(R.menu.menu_xsloai, popupMenu.getMenu());
+
+                        popupMenu.setOnMenuItemClickListener(new android.widget.PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                switch (item.getItemId()) {
+                                    case R.id.xoaLoai:
+                                        Toast.makeText(context, "Xóa sản phẩm", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case R.id.suaLoai:
+                                        Dialog dialogSuaLoai = new Dialog(context);
+                                        dialogSuaLoai.setContentView(R.layout.dialog_sualoai);
+                                        dialogSuaLoai.show();
+                                        break;
+                                }
+
+
+                                return true;
+                            }
+                        });
+                        popupMenu.show();
+                    }
+                });
+            }
+
+        });
+
     }
 
     @Override

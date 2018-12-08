@@ -509,6 +509,8 @@ public class TrangChuAdminFragment extends Fragment {
         SanPhamAdapterAdmin sanPhamAdapterAdmin = new SanPhamAdapterAdmin(dssp, getContext());
         recyclerViewSanPham.setAdapter(sanPhamAdapterAdmin);
     }
+
+
 }
 
 

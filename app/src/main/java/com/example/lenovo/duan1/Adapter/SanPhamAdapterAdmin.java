@@ -1,8 +1,10 @@
 package com.example.lenovo.duan1.Adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,7 +29,7 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View itemView = layoutInflater.inflate(R.layout.oneitem_recyclerview_sanpham_admin,parent,false);
+        View itemView = layoutInflater.inflate(R.layout.oneitem_recyclerview_sanpham_admin, parent, false);
 
         return new ViewHolder(itemView);
     }
@@ -40,8 +42,36 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
         holder.imv_menuSanPhamAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "ID "+position, Toast.LENGTH_SHORT).show();
+                final ImageView ivXoaSuaSanPham = v.findViewById(R.id.ivMenuSanPhamAdmin);
+                ivXoaSuaSanPham.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(context, ivXoaSuaSanPham);
+                        popupMenu.getMenuInflater().inflate(R.menu.menu_xssanpham, popupMenu.getMenu());
+
+                        popupMenu.setOnMenuItemClickListener(new android.widget.PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                switch (item.getItemId()) {
+                                    case R.id.xoaSanPham:
+                                        Toast.makeText(context, "Xóa sản phẩm", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case R.id.suaSanPham:
+                                        Dialog dialogSuaSanPham = new Dialog(context);
+                                        dialogSuaSanPham.setContentView(R.layout.dialog_suasanpham);
+                                        dialogSuaSanPham.show();
+                                        break;
+                                }
+
+
+                                return true;
+                            }
+                        });
+                        popupMenu.show();
+                    }
+                });
             }
+
         });
     }
 
@@ -50,16 +80,18 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
         return dssp.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMaSanPham;
         TextView tvTenSanPham;
-        ImageView ivHinhSanPham,imv_menuSanPhamAdmin;
+        ImageView ivHinhSanPham, imv_menuSanPhamAdmin;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            tvMaSanPham = (TextView)itemView.findViewById(R.id.tvMaSanPhamAdmin);
-            tvTenSanPham = (TextView)itemView.findViewById(R.id.tvTenSanPhamAdmin);
-            ivHinhSanPham = (ImageView)itemView.findViewById(R.id.ivHinhSanPhamAdmin);
-            imv_menuSanPhamAdmin=(ImageView) itemView.findViewById(R.id.ivMenuSanPhamAdmin);
+            tvMaSanPham = (TextView) itemView.findViewById(R.id.tvMaSanPhamAdmin);
+            tvTenSanPham = (TextView) itemView.findViewById(R.id.tvTenSanPhamAdmin);
+            ivHinhSanPham = (ImageView) itemView.findViewById(R.id.ivHinhSanPhamAdmin);
+            imv_menuSanPhamAdmin = (ImageView) itemView.findViewById(R.id.ivMenuSanPhamAdmin);
+
         }
     }
 }
