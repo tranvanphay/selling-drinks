@@ -117,6 +117,8 @@ public class LoginActivity extends AppCompatActivity {
                 edt_matKhauDangKy=dialogDangKy.findViewById(R.id.edt_PasswordDangKy);
                 edt_nhapLaiMatKhau=dialogDangKy.findViewById(R.id.edt_nhapLaiMatKhau);
                 Button bt_xacNhanDangKy=dialogDangKy.findViewById(R.id.bt_xacNhanDangKy);
+                dialogDangKy.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT);
                 bt_xacNhanDangKy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
