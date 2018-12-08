@@ -162,6 +162,9 @@ public class GioHangNguoiDungFragment extends Fragment {
                     et_chuThich.setText("");
                     Toast.makeText(getActivity(), "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
                 }
+                else if(dsgh.size()<1){
+                    Toast.makeText(getActivity(), "Giỏ hàng của bạn không có gì", Toast.LENGTH_SHORT).show();
+                }
                 else {
                 HoaDon hoaDon=new HoaDon(tenDatHang,sdt,diaChi,chuThich,dsgh,user,ngayDatHang,gioDatHang);
                 mData.child("HoaDon").push().setValue(hoaDon, new DatabaseReference.CompletionListener() {
