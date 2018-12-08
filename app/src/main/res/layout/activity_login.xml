@@ -148,7 +148,7 @@
         android:layout_marginBottom="4dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/robotocondensedregular"
-        android:text="Chưa có tài khoảng? Đăng ký ngay!"
+        android:text="Chưa có tài khoản? Đăng ký ngay!"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="#3C515B"
         app:layout_constraintBottom_toBottomOf="parent"
