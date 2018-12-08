@@ -1,52 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="380dp"
+    android:background="#dcffffff"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Thanh toán"
-        android:textAlignment="center"
-        android:textSize="12pt"/>
+        android:layout_height="60dp"
+        android:background="#c0021b47"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/et_tenDatHang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Tên" />
 
-    <EditText
-        android:id="@+id/et_sdtDatHang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Sdt" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/robotocondensedregular"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Thông tin cá nhân"
+            android:textColor="#e3e8ea"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/et_diaChiNhanHang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Địa chỉ" />
+        <ImageView
+            android:id="@+id/ivCloseDialogThanhToan"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingRight="20dp"
+            app:srcCompat="@drawable/close_icon" />
 
-    <EditText
-        android:id="@+id/et_chuThichDatHang"
+
+    </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Tên người nhận :" />
+
+            <EditText
+                android:id="@+id/et_tenDatHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:background="@drawable/et_thanhtoan"
+                android:padding="10dp"
+                android:hint="Tên người nhận"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Số điện thoại :" />
+
+            <EditText
+                android:id="@+id/et_sdtDatHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:padding="8dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:background="@drawable/et_thanhtoan"
+                android:inputType="phone"
+                android:hint="Số điện thoại" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Địa chỉ nhận hàng :" />
+
+            <EditText
+                android:id="@+id/et_diaChiNhanHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:background="@drawable/et_thanhtoan"
+                android:padding="10dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:hint="Địa chỉ"
+                android:textSize="16sp"
+                android:inputType="textPostalAddress" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Ghi chú :" />
+
+            <EditText
+                android:id="@+id/et_chuThichDatHang"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:gravity="top"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:inputType="textMultiLine"
+                android:background="@drawable/et_thanhtoan"
+                android:fontFamily="@font/robotocondensedregular"
+                android:hint="Ghi chú" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Chú thích" />
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/robotocondensedregular"
+            android:textSize="15dp"
+            android:textColor="#e3e8ea"
+            android:text="Tổng tiền"
+            android:gravity="center"
+            android:background="@drawable/backgroundtextviewtongtien"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:textSize="16dp"
+            android:fontFamily="@font/robotocondensedregular"
+            android:gravity="center"
+            android:background="@drawable/background_khung_tongtien"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/bt_xacNhanThanhToan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Xác nhận" />
+        android:background="#c0021b47"
+        android:layout_marginTop="20dp"
+        android:text="Xác nhận thanh toán"
+        android:fontFamily="@font/robotocondensedregular"
+        android:textStyle="bold"
+        android:textColor="#e3e8ea"
+        android:textSize="14sp" />
 </LinearLayout>
