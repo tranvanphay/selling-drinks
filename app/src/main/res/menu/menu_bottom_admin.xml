@@ -14,5 +14,5 @@
         android:id="@+id/thongTinAdmin"
         android:enabled="true"
         android:icon="@drawable/ic_statistical"
-        android:title="Admin" />
+        android:title="Thống kê" />
 </menu>

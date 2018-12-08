@@ -7,12 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.lenovo.duan1.AdminFragment.HoaDonFragment;
-import com.example.lenovo.duan1.AdminFragment.ThongTinAdminFragment;
+import com.example.lenovo.duan1.AdminFragment.ThongKeFragment;
 import com.example.lenovo.duan1.AdminFragment.TrangChuAdminFragment;
 
 public class AdminActivity extends AppCompatActivity {
@@ -43,7 +40,7 @@ public class AdminActivity extends AppCompatActivity {
                     loadFragment(fragment);
                     return true;
                 case R.id.thongTinAdmin:
-                    fragment = new ThongTinAdminFragment();
+                    fragment = new ThongKeFragment();
                     loadFragment(fragment);
                     return true;
             }
@@ -59,27 +56,5 @@ public class AdminActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-//    public void menuLoai(View view) {
-//        final ImageView ivMenuLoai = view.findViewById(R.id.ivMenuLoaiAdmin);
-//        ivMenuLoai.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                android.support.v7.widget.PopupMenu popupMenuLoai = new android.support.v7.widget.PopupMenu(getApplicationContext(), ivMenuLoai);
-//                popupMenuLoai.getMenuInflater().inflate(R.menu.menu_txsloai, popupMenuLoai.getMenu());
-//
-//                popupMenuLoai.setOnMenuItemClickListener(new android.support.v7.widget.PopupMenu.OnMenuItemClickListener() {
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem item) {
-//                        switch (item.getItemId()) {
-//                            case R.id.xemLoai:
-//                                Toast.makeText(getApplicationContext(), "Xem loại", Toast.LENGTH_SHORT).show();
-//                                break;
-//
-//                        }
-//                        return true;
-//                    }
-//                });
-//            }
-//        });
-//    }
+
 }

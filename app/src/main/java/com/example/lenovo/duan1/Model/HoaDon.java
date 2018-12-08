@@ -12,8 +12,6 @@ public class HoaDon {
     public String keyHoaDon;
     public String ngayDatHang;
     public String gioDatHang;
-    public String thangDatHang;
-    public String namDatHang;
     public HoaDon() {
     }
 
@@ -37,18 +35,7 @@ public class HoaDon {
         this.gioDatHang = gioDatHang;
     }
 
-    public HoaDon(String tenNguoiNhan, String soDienThoai, String diaChiNhanHang, String chuThichDatHang, ArrayList<GioHang> gioHang, String user, String ngayDatHang, String thangDatHang, String namDatHang, String gioDatHang) {
-        this.tenNguoiNhan = tenNguoiNhan;
-        this.soDienThoai = soDienThoai;
-        this.diaChiNhanHang = diaChiNhanHang;
-        this.chuThichDatHang = chuThichDatHang;
-        this.gioHang = gioHang;
-        this.user = user;
-        this.ngayDatHang = ngayDatHang;
-        this.thangDatHang = thangDatHang;
-        this.namDatHang = namDatHang;
-        this.gioDatHang = gioDatHang;
-    }
+
 
     public String getKeyHoaDon() {
         return keyHoaDon;

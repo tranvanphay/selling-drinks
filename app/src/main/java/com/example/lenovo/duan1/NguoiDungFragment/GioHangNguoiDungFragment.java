@@ -143,16 +143,8 @@ public class GioHangNguoiDungFragment extends Fragment {
                 String chuThich=et_chuThich.getText().toString();
 
                 Date ngay = Calendar.getInstance().getTime();
-                SimpleDateFormat ngayFM = new SimpleDateFormat("dd");
+                SimpleDateFormat ngayFM = new SimpleDateFormat("dd/MM/yyyy");
                 String ngayDatHang = ngayFM.format(ngay);
-
-                Date thang = Calendar.getInstance().getTime();
-                SimpleDateFormat thangFM = new SimpleDateFormat("MM");
-                String thangDatHang = thangFM.format(thang);
-
-                Date nam = Calendar.getInstance().getTime();
-                SimpleDateFormat namFM = new SimpleDateFormat("yyyy");
-                String namDatHang = namFM.format(nam);
 
                 Date gio=Calendar.getInstance().getTime();
                 SimpleDateFormat hf=new SimpleDateFormat("hh:mm");
@@ -171,7 +163,7 @@ public class GioHangNguoiDungFragment extends Fragment {
                     Toast.makeText(getActivity(), "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                HoaDon hoaDon=new HoaDon(tenDatHang,sdt,diaChi,chuThich,dsgh,user,ngayDatHang,thangDatHang,namDatHang,gioDatHang);
+                HoaDon hoaDon=new HoaDon(tenDatHang,sdt,diaChi,chuThich,dsgh,user,ngayDatHang,gioDatHang);
                 mData.child("HoaDon").push().setValue(hoaDon, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(@android.support.annotation.Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {

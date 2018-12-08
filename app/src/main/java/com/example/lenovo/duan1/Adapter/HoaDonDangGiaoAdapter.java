@@ -178,8 +178,6 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
         TextView tv_diaChiNhanHangDangGiao;
         TextView tv_chuThichNhanHangDangGiao;
         TextView tv_ngayDangGiao;
-        TextView tv_thangDangGiao;
-        TextView tv_namDangGiao;
         TextView tv_gioDangGiao;
         private ItemClickListener itemClickListener;
 
@@ -192,8 +190,6 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
             tv_diaChiNhanHangDangGiao=(TextView)itemView.findViewById(R.id.tv_diaChiNhanHangDangGiao);
             tv_chuThichNhanHangDangGiao=(TextView)itemView.findViewById(R.id.tv_chuThichNhanHangDangGiao);
             tv_ngayDangGiao=(TextView)itemView.findViewById(R.id.tv_ngayDangGiao);
-            tv_thangDangGiao=(TextView)itemView.findViewById(R.id.tv_thangDangGiao);
-            tv_namDangGiao=(TextView)itemView.findViewById(R.id.tv_namDangGiao);
             tv_gioDangGiao=(TextView)itemView.findViewById(R.id.tv_gioDangGiao);
         }
         public void setItemClickListener(ItemClickListener itemClickListener){
