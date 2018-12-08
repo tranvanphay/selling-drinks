@@ -71,7 +71,7 @@ public class TrangChuAdminFragment extends Fragment {
     ArrayList<Loai> dsl = new ArrayList<Loai>();
     ArrayList<SanPham> dssp = new ArrayList<SanPham>();
     TextView tvCurrentDate, tv_welcomeback;
-    ImageView ivThemLoai, ivThemSanPham, imv_themAnh, imv_themAnhSanPham, iv_Logout, ivMenuThemLoaiVaSanPham;
+    ImageView  imv_themAnh, imv_themAnhSanPham, iv_Logout, ivMenuThemLoaiVaSanPham;
     RecyclerView recyclerViewBangTin, recyclerViewLoai, recyclerViewSanPham;
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
     FirebaseStorage storage = FirebaseStorage.getInstance();

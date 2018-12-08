@@ -31,7 +31,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder> {
     ArrayList<HoaDon> dshd=new ArrayList<HoaDon>();
@@ -58,6 +61,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         holder.tv_sdtNhanHoaDon.setText(dshd.get(position).soDienThoai);
         holder.tv_diaChiNhanHangHoaDon.setText(dshd.get(position).diaChiNhanHang);
         holder.tv_chuThichNhanHangHoaDon.setText(dshd.get(position).chuThichDatHang);
+        holder.tv_ngayDatHang.setText(dshd.get(position).ngayDatHang);
+        holder.tv_gioDatHang.setText(dshd.get(position).gioDatHang);
         holder.imv_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,7 +140,13 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
                         String diaChiNhanHang=dshd.get(position).diaChiNhanHang;
                         String chuThich=dshd.get(position).chuThichDatHang;
                         String user=dshd.get(position).user;
-                        HoaDonDangGiao hoaDonDangGiao=new HoaDonDangGiao(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsgh,user);
+                        Date ngay = Calendar.getInstance().getTime();
+                        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                        Date gio = Calendar.getInstance().getTime();
+                        SimpleDateFormat hf = new SimpleDateFormat("hh:mm");
+                        String ngayDangGiao=df.format(ngay);
+                        String gioDangGiao=hf.format(gio);
+                        HoaDonDangGiao hoaDonDangGiao=new HoaDonDangGiao(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsgh,user,ngayDangGiao,gioDangGiao);
                         mData.child("HoaDonDangGiao").push().setValue(hoaDonDangGiao, new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
@@ -177,6 +188,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         TextView tv_diaChiNhanHangHoaDon;
         TextView tv_chuThichNhanHangHoaDon;
         ImageView imv_call;
+        TextView tv_ngayDatHang;
+        TextView tv_gioDatHang;
         private ItemClickListener itemClickListener;
 
         public ViewHolder(View itemView) {
@@ -186,6 +199,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
             tv_sdtNhanHoaDon=(TextView)itemView.findViewById(R.id.tv_sdtNhanHoaDon);
             tv_diaChiNhanHangHoaDon=(TextView)itemView.findViewById(R.id.tv_diaChiNhanHangHoaDon);
             tv_chuThichNhanHangHoaDon=(TextView)itemView.findViewById(R.id.tv_chuThichNhanHangHoaDon);
+            tv_ngayDatHang=(TextView)itemView.findViewById(R.id.tv_ngayDatHang);
+            tv_gioDatHang=(TextView)itemView.findViewById(R.id.tv_gioDatHang);
             imv_call=(ImageView)itemView.findViewById(R.id.imv_call);
 
         }

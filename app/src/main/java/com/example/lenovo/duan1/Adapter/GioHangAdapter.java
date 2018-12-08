@@ -52,6 +52,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         holder.tvTenSanPhamGioHang.setText(dsgh.get(position).tenSanPham);
         holder.tvSoLuongSanPhamGioHang.setText(String.valueOf(dsgh.get(position).soLuong));
         holder.tvGiaTienSanPhamGioHang.setText(String.valueOf(dsgh.get(position).giaTien));
+        Picasso.get().load(dsgh.get(position).hinhSanPham).into(holder.imv_anhSanPhamGioHang);
         holder.imv_xoaGioHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +76,12 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 dialog.setContentView(R.layout.dialog_sua_gio_hang);
                 final EditText et_soLuongNhapLai=dialog.findViewById(R.id.edt_soLuongThayDoi);
                 Button bt_oke=dialog.findViewById(R.id.bt_xacNhanSuaGioHang);
+                ImageView ivHinhThongTinSanPhamCapNhatGioHang=dialog.findViewById(R.id.ivHinhThongTinSanPhamCapNhatGioHang);
+                TextView tvTenSanPhamCapNhatGioHang=dialog.findViewById(R.id.tvTenSanPhamCapNhatGioHang);
+                TextView tvTongTienSanPhamCapNhatGioHang=dialog.findViewById(R.id.tvTongTienSanPhamCapNhatGioHang);
+                Picasso.get().load(dsgh.get(position).hinhSanPham).into(ivHinhThongTinSanPhamCapNhatGioHang);
+                tvTenSanPhamCapNhatGioHang.setText(dsgh.get(position).tenSanPham);
+                tvTongTienSanPhamCapNhatGioHang.setText(String.valueOf(dsgh.get(position).giaTien));
                 et_soLuongNhapLai.setText(String.valueOf(dsgh.get(position).soLuong));
                     bt_oke.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -111,6 +118,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         TextView tvSoLuongSanPhamGioHang;
         TextView tvGiaTienSanPhamGioHang;
         ImageView imv_xoaGioHang;
+        ImageView imv_anhSanPhamGioHang;
+
         private ItemClickListener itemClickListener;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -119,6 +128,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
             tvSoLuongSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvSoLuongSanPhamGioHang);
             tvGiaTienSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvGiaTienSanPhamGioHang);
             imv_xoaGioHang = (ImageView) itemView.findViewById(R.id.imv_xoaGioHang);
+            imv_anhSanPhamGioHang=(ImageView)itemView.findViewById(R.id.imv_anhSanPhamGioHang);
 
         }
         public void setItemClickListener(ItemClickListener itemClickListener){

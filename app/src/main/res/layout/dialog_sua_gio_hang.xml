@@ -97,7 +97,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvTenSanPhamCapNhatGioHang" />
 
             <TextView
-                android:id="@+id/tvChuThichSanPhamCapNhatGioHang"
+                android:id="@+id/tvTongTienSanPhamCapNhatGioHang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -106,7 +106,7 @@
                 android:fontFamily="@font/robotocondensedregular"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:text="Chú thích"
+                android:text="Tổng tiền"
                 android:textColor="#838383"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.069"

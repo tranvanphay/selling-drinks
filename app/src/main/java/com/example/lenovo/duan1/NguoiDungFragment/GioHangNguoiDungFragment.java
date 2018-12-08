@@ -38,7 +38,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -137,20 +141,27 @@ public class GioHangNguoiDungFragment extends Fragment {
                 String sdt=et_sdt.getText().toString();
                 String diaChi=et_diachi.getText().toString();
                 String chuThich=et_chuThich.getText().toString();
-                if(sdt.length()<10 || sdt.length()>10 ){
+                Date ngay = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                Date gio=Calendar.getInstance().getTime();
+                SimpleDateFormat hf=new SimpleDateFormat("hh:mm");
+                String ngayDatHang = df.format(ngay);
+                String gioDatHang=hf.format(gio);
+
+                if(sdt.trim().length()<10 || sdt.trim().length()>10 ){
                     et_sdt.setText("");
                     Toast.makeText(getActivity(), "Sai số điện thoại", Toast.LENGTH_SHORT).show();
                 }
-                if(tenDatHang.trim().isEmpty()){
+                else if(tenDatHang.trim().isEmpty()){
                     et_Ten.setText("");
                     Toast.makeText(getActivity(), "Tên không được để trống", Toast.LENGTH_SHORT).show();
                 }
-                if (diaChi.trim().isEmpty()){
+                else if (diaChi.trim().isEmpty()){
                     et_chuThich.setText("");
                     Toast.makeText(getActivity(), "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                HoaDon hoaDon=new HoaDon(tenDatHang,sdt,diaChi,chuThich,dsgh,user);
+                HoaDon hoaDon=new HoaDon(tenDatHang,sdt,diaChi,chuThich,dsgh,user,ngayDatHang,gioDatHang);
                 mData.child("HoaDon").push().setValue(hoaDon, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(@android.support.annotation.Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {

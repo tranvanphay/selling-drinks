@@ -9,6 +9,8 @@ public class HoaDonDaGiao {
     public String chuThichDatHang;
     public ArrayList<GioHangDangGiao> gioHang;
     public String user;
+    public String ngayDaGiao;
+    public String gioDaGiao;
     public String keyHoaDonDaGiao;
 
     public HoaDonDaGiao() {
@@ -21,6 +23,17 @@ public class HoaDonDaGiao {
         this.chuThichDatHang = chuThichDatHang;
         this.gioHang = gioHang;
         this.user = user;
+    }
+
+    public HoaDonDaGiao(String tenNguoiNhan, String soDienThoai, String diaChiNhanHang, String chuThichDatHang, ArrayList<GioHangDangGiao> gioHang, String user, String ngayDaGiao, String gioDaGiao) {
+        this.tenNguoiNhan = tenNguoiNhan;
+        this.soDienThoai = soDienThoai;
+        this.diaChiNhanHang = diaChiNhanHang;
+        this.chuThichDatHang = chuThichDatHang;
+        this.gioHang = gioHang;
+        this.user = user;
+        this.ngayDaGiao = ngayDaGiao;
+        this.gioDaGiao = gioDaGiao;
     }
 
     public String getKeyHoaDonDaGiao() {

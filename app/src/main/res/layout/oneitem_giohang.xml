@@ -18,7 +18,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imv_anhSanPhamGioHang"
         android:layout_width="80dp"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
@@ -41,7 +41,7 @@
         android:fontFamily="@font/robotocondensedregular"
         android:text="Tên sản phẩm :"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/imv_anhSanPhamGioHang"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -54,7 +54,7 @@
         android:textColor="#000"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/imv_anhSanPhamGioHang"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
@@ -88,7 +88,7 @@
         android:text="Tổng tiền :"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/tvGiaTienSanPhamGioHang"
-        app:layout_constraintStart_toEndOf="@+id/imageView5" />
+        app:layout_constraintStart_toEndOf="@+id/imv_anhSanPhamGioHang" />
 
     <TextView
         android:id="@+id/tvGiaTienSanPhamGioHang"
@@ -103,7 +103,7 @@
         android:textColor="#000"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView5" />
+        app:layout_constraintStart_toEndOf="@+id/imv_anhSanPhamGioHang" />
 
 
     <ImageView

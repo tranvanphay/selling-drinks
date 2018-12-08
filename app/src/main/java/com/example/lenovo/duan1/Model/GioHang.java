@@ -9,6 +9,7 @@ public class GioHang {
     public String user;
     public String keyGioHang;
     ArrayList<SanPham> sanPhams;
+    public String hinhSanPham;
 
     public GioHang() {
     }
@@ -20,12 +21,13 @@ public class GioHang {
         this.user = user;
     }
 
-    public GioHang(String tenSanPham, int soLuong, int giaTien, String user, ArrayList<SanPham> sanPhams) {
+    public GioHang(String tenSanPham, int soLuong, int giaTien, String user, String hinhSanPham) {
         this.tenSanPham = tenSanPham;
         this.soLuong = soLuong;
         this.giaTien = giaTien;
         this.user = user;
-        this.sanPhams = sanPhams;
+        this.keyGioHang = keyGioHang;
+        this.hinhSanPham = hinhSanPham;
     }
 
     public String getKeyGioHang() {
