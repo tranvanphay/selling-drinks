@@ -42,11 +42,7 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
         holder.imv_menuSanPhamAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ImageView ivXoaSuaSanPham = v.findViewById(R.id.ivMenuSanPhamAdmin);
-                ivXoaSuaSanPham.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(context, ivXoaSuaSanPham);
+                        android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(context, v);
                         popupMenu.getMenuInflater().inflate(R.menu.menu_xssanpham, popupMenu.getMenu());
 
                         popupMenu.setOnMenuItemClickListener(new android.widget.PopupMenu.OnMenuItemClickListener() {
@@ -71,9 +67,6 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
                     }
                 });
             }
-
-        });
-    }
 
     @Override
     public int getItemCount() {

@@ -40,14 +40,10 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
         holder.tvMaLoai.setText(dsl.get(position).maLoai);
         holder.tvTenLoai.setText(dsl.get(position).tenLoai);
         Picasso.get().load(dsl.get(position).hinhLoai).into(holder.ivHinhLoai);
-        holder.ivHinhLoai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final ImageView ivXoaSuaLoai = v.findViewById(R.id.ivMenuLoaiAdmin);
-                ivXoaSuaLoai.setOnClickListener(new View.OnClickListener() {
+        holder.ivMenuXoaSuaLoai.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(context, ivXoaSuaLoai);
+                        android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(context, v);
                         popupMenu.getMenuInflater().inflate(R.menu.menu_xsloai, popupMenu.getMenu());
 
                         popupMenu.setOnMenuItemClickListener(new android.widget.PopupMenu.OnMenuItemClickListener() {
@@ -73,9 +69,6 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
                 });
             }
 
-        });
-
-    }
 
     @Override
     public int getItemCount() {
@@ -86,12 +79,14 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
         TextView tvMaLoai;
         TextView tvTenLoai;
         ImageView ivHinhLoai;
+        ImageView ivMenuXoaSuaLoai;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvMaLoai = (TextView) itemView.findViewById(R.id.tvMaLoaiAdmin);
             tvTenLoai = (TextView) itemView.findViewById(R.id.tvTenLoaiAdmin);
             ivHinhLoai = (ImageView) itemView.findViewById(R.id.ivHinhLoaiAdmin);
+            ivMenuXoaSuaLoai = (ImageView) itemView.findViewById(R.id.ivMenuLoaiAdmin);
         }
     }
 }
