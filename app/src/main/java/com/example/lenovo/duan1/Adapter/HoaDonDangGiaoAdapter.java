@@ -127,16 +127,17 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
 
 
                             Date ngay = Calendar.getInstance().getTime();
-                            SimpleDateFormat ngayFM = new SimpleDateFormat("dd/MM?yyyy");
+                            SimpleDateFormat ngayFM = new SimpleDateFormat("dd/MM/yyyy");
                             String ngayDaGiao = ngayFM.format(ngay);
 
                             Date thang = Calendar.getInstance().getTime();
-                            SimpleDateFormat thangFM = new SimpleDateFormat("MM");
+                            SimpleDateFormat thangFM = new SimpleDateFormat("MM/yyyy");
                             String thangDaGiao = thangFM.format(thang);
 
                             Date nam = Calendar.getInstance().getTime();
                             SimpleDateFormat namFM = new SimpleDateFormat("yyyy");
                             String namDaGiao = namFM.format(nam);
+
 
                             Date gio=Calendar.getInstance().getTime();
                             SimpleDateFormat hf=new SimpleDateFormat("hh:mm");

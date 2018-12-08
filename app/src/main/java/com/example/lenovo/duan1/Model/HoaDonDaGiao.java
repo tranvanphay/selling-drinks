@@ -39,19 +39,6 @@ public class HoaDonDaGiao {
         this.gioDaGiao = gioDaGiao;
     }
 
-    public HoaDonDaGiao(String tenNguoiNhan, String soDienThoai, String diaChiNhanHang, String chuThichDatHang, ArrayList<GioHangDangGiao> gioHang, String user, String ngayDaGiao, String thangDaGiao, String namDaGiao, String gioDaGiao) {
-        this.tenNguoiNhan = tenNguoiNhan;
-        this.soDienThoai = soDienThoai;
-        this.diaChiNhanHang = diaChiNhanHang;
-        this.chuThichDatHang = chuThichDatHang;
-        this.gioHang = gioHang;
-        this.user = user;
-        this.ngayDaGiao = ngayDaGiao;
-        this.thangDaGiao = thangDaGiao;
-        this.namDaGiao = namDaGiao;
-        this.gioDaGiao = gioDaGiao;
-    }
-
     public HoaDonDaGiao(String tenNguoiNhan, String soDienThoai, String diaChiNhanHang, String chuThichDatHang, ArrayList<GioHangDangGiao> gioHang, String user, String ngayDaGiao, String thangDaGiao, String namDaGiao, String gioDaGiao, int tongThanhToan) {
         this.tenNguoiNhan = tenNguoiNhan;
         this.soDienThoai = soDienThoai;
@@ -62,6 +49,18 @@ public class HoaDonDaGiao {
         this.ngayDaGiao = ngayDaGiao;
         this.thangDaGiao = thangDaGiao;
         this.namDaGiao = namDaGiao;
+        this.gioDaGiao = gioDaGiao;
+        this.tongThanhToan = tongThanhToan;
+    }
+
+    public HoaDonDaGiao(String tenNguoiNhan, String soDienThoai, String diaChiNhanHang, String chuThichDatHang, ArrayList<GioHangDangGiao> gioHang, String user, String ngayDaGiao, String gioDaGiao, int tongThanhToan) {
+        this.tenNguoiNhan = tenNguoiNhan;
+        this.soDienThoai = soDienThoai;
+        this.diaChiNhanHang = diaChiNhanHang;
+        this.chuThichDatHang = chuThichDatHang;
+        this.gioHang = gioHang;
+        this.user = user;
+        this.ngayDaGiao = ngayDaGiao;
         this.gioDaGiao = gioDaGiao;
         this.tongThanhToan = tongThanhToan;
     }
