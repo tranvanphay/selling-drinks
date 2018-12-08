@@ -10,6 +10,8 @@ public class HoaDonDaGiao {
     public ArrayList<GioHangDangGiao> gioHang;
     public String user;
     public String ngayDaGiao;
+    public String thangDaGiao;
+    public String namDaGiao;
     public String gioDaGiao;
     public String keyHoaDonDaGiao;
 
@@ -33,6 +35,19 @@ public class HoaDonDaGiao {
         this.gioHang = gioHang;
         this.user = user;
         this.ngayDaGiao = ngayDaGiao;
+        this.gioDaGiao = gioDaGiao;
+    }
+
+    public HoaDonDaGiao(String tenNguoiNhan, String soDienThoai, String diaChiNhanHang, String chuThichDatHang, ArrayList<GioHangDangGiao> gioHang, String user, String ngayDaGiao, String thangDaGiao, String namDaGiao, String gioDaGiao) {
+        this.tenNguoiNhan = tenNguoiNhan;
+        this.soDienThoai = soDienThoai;
+        this.diaChiNhanHang = diaChiNhanHang;
+        this.chuThichDatHang = chuThichDatHang;
+        this.gioHang = gioHang;
+        this.user = user;
+        this.ngayDaGiao = ngayDaGiao;
+        this.thangDaGiao = thangDaGiao;
+        this.namDaGiao = namDaGiao;
         this.gioDaGiao = gioDaGiao;
     }
 

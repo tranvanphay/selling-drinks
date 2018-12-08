@@ -44,17 +44,32 @@
 
         <TextView
             android:id="@+id/tv_ngayDangGiao"
-            android:layout_width="215dp"
-            android:layout_height="match_parent"
-            android:text="TextView"
-            android:textSize="10pt" />
-        <TextView
-            android:id="@+id/tv_gioDangGiao"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="30"
             android:textSize="10pt"
-            />
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/tv_thangDangGiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"
+            android:textSize="10pt"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/tv_namDangGiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018"
+            android:textSize="10pt"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:text="24:59"
+            android:id="@+id/tv_gioDangGiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:layout_marginLeft="20dp"/>
     </LinearLayout>
     </LinearLayout>
 

@@ -66,58 +66,9 @@ public class ThanhToanNguoiDungFragment extends Fragment {
         });
 
 
-                                         //        final MyFragmentAdapter adapter = new MyFragmentAdapter(getChildFragmentManager());
-//        viewPager.setAdapter(adapter);
-
-//
-//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-//
-
         return view;
     }
 
-//    class MyFragmentAdapter extends FragmentStatePagerAdapter {
-//        public MyFragmentAdapter(FragmentManager fm) {
-//            super(fm);
-//        }
-//
-//        @Override
-//        public Fragment getItem(int position) {
-//            Fragment fragment;
-//            switch (position) {
-//                case 0:
-//                    fragment = new ChuaGiaoFragment();
-//                    break;
-//                case 1:
-//                    fragment = new DangGiaoFragment();
-//                    break;
-//                default:
-//                    return null;
-//            }
-//            return fragment;
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return 2;
-//        }
-//    }
 
     private void loadFragment(Fragment fragment) {
         // load fragment

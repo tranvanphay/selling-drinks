@@ -62,6 +62,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         holder.tv_diaChiNhanHangHoaDon.setText(dshd.get(position).diaChiNhanHang);
         holder.tv_chuThichNhanHangHoaDon.setText(dshd.get(position).chuThichDatHang);
         holder.tv_ngayDatHang.setText(dshd.get(position).ngayDatHang);
+        holder.tv_thangDatHang.setText(dshd.get(position).thangDatHang);
+        holder.tv_namDatHang.setText(dshd.get(position).namDatHang);
         holder.tv_gioDatHang.setText(dshd.get(position).gioDatHang);
         holder.imv_call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,13 +142,24 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
                         String diaChiNhanHang=dshd.get(position).diaChiNhanHang;
                         String chuThich=dshd.get(position).chuThichDatHang;
                         String user=dshd.get(position).user;
+
                         Date ngay = Calendar.getInstance().getTime();
-                        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                        Date gio = Calendar.getInstance().getTime();
-                        SimpleDateFormat hf = new SimpleDateFormat("hh:mm");
-                        String ngayDangGiao=df.format(ngay);
+                        SimpleDateFormat ngayFM = new SimpleDateFormat("dd");
+                        String ngayDangGiao = ngayFM.format(ngay);
+
+                        Date thang = Calendar.getInstance().getTime();
+                        SimpleDateFormat thangFM = new SimpleDateFormat("MM");
+                        String thangDangGiao = thangFM.format(thang);
+
+                        Date nam = Calendar.getInstance().getTime();
+                        SimpleDateFormat namFM = new SimpleDateFormat("yyyy");
+                        String namDangGiao = namFM.format(nam);
+
+                        Date gio=Calendar.getInstance().getTime();
+                        SimpleDateFormat hf=new SimpleDateFormat("hh:mm");
                         String gioDangGiao=hf.format(gio);
-                        HoaDonDangGiao hoaDonDangGiao=new HoaDonDangGiao(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsgh,user,ngayDangGiao,gioDangGiao);
+
+                        HoaDonDangGiao hoaDonDangGiao=new HoaDonDangGiao(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsgh,user,ngayDangGiao,thangDangGiao,namDangGiao,gioDangGiao);
                         mData.child("HoaDonDangGiao").push().setValue(hoaDonDangGiao, new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
@@ -189,6 +202,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         TextView tv_chuThichNhanHangHoaDon;
         ImageView imv_call;
         TextView tv_ngayDatHang;
+        TextView tv_thangDatHang;
+        TextView tv_namDatHang;
         TextView tv_gioDatHang;
         private ItemClickListener itemClickListener;
 
@@ -200,6 +215,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
             tv_diaChiNhanHangHoaDon=(TextView)itemView.findViewById(R.id.tv_diaChiNhanHangHoaDon);
             tv_chuThichNhanHangHoaDon=(TextView)itemView.findViewById(R.id.tv_chuThichNhanHangHoaDon);
             tv_ngayDatHang=(TextView)itemView.findViewById(R.id.tv_ngayDatHang);
+            tv_thangDatHang=(TextView)itemView.findViewById(R.id.tv_thangDatHang);
+            tv_namDatHang=(TextView)itemView.findViewById(R.id.tv_namDatHang);
             tv_gioDatHang=(TextView)itemView.findViewById(R.id.tv_gioDatHang);
             imv_call=(ImageView)itemView.findViewById(R.id.imv_call);
 

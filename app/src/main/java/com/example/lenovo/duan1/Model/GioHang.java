@@ -26,7 +26,6 @@ public class GioHang {
         this.soLuong = soLuong;
         this.giaTien = giaTien;
         this.user = user;
-        this.keyGioHang = keyGioHang;
         this.hinhSanPham = hinhSanPham;
     }
 

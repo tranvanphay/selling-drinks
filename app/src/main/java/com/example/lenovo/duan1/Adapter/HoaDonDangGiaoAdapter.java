@@ -122,13 +122,23 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
                             String diaChiNhanHang=dshdDangGiao.get(position).diaChiNhanHang;
                             String chuThich=dshdDangGiao.get(position).chuThichDatHang;
                             String user=dshdDangGiao.get(position).user;
+
                             Date ngay = Calendar.getInstance().getTime();
-                            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                            Date gio = Calendar.getInstance().getTime();
-                            SimpleDateFormat hf = new SimpleDateFormat("hh:mm");
-                            String ngayDaGiao=df.format(ngay);
+                            SimpleDateFormat ngayFM = new SimpleDateFormat("dd");
+                            String ngayDaGiao = ngayFM.format(ngay);
+
+                            Date thang = Calendar.getInstance().getTime();
+                            SimpleDateFormat thangFM = new SimpleDateFormat("MM");
+                            String thangDaGiao = thangFM.format(thang);
+
+                            Date nam = Calendar.getInstance().getTime();
+                            SimpleDateFormat namFM = new SimpleDateFormat("yyyy");
+                            String namDaGiao = namFM.format(nam);
+
+                            Date gio=Calendar.getInstance().getTime();
+                            SimpleDateFormat hf=new SimpleDateFormat("hh:mm");
                             String gioDaGiao=hf.format(gio);
-                            HoaDonDaGiao hoaDonDaGiao=new HoaDonDaGiao(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsghDangGiao,user,ngayDaGiao,gioDaGiao);
+                            HoaDonDaGiao hoaDonDaGiao=new HoaDonDaGiao(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsghDangGiao,user,ngayDaGiao,thangDaGiao,namDaGiao,gioDaGiao);
                             mData.child("HoaDonDaGiao").push().setValue(hoaDonDaGiao, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
@@ -168,6 +178,8 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
         TextView tv_diaChiNhanHangDangGiao;
         TextView tv_chuThichNhanHangDangGiao;
         TextView tv_ngayDangGiao;
+        TextView tv_thangDangGiao;
+        TextView tv_namDangGiao;
         TextView tv_gioDangGiao;
         private ItemClickListener itemClickListener;
 
@@ -180,6 +192,8 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
             tv_diaChiNhanHangDangGiao=(TextView)itemView.findViewById(R.id.tv_diaChiNhanHangDangGiao);
             tv_chuThichNhanHangDangGiao=(TextView)itemView.findViewById(R.id.tv_chuThichNhanHangDangGiao);
             tv_ngayDangGiao=(TextView)itemView.findViewById(R.id.tv_ngayDangGiao);
+            tv_thangDangGiao=(TextView)itemView.findViewById(R.id.tv_thangDangGiao);
+            tv_namDangGiao=(TextView)itemView.findViewById(R.id.tv_namDangGiao);
             tv_gioDangGiao=(TextView)itemView.findViewById(R.id.tv_gioDangGiao);
         }
         public void setItemClickListener(ItemClickListener itemClickListener){
