@@ -41,6 +41,13 @@
             android:text="TextView"
             android:textSize="10pt"
             />
+        <TextView
+            android:id="@+id/tv_tongThanhToanChuaGiao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="10pt"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lenovo.duan1.Adapter.GioHangAdapter;
@@ -133,6 +134,12 @@ public class GioHangNguoiDungFragment extends Fragment {
         final EditText et_sdt=dialog.findViewById(R.id.et_sdtDatHang);
         final EditText et_diachi=dialog.findViewById(R.id.et_diaChiNhanHang);
         final EditText et_chuThich=dialog.findViewById(R.id.et_chuThichDatHang);
+        final TextView tv_tongThanhToan=dialog.findViewById(R.id.tv_tongThanhToan);
+        int tongTienThanhToan=0;
+        for(int i=0; i<dsgh.size(); i++){
+            tongTienThanhToan += dsgh.get(i).giaTien;
+        }
+        tv_tongThanhToan.setText(String.valueOf(tongTienThanhToan));
         Button bt_xacNhanDatHang=dialog.findViewById(R.id.bt_xacNhanThanhToan);
         bt_xacNhanDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +148,7 @@ public class GioHangNguoiDungFragment extends Fragment {
                 String sdt=et_sdt.getText().toString();
                 String diaChi=et_diachi.getText().toString();
                 String chuThich=et_chuThich.getText().toString();
-
+                int tongThanhToan= Integer.parseInt(tv_tongThanhToan.getText().toString());
                 Date ngay = Calendar.getInstance().getTime();
                 SimpleDateFormat ngayFM = new SimpleDateFormat("dd/MM/yyyy");
                 String ngayDatHang = ngayFM.format(ngay);
@@ -166,7 +173,7 @@ public class GioHangNguoiDungFragment extends Fragment {
                     Toast.makeText(getActivity(), "Giỏ hàng của bạn không có gì", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                HoaDon hoaDon=new HoaDon(tenDatHang,sdt,diaChi,chuThich,dsgh,user,ngayDatHang,gioDatHang);
+                HoaDon hoaDon=new HoaDon(tenDatHang,sdt,diaChi,chuThich,dsgh,user,ngayDatHang,gioDatHang,tongThanhToan);
                 mData.child("HoaDon").push().setValue(hoaDon, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(@android.support.annotation.Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {

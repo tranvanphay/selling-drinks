@@ -122,9 +122,6 @@ public class LoginActivity extends AppCompatActivity {
                 bt_xacNhanDangKy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AlertDialog alertDialog= new SpotsDialog.Builder().setContext(LoginActivity.this).build();
-                        alertDialog.setMessage("Đăng ký");
-                        alertDialog.show();
                         dangky();
 
                     }
@@ -176,9 +173,13 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                AlertDialog alertDialog= new SpotsDialog.Builder().setContext(LoginActivity.this).build();
+                                alertDialog.setMessage("Đăng ký");
+                                alertDialog.show();
                                 edt_matKhauDangKy.setText("");
                                 edt_nhapLaiMatKhau.setText("");
                                 edt_EmailDangKy.setText("");
+                                alertDialog.cancel();
                                 Toast.makeText(LoginActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                             } else {
                                 // If sign in fails, display a message to the user.

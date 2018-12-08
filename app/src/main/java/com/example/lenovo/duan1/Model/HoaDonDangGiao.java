@@ -12,6 +12,7 @@ public class HoaDonDangGiao {
     public String keyHoaDonDangGiao;
     public String ngayDangGiao;
     public String gioDangGiao;
+    public int tongThanhToan;
 
     public HoaDonDangGiao() {
     }
@@ -36,6 +37,17 @@ public class HoaDonDangGiao {
         this.gioDangGiao = gioDangGiao;
     }
 
+    public HoaDonDangGiao(String tenNguoiNhan, String soDienThoai, String diaChiNhanHang, String chuThichDatHang, ArrayList<GioHang> gioHang, String user, String ngayDangGiao, String gioDangGiao, int tongThanhToan) {
+        this.tenNguoiNhan = tenNguoiNhan;
+        this.soDienThoai = soDienThoai;
+        this.diaChiNhanHang = diaChiNhanHang;
+        this.chuThichDatHang = chuThichDatHang;
+        this.gioHang = gioHang;
+        this.user = user;
+        this.ngayDangGiao = ngayDangGiao;
+        this.gioDangGiao = gioDangGiao;
+        this.tongThanhToan = tongThanhToan;
+    }
 
     public String getKeyHoaDonDangGiao() {
         return keyHoaDonDangGiao;

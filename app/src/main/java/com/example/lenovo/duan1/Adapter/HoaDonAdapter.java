@@ -62,6 +62,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         holder.tv_diaChiNhanHangHoaDon.setText(dshd.get(position).diaChiNhanHang);
         holder.tv_chuThichNhanHangHoaDon.setText(dshd.get(position).chuThichDatHang);
         holder.tv_ngayDatHang.setText(dshd.get(position).ngayDatHang);
+        holder.tv_tongThanhToanChuaGiao.setText(String.valueOf(dshd.get(position).tongThanhToan));
         holder.tv_gioDatHang.setText(dshd.get(position).gioDatHang);
         holder.imv_call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +142,11 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
                         String chuThich=dshd.get(position).chuThichDatHang;
                         String user=dshd.get(position).user;
 
+                        int tongThanhToan=0;
+                        for(int i=0; i<dsgh.size(); i++){
+                            tongThanhToan += dsgh.get(i).giaTien;
+                        }
+
                         Date ngay = Calendar.getInstance().getTime();
                         SimpleDateFormat ngayFM = new SimpleDateFormat("dd/MM/yyyy");
                         String ngayDangGiao = ngayFM.format(ngay);
@@ -149,7 +155,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
                         SimpleDateFormat hf=new SimpleDateFormat("hh:mm");
                         String gioDangGiao=hf.format(gio);
 
-                        HoaDonDangGiao hoaDonDangGiao=new HoaDonDangGiao(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsgh,user,ngayDangGiao,gioDangGiao);
+                        HoaDonDangGiao hoaDonDangGiao=new HoaDonDangGiao(tenNguoiNhan,soDienThoai,diaChiNhanHang,chuThich,dsgh,user,ngayDangGiao,gioDangGiao,tongThanhToan);
                         mData.child("HoaDonDangGiao").push().setValue(hoaDonDangGiao, new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
@@ -193,6 +199,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         ImageView imv_call;
         TextView tv_ngayDatHang;
         TextView tv_gioDatHang;
+        TextView tv_tongThanhToanChuaGiao;
         private ItemClickListener itemClickListener;
 
         public ViewHolder(View itemView) {
@@ -204,6 +211,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
             tv_chuThichNhanHangHoaDon=(TextView)itemView.findViewById(R.id.tv_chuThichNhanHangHoaDon);
             tv_ngayDatHang=(TextView)itemView.findViewById(R.id.tv_ngayDatHang);
             tv_gioDatHang=(TextView)itemView.findViewById(R.id.tv_gioDatHang);
+            tv_tongThanhToanChuaGiao=(TextView)itemView.findViewById(R.id.tv_tongThanhToanChuaGiao);
             imv_call=(ImageView)itemView.findViewById(R.id.imv_call);
 
         }
