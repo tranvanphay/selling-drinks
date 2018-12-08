@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.example.lenovo.duan1.Adapter.BangTinAdapter;
@@ -25,6 +27,7 @@ import com.example.lenovo.duan1.Adapter.SanPhamAdapterNguoiDung;
 import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.Model.SanPham;
 import com.example.lenovo.duan1.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,8 +51,10 @@ public class TrangChuNguoiDungFragment extends Fragment {
     ArrayList<Loai> dslNguoiDung=new ArrayList<Loai>();
     Spinner spn_loaiMenuNguoiDung;
     Button bt_locLoai;
+    TextView tvIDNguoiDung;
     RecyclerView recyclerViewBangTin,recyclerViewSanPhamNguoiDung;
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
+    FirebaseAuth mAuthor=FirebaseAuth.getInstance();
 
 
     public TrangChuNguoiDungFragment() {
@@ -61,9 +66,12 @@ public class TrangChuNguoiDungFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        String user=mAuthor.getCurrentUser().getEmail();
         View view = inflater.inflate(R.layout.fragment_trang_chu_nguoi_dung, container, false);
         recyclerViewBangTin = view.findViewById(R.id.recyclerViewBangTinNguoiDung);
         recyclerViewSanPhamNguoiDung = view.findViewById(R.id.recyclerViewSanPhamNguoiDung);
+        tvIDNguoiDung=view.findViewById(R.id.tvIDNguoiDung);
+        tvIDNguoiDung.setText(user);
         spn_loaiMenuNguoiDung=view.findViewById(R.id.spn_loaiMenuNguoiDung);
         bt_locLoai=view.findViewById(R.id.btnLocLoai);
         bt_locLoai.setOnClickListener(new View.OnClickListener() {
@@ -215,5 +223,6 @@ public class TrangChuNguoiDungFragment extends Fragment {
         BangTinAdapter bangTinAdapter = new BangTinAdapter(getActivity(), tenBangTin, hinhBangTin);
         recyclerViewBangTin.setAdapter(bangTinAdapter);
     }
+
 
 }

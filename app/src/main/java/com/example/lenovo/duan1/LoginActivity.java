@@ -33,6 +33,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import dmax.dialog.SpotsDialog;
+
 public class LoginActivity extends AppCompatActivity {
     TextView tvTitle;
     ImageView ivLogo;
@@ -41,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout linearLayoutLogin;
     Button btnDangNhap,btnDangKy;
     FirebaseAuth mAuth;
+    private long thoiGian;
+    private Toast thoat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +100,9 @@ public class LoginActivity extends AppCompatActivity {
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog alertDialog= new SpotsDialog.Builder().setContext(LoginActivity.this).build();
+                alertDialog.setMessage("Đăng nhập");
+                alertDialog.show();
                 dangnhap();
             }
         });
@@ -109,12 +117,12 @@ public class LoginActivity extends AppCompatActivity {
                 edt_matKhauDangKy=dialogDangKy.findViewById(R.id.edt_PasswordDangKy);
                 edt_nhapLaiMatKhau=dialogDangKy.findViewById(R.id.edt_nhapLaiMatKhau);
                 Button bt_xacNhanDangKy=dialogDangKy.findViewById(R.id.bt_xacNhanDangKy);
-                dialogDangKy.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                        WindowManager.LayoutParams.MATCH_PARENT);
-                dialogDangKy.show();
                 bt_xacNhanDangKy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        AlertDialog alertDialog= new SpotsDialog.Builder().setContext(LoginActivity.this).build();
+                        alertDialog.setMessage("Đăng ký");
+                        alertDialog.show();
                         dangky();
 
                     }
@@ -127,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                         dialogDangKy.cancel();
                     }
                 });
+                dialogDangKy.show();
             }
         });
     }
@@ -143,23 +152,23 @@ public class LoginActivity extends AppCompatActivity {
         String emailPattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern regex = Pattern.compile(emailPattern);
         Matcher matcher = regex.matcher(email);
-        if(matKhau != nhapLaiMatKhau){
+        if(!matKhau.equals(nhapLaiMatKhau)){
             edt_nhapLaiMatKhau.setText("");
             Toast.makeText(this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
         }
-        if (matKhau.trim().isEmpty()){
+        else if (matKhau.trim().isEmpty()){
             Toast.makeText(this, "Mật khẩu không được để trống", Toast.LENGTH_SHORT).show();
         }
-        if(edt_nhapLaiMatKhau.getText().toString().isEmpty()){
+        else if(nhapLaiMatKhau.trim().isEmpty()){
             Toast.makeText(this, "Vui lòng nhập lại mật khẩu", Toast.LENGTH_SHORT).show();
         }
-        if(matKhau.length()<5){
+        else if(matKhau.length()<5){
             edt_nhapLaiMatKhau.setText("");
             edt_matKhauDangKy.setText("");
             Toast.makeText(this, "Mật khẩu phải lớn hơn 5 ký tự", Toast.LENGTH_SHORT).show();
         }
 
-        if(matcher.find() && matKhau.equals(nhapLaiMatKhau)){
+        else if(matcher.find() && matKhau.equals(nhapLaiMatKhau)){
             mAuth.createUserWithEmailAndPassword(email, matKhau)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -178,7 +187,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
         }
-
         else {
             edt_EmailDangKy.setText("");
             Toast.makeText(this, "Sai định dạng email", Toast.LENGTH_SHORT).show();
@@ -189,11 +197,9 @@ public class LoginActivity extends AppCompatActivity {
     private void dangnhap(){
         String email=etUsername.getText().toString();
         String password=etPassword.getText().toString();
-
         if(email.equals("admin@admin.com")) {
-
             mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(this ,new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
@@ -208,16 +214,16 @@ public class LoginActivity extends AppCompatActivity {
                             // ...
                         }
                     });
+
+        }else if(etUsername.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Bạn chưa nhập email", Toast.LENGTH_SHORT).show();
         }
-//        }if(etUsername.getText().toString().trim().isEmpty()){
-//            Toast.makeText(this, "Bạn chưa nhập email", Toast.LENGTH_SHORT).show();
-//        }
-//        if(etPassword.getText().toString().isEmpty()){
-//            Toast.makeText(this, "Bạn chưa nhập mật khẩu", Toast.LENGTH_SHORT).show();
-//        }
-//        if (etPassword.getText().toString().length()<6){
-//            Toast.makeText(this, "Mật khẩu phải lớn hơn 5 ký tự", Toast.LENGTH_SHORT).show();
-//        }
+        else if(etPassword.getText().toString().isEmpty()){
+            Toast.makeText(this, "Bạn chưa nhập mật khẩu", Toast.LENGTH_SHORT).show();
+        }
+        else if (etPassword.getText().toString().length()<6){
+            Toast.makeText(this, "Mật khẩu phải lớn hơn 5 ký tự", Toast.LENGTH_SHORT).show();
+        }
         else{
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -233,13 +239,22 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Lỗi đăng nhập, kiểm tra lại tài khoản và mật khẩu", Toast.LENGTH_SHORT).show();
                             }
 
-                            // ...
                         }
                     });
-
         }
+    }
+    @Override
+    public void onBackPressed() {
 
-
+        if(thoiGian+2000 > System.currentTimeMillis())
+        {   thoat.cancel();
+            super.onBackPressed();
+            return;
+        }else {
+            thoat= Toast.makeText(this, "Nhấn lần nữa để thoát!!!", Toast.LENGTH_SHORT);
+            thoat.show();
+        }
+        thoiGian=System.currentTimeMillis();
 
     }
 

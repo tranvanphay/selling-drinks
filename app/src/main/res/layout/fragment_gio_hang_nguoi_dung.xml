@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/backgroundgiohang"
-    tools:context=".NguoiDungFragment.GioHangNguoiDungFragment">
+    tools:context=".NguoiDungFragment.GioHangNguoiDungFragment"
+    android:id="@+id/frame_container_gioHang">
 
     <android.support.constraint.ConstraintLayout
         android:background="@drawable/top_giohang"

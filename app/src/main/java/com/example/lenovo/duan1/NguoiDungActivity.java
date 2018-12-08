@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.lenovo.duan1.NguoiDungFragment.GioHangNguoiDungFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.ThanhToanNguoiDungFragment;
@@ -14,6 +15,8 @@ import com.example.lenovo.duan1.NguoiDungFragment.ThongTinNguoiDungFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.TrangChuNguoiDungFragment;
 
 public class NguoiDungActivity extends AppCompatActivity {
+    private long thoiGian;
+    private Toast thoat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,20 @@ public class NguoiDungActivity extends AppCompatActivity {
             return false;
         }
     };
+    @Override
+    public void onBackPressed() {
+
+        if(thoiGian+2000 > System.currentTimeMillis())
+        {   thoat.cancel();
+            super.onBackPressed();
+            return;
+        }else {
+            thoat= Toast.makeText(this, "Nhấn lần nữa để thoát!!!", Toast.LENGTH_SHORT);
+            thoat.show();
+        }
+        thoiGian=System.currentTimeMillis();
+
+    }
 
     private void loadFragment(Fragment fragment) {
         // load fragment

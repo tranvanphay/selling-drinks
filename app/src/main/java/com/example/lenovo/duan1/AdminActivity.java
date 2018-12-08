@@ -18,7 +18,8 @@ import com.example.lenovo.duan1.AdminFragment.ThongKeFragment;
 import com.example.lenovo.duan1.AdminFragment.TrangChuAdminFragment;
 
 public class AdminActivity extends AppCompatActivity {
-
+        private long thoiGian;
+        private Toast thoat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,21 @@ public class AdminActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         loadFragment(new TrangChuAdminFragment());
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if(thoiGian+2000 > System.currentTimeMillis())
+        {   thoat.cancel();
+            super.onBackPressed();
+            return;
+        }else {
+           thoat= Toast.makeText(this, "Nhấn lần nữa để thoát!!!", Toast.LENGTH_SHORT);
+           thoat.show();
+        }
+        thoiGian=System.currentTimeMillis();
 
     }
 
@@ -60,6 +76,7 @@ public class AdminActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 
 
 }
