@@ -62,7 +62,6 @@ public class GioHangNguoiDungFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_gio_hang_nguoi_dung, container, false);
-//        searchViewgiohang=v.findViewById(R.id.svgiohang);
         recyclerViewSanPhamGioHang=v.findViewById(R.id.recyclerViewSanPhamGioHang);
         bt_thanhToan=v.findViewById(R.id.bt_thanhToan);
         bt_thanhToan.setOnClickListener(new View.OnClickListener() {

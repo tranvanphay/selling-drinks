@@ -17,81 +17,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/test1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/robotocondensedregular"
+        android:text="Tên sản phẩm :"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvTenSanPhamGioHang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
         android:fontFamily="@font/oswaldregular"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
         android:text="Tên sản phẩm"
         android:textColor="#000"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
 
     <TextView
         android:id="@+id/tvSoLuongSanPhamGioHang"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/khung_soluong"
         android:fontFamily="@font/unicaoneregular"
         android:gravity="center"
-        android:padding="4dp"
         android:text="1"
         android:textColor="#000"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintStart_toEndOf="@+id/tvGiaTienSanPhamGioHang"
         app:layout_constraintTop_toBottomOf="@+id/imv_xoaGioHang"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/robotocondensedregular"
+        android:text="Tổng tiền :"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvGiaTienSanPhamGioHang"
+        app:layout_constraintStart_toEndOf="@+id/imageView5" />
 
     <TextView
         android:id="@+id/tvGiaTienSanPhamGioHang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/unicaoneregular"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:text="100000"
         android:textColor="#000"
-        android:textSize="14dp"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="100dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#BCBDBF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.507" />
+        app:layout_constraintStart_toEndOf="@+id/imageView5" />
 
 
     <ImageView
         android:id="@+id/imv_xoaGioHang"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintStart_toEndOf="@+id/tvTenSanPhamGioHang"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/delete_icon" />
 </android.support.constraint.ConstraintLayout>
