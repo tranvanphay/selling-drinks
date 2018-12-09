@@ -4,6 +4,7 @@ public class Loai {
     public String maLoai;
     public String tenLoai;
     public String hinhLoai;
+    public String keyLoai;
 
     public Loai() {
     }
@@ -12,6 +13,19 @@ public class Loai {
         this.maLoai = maLoai;
         this.tenLoai = tenLoai;
         this.hinhLoai = hinhLoai;
+    }
+
+    public Loai(String maLoai, String tenLoai) {
+        this.maLoai = maLoai;
+        this.tenLoai = tenLoai;
+    }
+
+    public String getKeyLoai() {
+        return keyLoai;
+    }
+
+    public void setKeyLoai(String keyLoai) {
+        this.keyLoai = keyLoai;
     }
 
     public String getMaLoai() {

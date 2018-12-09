@@ -77,6 +77,9 @@ public class TrangChuAdminFragment extends Fragment {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://duan1-ac840.appspot.com");
     SanPhamAdapterAdmin sanPhamAdapterAdmin;
+    LoaiApdaterAdmin loaiApdaterAdmin;
+    ArrayList<String> keySP=new ArrayList<String>();
+    ArrayList<String> keyLoai=new ArrayList<String>();
     public TrangChuAdminFragment() {
         // Required empty public constructor
     }
@@ -398,6 +401,7 @@ public class TrangChuAdminFragment extends Fragment {
                 imv_themAnhSanPham.setImageURI(uri);
             }
         }
+
     }
 
     private void loadLoai() {
@@ -405,21 +409,37 @@ public class TrangChuAdminFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Loai loai = dataSnapshot.getValue(Loai.class);
-                dsl.add(new Loai(loai.maLoai, loai.tenLoai, loai.hinhLoai));
+                loai.setKeyLoai(dataSnapshot.getKey());
+                dsl.add(loai);
+                keyLoai.add(dataSnapshot.getKey());
                 recyclerViewLoai.setHasFixedSize(true);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 recyclerViewLoai.setLayoutManager(layoutManager);
-                LoaiApdaterAdmin loaiApdaterAdmin = new LoaiApdaterAdmin(dsl, getContext());
+                loaiApdaterAdmin = new LoaiApdaterAdmin(dsl, getContext());
                 recyclerViewLoai.setAdapter(loaiApdaterAdmin);
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String key=dataSnapshot.getKey();
+                Loai loai=dataSnapshot.getValue(Loai.class);
+                int index=keyLoai.indexOf(key);
+                dsl.set(index,loai);
+                loaiApdaterAdmin.notifyDataSetChanged();
 
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String key = dataSnapshot.getKey();
+                for (int i = 0; i < dsl.size(); i++) {
+                    if (dsl.get(i).getKeyLoai().equals(key)) {
+                        dsl.remove(i);
+                        break;
+                    }
+
+                }
+                loaiApdaterAdmin.notifyDataSetChanged();
 
             }
 
@@ -441,6 +461,7 @@ public class TrangChuAdminFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 SanPham sanPham = dataSnapshot.getValue(SanPham.class);
                 sanPham.setKeySanPham(dataSnapshot.getKey());
+                keySP.add(dataSnapshot.getKey());
                 dssp.add(sanPham);
                 recyclerViewSanPham.setHasFixedSize(true);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -453,16 +474,23 @@ public class TrangChuAdminFragment extends Fragment {
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     String key=dataSnapshot.getKey();
                     SanPham sanPham=dataSnapshot.getValue(SanPham.class);
-                    int index=sanPham.getKeySanPham().indexOf(key);
+                    int index=keySP.indexOf(key);
                     dssp.set(index,sanPham);
                     sanPhamAdapterAdmin.notifyDataSetChanged();
-
-
 
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String key = dataSnapshot.getKey();
+                for (int i = 0; i < dssp.size(); i++) {
+                    if (dssp.get(i).keySanPham.equals(key)) {
+                        dssp.remove(i);
+                        break;
+                    }
+
+                }
+                sanPhamAdapterAdmin.notifyDataSetChanged();
 
             }
 
