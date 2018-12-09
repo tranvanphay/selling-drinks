@@ -53,26 +53,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         holder.tvSoLuongSanPhamGioHang.setText(String.valueOf(dsgh.get(position).soLuong));
         holder.tvGiaTienSanPhamGioHang.setText(String.valueOf(dsgh.get(position).giaTien));
         Picasso.get().load(dsgh.get(position).hinhSanPham).into(holder.imv_anhSanPhamGioHang);
-        holder.imv_xoaGioHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("GioHang");
-                GioHang gioHang=dsgh.get(position);
-                myRef.child(gioHang.getKeyGioHang()).removeValue(new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                        Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
 
-
-                    }
-                });
-            }
-        });
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int posittion) {
-                Dialog dialog=new Dialog(context);
+                final Dialog dialog=new Dialog(context);
                 dialog.setContentView(R.layout.dialog_sua_gio_hang);
                 final EditText et_soLuongNhapLai=dialog.findViewById(R.id.edt_soLuongThayDoi);
                 Button bt_oke=dialog.findViewById(R.id.bt_xacNhanSuaGioHang);
@@ -91,17 +76,40 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                             String tenSanPham=dsgh.get(position).tenSanPham;
                             int giaTien=(dsgh.get(position).giaTien/soLuongCu)*soLuong;
                             String user=mAuhtor.getCurrentUser().getEmail();
+                            String linkHinh=dsgh.get(position).hinhSanPham;
                             String key=dsgh.get(position).getKeyGioHang();
-                            GioHang gioHang=new GioHang(tenSanPham,soLuong,giaTien,user);
-                            mData.child("GioHang").child(key).setValue(gioHang).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(context, "Sửa thành công!!!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            try{
+                                GioHang gioHang=new GioHang(tenSanPham,soLuong,giaTien,user,linkHinh);
+                                mData.child("GioHang").child(key).setValue(gioHang).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(context, "Sửa thành công!!!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }catch (NullPointerException ex){}
+
+                            dialog.dismiss();
                         }
                     });
                 dialog.show();
+            }
+        });
+        holder.imv_xoaGioHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("GioHang");
+                GioHang gioHang=dsgh.get(position);
+                try {
+                    myRef.child(gioHang.getKeyGioHang()).removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                            Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }catch (Exception ex){}
+
             }
         });
 

@@ -50,13 +50,13 @@ import java.util.Locale;
  */
 public class GioHangNguoiDungFragment extends Fragment {
     ArrayList<GioHang> dsgh = new ArrayList<>();
-    SearchView searchViewgiohang;
     RecyclerView recyclerViewSanPhamGioHang;
     Button bt_thanhToan;
     GioHangAdapter gioHangAdapter;
     FirebaseAuth mAuthor=FirebaseAuth.getInstance();
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
     String user=mAuthor.getCurrentUser().getEmail();
+    ArrayList<String> keyGioHang=new ArrayList<String>();
     public GioHangNguoiDungFragment() {
         // Required empty public constructor
     }
@@ -87,6 +87,7 @@ public class GioHangNguoiDungFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
                 GioHang gioHang=dataSnapshot.getValue(GioHang.class);
                 gioHang.setKeyGioHang(dataSnapshot.getKey());
+                keyGioHang.add(dataSnapshot.getKey());
                 dsgh.add(gioHang);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
                 recyclerViewSanPhamGioHang.setLayoutManager(layoutManager);
@@ -97,23 +98,35 @@ public class GioHangNguoiDungFragment extends Fragment {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+               try{
+                   String key=dataSnapshot.getKey();
+                   GioHang gioHang=dataSnapshot.getValue(GioHang.class);
+                   int index=keyGioHang.indexOf(key);
+                   dsgh.set(index,gioHang);
+                   gioHangAdapter.notifyDataSetChanged();
 
-                gioHangAdapter.notifyDataSetChanged();
+               }catch (IndexOutOfBoundsException ex){}
+
+
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 String key = dataSnapshot.getKey();
-                for (int i = 0; i < dsgh.size(); i++) {
-                    if (dsgh.get(i).keyGioHang.equals(key)) {
-                        dsgh.remove(i);
-                        break;
+                try {
+                    for (int i = 0; i < dsgh.size(); i++) {
+                        if (dsgh.get(i).getKeyGioHang().equals(key)) {
+                            dsgh.remove(i);
+                            break;
+                        }
+
                     }
+                    gioHangAdapter.notifyDataSetChanged();
 
                 }
-                gioHangAdapter.notifyDataSetChanged();
+                catch (IndexOutOfBoundsException  NullPointerException ){
 
-
+                }
             }
 
             @Override

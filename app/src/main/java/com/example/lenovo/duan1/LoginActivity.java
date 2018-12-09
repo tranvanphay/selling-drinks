@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnDangNhap,btnDangKy;
     FirebaseAuth mAuth;
     private long thoiGian;
+    AlertDialog alertDialog;
     private Toast thoat;
 
     @Override
@@ -100,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog alertDialog= new SpotsDialog.Builder().setContext(LoginActivity.this).build();
+                alertDialog= new SpotsDialog.Builder().setContext(LoginActivity.this).build();
                 alertDialog.setMessage("Đăng nhập");
                 alertDialog.show();
                 dangnhap();
@@ -212,6 +213,7 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(LoginActivity.this, "Lỗi đăng nhập, kiểm tra lại tài khoản và mật khẩu", Toast.LENGTH_SHORT).show();
+                                alertDialog.cancel();
                             }
 
                             // ...
@@ -220,12 +222,15 @@ public class LoginActivity extends AppCompatActivity {
 
         }else if(etUsername.getText().toString().trim().isEmpty()){
             Toast.makeText(this, "Bạn chưa nhập email", Toast.LENGTH_SHORT).show();
+            alertDialog.cancel();
         }
         else if(etPassword.getText().toString().isEmpty()){
             Toast.makeText(this, "Bạn chưa nhập mật khẩu", Toast.LENGTH_SHORT).show();
+            alertDialog.cancel();
         }
         else if (etPassword.getText().toString().length()<6){
             Toast.makeText(this, "Mật khẩu phải lớn hơn 5 ký tự", Toast.LENGTH_SHORT).show();
+            alertDialog.cancel();
         }
         else{
             mAuth.signInWithEmailAndPassword(email, password)
@@ -240,6 +245,7 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(LoginActivity.this, "Lỗi đăng nhập, kiểm tra lại tài khoản và mật khẩu", Toast.LENGTH_SHORT).show();
+                                alertDialog.cancel();
                             }
 
                         }
