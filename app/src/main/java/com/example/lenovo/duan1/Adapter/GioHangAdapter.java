@@ -70,8 +70,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 tvTongTienSanPhamCapNhatGioHang.setText(String.valueOf(dsgh.get(position).giaTien));
                 et_soLuongNhapLai.setText(String.valueOf(dsgh.get(position).soLuong));
 
-
-
+/*c*/
                 ImageView iv_congsl=dialog.findViewById(R.id.iv_suaslcong);
                 ImageView iv_trusl=dialog.findViewById(R.id.iv_suasltru);
 
@@ -106,7 +105,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                             String tenSanPham=dsgh.get(position).tenSanPham;
 
                             holder.tvSoLuongSanPhamGioHang.setText(String.valueOf(soLuong));
-
 
 
                             int giaTien=(dsgh.get(position).giaTien/soLuongCu)*soLuong;

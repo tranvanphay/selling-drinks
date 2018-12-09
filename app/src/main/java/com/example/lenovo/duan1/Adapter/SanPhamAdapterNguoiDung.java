@@ -102,7 +102,7 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
                         SanPham sanPham = dsspNguoiDung.get(position);
                         String tenSanPham = sanPham.tenSanPham;
 
-
+/*cc*/
 
                         if (et_soluong.getText().toString().isEmpty() || Integer.parseInt(et_soluong.getText().toString())==0) {
                             et_soluong.setText("");

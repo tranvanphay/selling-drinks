@@ -158,7 +158,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvTongTienSanPhamCapNhatGioHang"
                 app:srcCompat="@drawable/trusl" />
-
+<!--cc-->
             <ImageView
                 android:id="@+id/iv_suaslcong"
                 android:layout_width="wrap_content"
