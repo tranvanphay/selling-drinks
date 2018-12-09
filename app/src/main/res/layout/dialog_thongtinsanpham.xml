@@ -100,26 +100,25 @@
                 android:id="@+id/tvChuThichSanPhamThemVaoGioHang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/robotocondensedregular"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:text="Chú thích"
                 android:textColor="#838383"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.069"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                app:layout_constraintVertical_bias="0.654" />
 
             <EditText
                 android:id="@+id/etSoLuongSanPham"
                 android:layout_width="88dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/khung_soluong"
                 android:ems="10"
                 android:fontFamily="@font/unicaoneregular"
@@ -127,11 +126,10 @@
                 android:inputType="number"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
+                android:text="0"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tvChuThichSanPhamThemVaoGioHang"
+                app:layout_constraintStart_toEndOf="@+id/ivtrusl"
                 app:layout_constraintTop_toBottomOf="@+id/tvTenSanPhamThemVaoGioHang" />
 
             <Button
@@ -149,9 +147,38 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.918"
+                app:layout_constraintHorizontal_bias="0.959"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etSoLuongSanPham"></Button>
+                app:layout_constraintTop_toBottomOf="@+id/etSoLuongSanPham"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/ivtrusl"
+                android:layout_width="30dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvChuThichSanPhamThemVaoGioHang"
+                app:layout_constraintTop_toBottomOf="@+id/tvTenSanPhamThemVaoGioHang"
+                app:layout_constraintVertical_bias="0.129"
+                app:srcCompat="@drawable/trusl" />
+
+            <ImageView
+                android:id="@+id/ivcongsl"
+                android:layout_width="36dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/btnThemSanPhamVaoGioHang"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.111"
+                app:layout_constraintStart_toEndOf="@+id/etSoLuongSanPham"
+                app:layout_constraintTop_toBottomOf="@+id/tvTenSanPhamThemVaoGioHang"
+                app:srcCompat="@drawable/congsl" />
 
         </android.support.constraint.ConstraintLayout>
 
