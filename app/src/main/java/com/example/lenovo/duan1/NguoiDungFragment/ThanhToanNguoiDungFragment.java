@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 
 import com.example.lenovo.duan1.R;
 
+import java.util.TimerTask;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -68,6 +70,7 @@ public class ThanhToanNguoiDungFragment extends Fragment {
 
         return view;
     }
+
 
 
     private void loadFragment(Fragment fragment) {

@@ -98,14 +98,14 @@ public class GioHangNguoiDungFragment extends Fragment {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
-               try{
-                   String key=dataSnapshot.getKey();
-                   GioHang gioHang=dataSnapshot.getValue(GioHang.class);
-                   int index=keyGioHang.indexOf(key);
-                   dsgh.set(index,gioHang);
-                   gioHangAdapter.notifyDataSetChanged();
-
-               }catch (IndexOutOfBoundsException ex){}
+//               try{
+//                   String key=dataSnapshot.getKey();
+//                   GioHang gioHang=dataSnapshot.getValue(GioHang.class);
+//                   int index=keyGioHang.indexOf(key);
+//                   dsgh.set(index,gioHang);
+//                   gioHangAdapter.notifyDataSetChanged();
+//
+//               }catch (IndexOutOfBoundsException ex){}
 
 
             }
