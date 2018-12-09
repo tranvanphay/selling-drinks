@@ -21,6 +21,14 @@ public class SanPham {
         this.hinhSanPham = hinhSanPham;
     }
 
+    public SanPham(String maSanPham, String maLoai, String tenSanPham, String chuThich, int giaTien) {
+        this.maSanPham = maSanPham;
+        this.maLoai = maLoai;
+        this.tenSanPham = tenSanPham;
+        this.chuThich = chuThich;
+        this.giaTien = giaTien;
+    }
+
     public String getKeySanPham() {
         return keySanPham;
     }

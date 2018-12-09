@@ -76,7 +76,7 @@ public class TrangChuAdminFragment extends Fragment {
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://duan1-ac840.appspot.com");
-
+    SanPhamAdapterAdmin sanPhamAdapterAdmin;
     public TrangChuAdminFragment() {
         // Required empty public constructor
     }
@@ -440,16 +440,24 @@ public class TrangChuAdminFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 SanPham sanPham = dataSnapshot.getValue(SanPham.class);
-                dssp.add(new SanPham(sanPham.maSanPham, sanPham.maLoai, sanPham.tenSanPham, sanPham.chuThich, sanPham.giaTien, sanPham.hinhSanPham));
+                sanPham.setKeySanPham(dataSnapshot.getKey());
+                dssp.add(sanPham);
                 recyclerViewSanPham.setHasFixedSize(true);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 recyclerViewSanPham.setLayoutManager(layoutManager);
-                SanPhamAdapterAdmin sanPhamAdapterAdmin = new SanPhamAdapterAdmin(dssp, getContext());
+                sanPhamAdapterAdmin = new SanPhamAdapterAdmin(dssp, getContext());
                 recyclerViewSanPham.setAdapter(sanPhamAdapterAdmin);
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    String key=dataSnapshot.getKey();
+                    SanPham sanPham=dataSnapshot.getValue(SanPham.class);
+                    int index=sanPham.getKeySanPham().indexOf(key);
+                    dssp.set(index,sanPham);
+                    sanPhamAdapterAdmin.notifyDataSetChanged();
+
+
 
             }
 

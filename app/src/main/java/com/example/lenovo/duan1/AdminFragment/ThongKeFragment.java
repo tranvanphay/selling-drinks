@@ -31,7 +31,9 @@ import java.util.Date;
  */
 public class ThongKeFragment extends Fragment {
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
-    ArrayList<HoaDonDaGiao> dshdDaGiao=new ArrayList<HoaDonDaGiao>();
+    ArrayList<HoaDonDaGiao> dshdDaGiaoTheoNgay=new ArrayList<HoaDonDaGiao>();
+    ArrayList<HoaDonDaGiao> dshdDaGiaoTheoThang=new ArrayList<HoaDonDaGiao>();
+    ArrayList<HoaDonDaGiao> dshdDaGiaoTheoNam=new ArrayList<HoaDonDaGiao>();
     TextView tv_doanhThuTheoNgay,tv_doanhThuTheoThang,tv_doanhThuTheoNam;
     public ThongKeFragment() {
         // Required empty public constructor
@@ -55,17 +57,15 @@ public class ThongKeFragment extends Fragment {
         Date homnay=Calendar.getInstance().getTime();
         SimpleDateFormat ngayFM=new SimpleDateFormat("dd/MM/yyyy");
         String ngay=ngayFM.format(homnay);
-
-
         Query query=FirebaseDatabase.getInstance().getReference("HoaDonDaGiao").orderByChild("ngayDaGiao").equalTo(ngay);
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
                 HoaDonDaGiao hoaDonDaGiao=dataSnapshot.getValue(HoaDonDaGiao.class);
-                dshdDaGiao.add(hoaDonDaGiao);
+                dshdDaGiaoTheoNgay.add(hoaDonDaGiao);
                 int tongTienThuTheoNgay=0;
-                for(int i=0; i<dshdDaGiao.size(); i++){
-                    tongTienThuTheoNgay += dshdDaGiao.get(i).tongThanhToan;
+                for(int i=0; i<dshdDaGiaoTheoNgay.size(); i++){
+                    tongTienThuTheoNgay += dshdDaGiaoTheoNgay.get(i).tongThanhToan;
                 }
                 tv_doanhThuTheoNgay.setText(String.valueOf(tongTienThuTheoNgay));
 
@@ -98,17 +98,15 @@ public class ThongKeFragment extends Fragment {
         Date thangNay=Calendar.getInstance().getTime();
         SimpleDateFormat thangFM=new SimpleDateFormat("MM/yyyy");
         String thang=thangFM.format(thangNay);
-
-
         Query query=FirebaseDatabase.getInstance().getReference("HoaDonDaGiao").orderByChild("thangDaGiao").equalTo(thang);
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
                 HoaDonDaGiao hoaDonDaGiao=dataSnapshot.getValue(HoaDonDaGiao.class);
-                dshdDaGiao.add(hoaDonDaGiao);
+                dshdDaGiaoTheoThang.add(hoaDonDaGiao);
                 int tongTienThuTheoThang=0;
-                for(int i=0; i<dshdDaGiao.size(); i++){
-                    tongTienThuTheoThang += dshdDaGiao.get(i).tongThanhToan;
+                for(int i=0; i<dshdDaGiaoTheoThang.size(); i++){
+                    tongTienThuTheoThang += dshdDaGiaoTheoThang.get(i).tongThanhToan;
                 }
                 tv_doanhThuTheoThang.setText(String.valueOf(tongTienThuTheoThang));
 
@@ -148,10 +146,10 @@ public class ThongKeFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
                 HoaDonDaGiao hoaDonDaGiao=dataSnapshot.getValue(HoaDonDaGiao.class);
-                dshdDaGiao.add(hoaDonDaGiao);
+                dshdDaGiaoTheoNam.add(hoaDonDaGiao);
                 int tongTienThuTheoNam=0;
-                for(int i=0; i<dshdDaGiao.size(); i++){
-                    tongTienThuTheoNam += dshdDaGiao.get(i).tongThanhToan;
+                for(int i=0; i<dshdDaGiaoTheoNam.size(); i++){
+                    tongTienThuTheoNam += dshdDaGiaoTheoNam.get(i).tongThanhToan;
                 }
                 tv_doanhThuTheoNam.setText(String.valueOf(tongTienThuTheoNam));
 

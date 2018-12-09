@@ -60,8 +60,8 @@
 
             <ImageView
                 android:id="@+id/ivMenuSanPhamAdmin"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
