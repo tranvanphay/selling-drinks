@@ -1,36 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/robotocondensedregular"
+        android:text="Tên sản phẩm :" />
 
     <TextView
         android:id="@+id/tv_tenSanPhamDangGiao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10pt"
-        android:textAlignment="center"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/robotocondensedregular"
+        android:ems="10"
+        android:background="@drawable/et_thanhtoan"
+        android:padding="10dp"
+        android:hint="Tên sản phẩm"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_soLuongSanPhamDangGiao"
-            android:layout_width="134dp"
-            android:layout_height="match_parent"
-            android:text="100"
-            android:textAlignment="center"
-            android:textSize="10pt" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tv_tongTienSanPhamDangGiao"
-            android:layout_width="278dp"
-            android:layout_height="match_parent"
-            android:text="1000000"
-            android:textAlignment="center"
-            android:textSize="10pt" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Số lượng :" />
+
+            <TextView
+                android:id="@+id/tv_soLuongSanPhamDangGiao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/robotocondensedregular"
+                android:background="@drawable/et_thanhtoan"
+                android:hint="Số lượng"
+                android:maxLines="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Tổng tiền :" />
+
+            <TextView
+                android:id="@+id/tv_tongTienSanPhamDangGiao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:background="@drawable/et_thanhtoan"
+                android:padding="10dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:hint="Tổng tiền"
+                android:maxLines="1"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
+    <View
+        android:layout_marginTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#d2495054"/>
 </LinearLayout>

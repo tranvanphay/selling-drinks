@@ -84,7 +84,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="5dp"
                 android:ems="10"
-                android:padding="8dp"
+                android:padding="10dp"
                 android:textSize="16sp"
                 android:fontFamily="@font/robotocondensedregular"
                 android:background="@drawable/et_thanhtoan"

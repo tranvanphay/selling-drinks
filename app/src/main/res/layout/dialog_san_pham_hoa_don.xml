@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d2495054"
+        android:fontFamily="@font/robotocondensedregular"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Thông tin sản phẩm"
+        android:textColor="#e3e8ea"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
     <ListView
         android:id="@+id/lv_sanPhamHoaDon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="8dp" />
+
     <Button
         android:id="@+id/bt_giaoHang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Giao Hàng"/>
+        android:layout_marginTop="10dp"
+        android:background="#d2495054"
+        android:fontFamily="@font/robotocondensedregular"
+        android:text="Xác minh đơn hàng"
+        android:textColor="#e3e8ea"
+        android:textStyle="bold" />
 
 </LinearLayout>

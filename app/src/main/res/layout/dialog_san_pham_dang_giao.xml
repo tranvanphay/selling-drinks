@@ -1,36 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d2495054"
+        android:fontFamily="@font/robotocondensedregular"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Sản phẩm đơn hàng"
+        android:textColor="#e3e8ea"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 
     <ListView
         android:id="@+id/lv_sanPhamDangGiao"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="41dp">
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imv_xacNhanDaGiao"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_xacNhanDaGiao"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/ic_accept" />
+            android:text="ĐÃ GIAO"
+            android:textColor="#E5E5E5"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/robotocondensedregular"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="#00AB67"/>
 
-        <ImageView
-            android:id="@+id/imv_huyDonHang"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_huyDonHang"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_cancel" />
+            android:textColor="#E5E5E5"
+            android:padding="16dp"
+            android:text="HỦY ĐƠN HÀNG"
+            android:layout_weight="1"
+            android:fontFamily="@font/robotocondensedregular"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="#e74d4d"/>
+
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
