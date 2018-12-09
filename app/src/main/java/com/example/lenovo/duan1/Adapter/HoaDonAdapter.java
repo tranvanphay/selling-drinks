@@ -64,7 +64,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         holder.tv_ngayDatHang.setText(dshd.get(position).ngayDatHang);
         holder.tv_tongThanhToanChuaGiao.setText(String.valueOf(dshd.get(position).tongThanhToan));
         holder.tv_gioDatHang.setText(dshd.get(position).gioDatHang);
-        holder.imv_call.setOnClickListener(new View.OnClickListener() {
+        holder.tv_callXacMinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i =new Intent(Intent.ACTION_CALL);
@@ -90,7 +90,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
                dialog.setContentView(R.layout.dialog_san_pham_hoa_don);
                lv_sanPhamHoaDon=dialog.findViewById(R.id.lv_sanPhamHoaDon);
                Button bt_giaoHang=dialog.findViewById(R.id.bt_giaoHang);
-              keyHoaDon=dshd.get(position).getKeyHoaDon();
+               keyHoaDon=dshd.get(position).getKeyHoaDon();
                mData.child("HoaDon").child(keyHoaDon).child("gioHang").addChildEventListener(new ChildEventListener() {
                    @Override
                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -196,7 +196,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         TextView tv_sdtNhanHoaDon;
         TextView tv_diaChiNhanHangHoaDon;
         TextView tv_chuThichNhanHangHoaDon;
-        ImageView imv_call;
+        TextView tv_callXacMinh;
         TextView tv_ngayDatHang;
         TextView tv_gioDatHang;
         TextView tv_tongThanhToanChuaGiao;
@@ -212,8 +212,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
             tv_ngayDatHang=(TextView)itemView.findViewById(R.id.tv_ngayDatHang);
             tv_gioDatHang=(TextView)itemView.findViewById(R.id.tv_gioDatHang);
             tv_tongThanhToanChuaGiao=(TextView)itemView.findViewById(R.id.tv_tongThanhToanChuaGiao);
-            imv_call=(ImageView)itemView.findViewById(R.id.imv_call);
-
+            tv_callXacMinh=(TextView)itemView.findViewById(R.id.tv_callXacMinh);
         }
         public void setItemClickListener(ItemClickListener itemClickListener){
             this.itemClickListener=itemClickListener;

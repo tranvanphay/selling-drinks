@@ -57,7 +57,7 @@ public class ChuaGiaoFragment extends Fragment {
                     hoaDon.setKeyHoaDon(dataSnapshot.getKey());
                     dshd.add(hoaDon);
                     recyclerViewChuaGiao.setHasFixedSize(true);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
                     recyclerViewChuaGiao.setLayoutManager(layoutManager);
                     hoaDonAdapter = new HoaDonAdapter(dshd,getContext());
                     recyclerViewChuaGiao.setAdapter(hoaDonAdapter);
@@ -95,7 +95,7 @@ public class ChuaGiaoFragment extends Fragment {
     }
     public void viewHoaDon() {
         recyclerViewChuaGiao.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerViewChuaGiao.setLayoutManager(layoutManager);
         HoaDonAdapter hoaDonAdapter = new HoaDonAdapter(dshd,getContext());
         recyclerViewChuaGiao.setAdapter(hoaDonAdapter);

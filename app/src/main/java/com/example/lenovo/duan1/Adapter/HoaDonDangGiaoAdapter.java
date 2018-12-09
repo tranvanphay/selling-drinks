@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,8 +71,8 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
                 final Dialog dialog=new Dialog(context);
                 dialog.setContentView(R.layout.dialog_san_pham_dang_giao);
                 lv_sanPhamDangGiao=dialog.findViewById(R.id.lv_sanPhamDangGiao);
-                ImageView imv_xacNhanGiaoHang=dialog.findViewById(R.id.imv_xacNhanDaGiao);
-                ImageView imv_huyDonHang=dialog.findViewById(R.id.imv_huyDonHang);
+                TextView tv_xacNhanGiaoHang=dialog.findViewById(R.id.tv_xacNhanDaGiao);
+                TextView tv_huyDonHang=dialog.findViewById(R.id.tv_huyDonHang);
                 keyHoaDonDangGiao=dshdDangGiao.get(position).getKeyHoaDonDangGiao();
                 mData.child("HoaDonDangGiao").child(keyHoaDonDangGiao).child("gioHang").addChildEventListener(new ChildEventListener() {
                     @Override
@@ -115,7 +116,7 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
 
                     }
                 });
-                imv_xacNhanGiaoHang.setOnClickListener(new View.OnClickListener() {
+                tv_xacNhanGiaoHang.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                             String tenNguoiNhan=dshdDangGiao.get(position).tenNguoiNhan;
@@ -158,7 +159,7 @@ public class HoaDonDangGiaoAdapter extends RecyclerView.Adapter<HoaDonDangGiaoAd
                             });
                     }
                 });
-                imv_huyDonHang.setOnClickListener(new View.OnClickListener() {
+                tv_huyDonHang.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String key=dshdDangGiao.get(position).getKeyHoaDonDangGiao();
