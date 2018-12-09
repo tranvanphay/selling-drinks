@@ -2,9 +2,11 @@ package com.example.lenovo.duan1.Adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,19 +72,46 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
                 tvChuThichSanPhamThemVaoGioHang.setText(dsspNguoiDung.get(position).getChuThich());
                 Picasso.get().load(dsspNguoiDung.get(position).getHinhSanPham()).into(ivHinhThongTinSanPham);
                 Button bt_them=dialog.findViewById(R.id.btnThemSanPhamVaoGioHang);
+                Log.d("aaaaa","asasdad");
+                ImageView iv_congsl=dialog.findViewById(R.id.ivcongsl);
+                ImageView iv_trusl=dialog.findViewById(R.id.ivtrusl);
+
+                iv_congsl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int a,b;
+                        a=Integer.parseInt(et_soluong.getText().toString());
+                        b=a+1;
+                        et_soluong.setText(String.valueOf(b));
+                        Log.d("abc","aadad");
+                    }
+                });
+                iv_trusl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int a,b;
+                        a=Integer.parseInt(et_soluong.getText().toString());
+                        b=a-1;
+                        if (a==0)
+                            b=0;
+                        et_soluong.setText(String.valueOf(b));
+                        Log.d("abc","aadad");
+                    }
+                });
                 dialog.show();
                 bt_them.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         SanPham sanPham = dsspNguoiDung.get(position);
                         String tenSanPham = sanPham.tenSanPham;
+
+
+
                         if (et_soluong.getText().toString().isEmpty() || Integer.parseInt(et_soluong.getText().toString())==0) {
                             et_soluong.setText("");
                             Toast.makeText(context, "Vui lòng nhập số lượng", Toast.LENGTH_SHORT).show();
                         } else {
                             int soLuong = Integer.parseInt(et_soluong.getText().toString());
-
-
                             int giaTien = sanPham.giaTien * soLuong;
                             String hinhSanPham=sanPham.hinhSanPham;
                             String user = mAuth.getCurrentUser().getEmail();
@@ -127,5 +156,6 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
             imv_themVaoGioHang=(ImageView)itemView.findViewById(R.id.imv_themVaoGioHang);
         }
     }
+
 }
 

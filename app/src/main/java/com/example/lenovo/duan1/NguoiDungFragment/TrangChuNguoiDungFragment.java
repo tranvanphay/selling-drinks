@@ -81,9 +81,10 @@ public class TrangChuNguoiDungFragment extends Fragment {
 
             }
         });
+        getBangTin();
         loadLoai();
         loadSanPham();
-        getBangTin();
+
         return view;
     }
     private void loadLoai(){
