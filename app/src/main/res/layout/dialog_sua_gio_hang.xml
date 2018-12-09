@@ -7,10 +7,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/test1"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -44,20 +46,21 @@
         </LinearLayout>
 
         <android.support.v7.widget.CardView
+            android:layout_width="270dp"
+            android:layout_height="300dp"
             android:layout_gravity="center"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="10dp"
-            android:layout_width="270dp"
-            android:layout_height="300dp">
+            app:cardElevation="10dp">
+
             <ImageView
                 android:id="@+id/ivHinhThongTinSanPhamCapNhatGioHang"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitCenter"
-                android:padding="10dp"
                 android:layout_gravity="center"
-                android:src="@drawable/test2"/>
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/test2" />
         </android.support.v7.widget.CardView>
 
         <android.support.constraint.ConstraintLayout
@@ -102,14 +105,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/robotocondensedregular"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:text="Tổng tiền"
                 android:textColor="#838383"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.069"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -117,9 +117,7 @@
                 android:id="@+id/edt_soLuongThayDoi"
                 android:layout_width="88dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
                 android:background="@drawable/khung_soluong"
                 android:ems="10"
                 android:fontFamily="@font/unicaoneregular"
@@ -129,9 +127,7 @@
                 android:paddingBottom="4dp"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tvChuThichSanPhamCapNhatGioHang"
+                app:layout_constraintStart_toEndOf="@+id/iv_suasltru"
                 app:layout_constraintTop_toBottomOf="@+id/tvTenSanPhamCapNhatGioHang" />
 
             <Button
@@ -152,6 +148,29 @@
                 app:layout_constraintHorizontal_bias="0.918"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_soLuongThayDoi"></Button>
+
+            <ImageView
+                android:id="@+id/iv_suasltru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="56dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvTongTienSanPhamCapNhatGioHang"
+                app:srcCompat="@drawable/trusl" />
+
+            <ImageView
+                android:id="@+id/iv_suaslcong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/edt_soLuongThayDoi"
+                app:layout_constraintTop_toBottomOf="@+id/tvTenSanPhamCapNhatGioHang"
+                app:srcCompat="@drawable/congsl" />
 
         </android.support.constraint.ConstraintLayout>
 

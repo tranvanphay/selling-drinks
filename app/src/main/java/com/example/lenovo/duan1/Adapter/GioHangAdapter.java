@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.tvTenSanPhamGioHang.setText(dsgh.get(position).tenSanPham);
         holder.tvSoLuongSanPhamGioHang.setText(String.valueOf(dsgh.get(position).soLuong));
         holder.tvGiaTienSanPhamGioHang.setText(String.valueOf(dsgh.get(position).giaTien));
@@ -68,12 +69,46 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 tvTenSanPhamCapNhatGioHang.setText(dsgh.get(position).tenSanPham);
                 tvTongTienSanPhamCapNhatGioHang.setText(String.valueOf(dsgh.get(position).giaTien));
                 et_soLuongNhapLai.setText(String.valueOf(dsgh.get(position).soLuong));
+
+
+
+                ImageView iv_congsl=dialog.findViewById(R.id.iv_suaslcong);
+                ImageView iv_trusl=dialog.findViewById(R.id.iv_suasltru);
+
+                iv_congsl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int a,b;
+                        a=Integer.parseInt(et_soLuongNhapLai.getText().toString());
+                        b=a+1;
+                        et_soLuongNhapLai.setText(String.valueOf(b));
+                    }
+                });
+                iv_trusl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int a,b;
+                        a=Integer.parseInt(et_soLuongNhapLai.getText().toString());
+                        b=a-1;
+                        if (a==0)
+                            b=0;
+                        et_soLuongNhapLai.setText(String.valueOf(b));
+                    }
+                });
+
+
+
                     bt_oke.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             int soLuongCu=dsgh.get(position).soLuong;
                             int soLuong=Integer.parseInt(et_soLuongNhapLai.getText().toString());
                             String tenSanPham=dsgh.get(position).tenSanPham;
+
+                            holder.tvSoLuongSanPhamGioHang.setText(String.valueOf(soLuong));
+
+
+
                             int giaTien=(dsgh.get(position).giaTien/soLuongCu)*soLuong;
                             String user=mAuhtor.getCurrentUser().getEmail();
                             String linkHinh=dsgh.get(position).hinhSanPham;
@@ -88,11 +123,13 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                                 });
 
                             }catch (NullPointerException ex){}
-
                             dialog.dismiss();
                         }
                     });
                 dialog.show();
+
+
+
             }
         });
         holder.imv_xoaGioHang.setOnClickListener(new View.OnClickListener() {

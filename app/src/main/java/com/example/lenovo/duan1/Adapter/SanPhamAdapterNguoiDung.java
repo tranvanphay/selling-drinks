@@ -72,7 +72,6 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
                 tvChuThichSanPhamThemVaoGioHang.setText(dsspNguoiDung.get(position).getChuThich());
                 Picasso.get().load(dsspNguoiDung.get(position).getHinhSanPham()).into(ivHinhThongTinSanPham);
                 Button bt_them=dialog.findViewById(R.id.btnThemSanPhamVaoGioHang);
-                Log.d("aaaaa","asasdad");
                 ImageView iv_congsl=dialog.findViewById(R.id.ivcongsl);
                 ImageView iv_trusl=dialog.findViewById(R.id.ivtrusl);
 
@@ -83,7 +82,6 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
                         a=Integer.parseInt(et_soluong.getText().toString());
                         b=a+1;
                         et_soluong.setText(String.valueOf(b));
-                        Log.d("abc","aadad");
                     }
                 });
                 iv_trusl.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +93,6 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
                         if (a==0)
                             b=0;
                         et_soluong.setText(String.valueOf(b));
-                        Log.d("abc","aadad");
                     }
                 });
                 dialog.show();
