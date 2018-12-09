@@ -60,7 +60,7 @@ public class DaGiaoFragment extends Fragment {
                 hoaDonDaGiao.setKeyHoaDonDaGiao(dataSnapshot.getKey());
                 dshdDaGiao.add(hoaDonDaGiao);
                 recyclerViewDaGiao.setHasFixedSize(true);
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
                 recyclerViewDaGiao.setLayoutManager(layoutManager);
                 hoaDonDaGiaoAdapter = new HoaDonDaGiaoAdapter(dshdDaGiao,getContext());
                 recyclerViewDaGiao.setAdapter(hoaDonDaGiaoAdapter);

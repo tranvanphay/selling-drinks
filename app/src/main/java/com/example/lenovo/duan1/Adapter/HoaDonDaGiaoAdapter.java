@@ -108,7 +108,7 @@ public class HoaDonDaGiaoAdapter extends RecyclerView.Adapter<HoaDonDaGiaoAdapte
                 dialog.show();
             }
         });
-        holder.imv_xoaHoaDonDaGiao.setOnClickListener(new View.OnClickListener() {
+        holder.tv_xoaDonHangDaGiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String key=dshdDaGiao.get(position).keyHoaDonDaGiao;
@@ -132,7 +132,7 @@ public class HoaDonDaGiaoAdapter extends RecyclerView.Adapter<HoaDonDaGiaoAdapte
         TextView tv_sdtNhanDaGiao;
         TextView tv_diaChiNhanHangDaGiao;
         TextView tv_chuThichNhanHangDaGiao;
-        ImageView imv_xoaHoaDonDaGiao;
+        TextView tv_xoaDonHangDaGiao;
         TextView tv_ngayDaGiao;
         TextView tv_gioDaGiao;
         TextView tv_tongThanhToanDaGiao;
@@ -148,7 +148,7 @@ public class HoaDonDaGiaoAdapter extends RecyclerView.Adapter<HoaDonDaGiaoAdapte
             tv_ngayDaGiao=(TextView)itemView.findViewById(R.id.tv_ngayDaGiao);
             tv_gioDaGiao=(TextView)itemView.findViewById(R.id.tv_gioDaGiao);
             tv_tongThanhToanDaGiao=(TextView)itemView.findViewById(R.id.tv_tongThanhToanDaGiao);
-            imv_xoaHoaDonDaGiao=(ImageView) itemView.findViewById(R.id.imv_xoaHoaDonDaGiao);
+            tv_xoaDonHangDaGiao=(TextView) itemView.findViewById(R.id.tv_xoaDonHangDaGiao);
         }
         public void setItemClickListener(ItemClickListener itemClickListener){
             this.itemClickListener=itemClickListener;

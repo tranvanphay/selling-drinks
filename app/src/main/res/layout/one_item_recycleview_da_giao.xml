@@ -1,85 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_margin="20dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/tv_tenNguoiNhanDaGiao"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    app:cardElevation="6dp">
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10pt"
-        />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_sdtNhanDaGiao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10pt"
-        />
-
-
-    <TextView
-        android:id="@+id/tv_diaChiNhanHangDaGiao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10pt"
-        />
-
-
-    <TextView
-        android:id="@+id/tv_chuThichNhanHangDaGiao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10pt"
-        />
-        <TextView
-            android:id="@+id/tv_tongThanhToanDaGiao"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="10pt"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="#dcffffff"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#d2495054"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/robotocondensedregular"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="Thông tin đơn hàng"
+                    android:textColor="#e3e8ea"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_ngayDaGiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/robotocondensedregular"
+                    android:gravity="center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Ngày đặt hàng" />
+
+                <TextView
+                    android:id="@+id/tv_gioDaGiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/robotocondensedregular"
+                    android:gravity="center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Giờ đặt hàng" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="30dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Tên người nhận :" />
+            <TextView
+                android:id="@+id/tv_tenNguoiNhanDaGiao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/et_thanhtoan"
+                android:ems="10"
+                android:fontFamily="@font/robotocondensedregular"
+                android:hint="Tên người nhận"
+                android:padding="10dp"
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_ngayDaGiao"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="30/12/2020"
-                android:textSize="10pt"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="30dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Số điện thoại :" />
 
             <TextView
-                android:text="24:59"
-                android:id="@+id/tv_gioDaGiao"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_sdtNhanDaGiao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/et_thanhtoan"
+                android:fontFamily="@font/robotocondensedregular"
+                android:hint="Số điện thoại"
+                android:padding="10dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="10pt"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="30dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Địa chỉ :" />
+
+            <TextView
+                android:id="@+id/tv_diaChiNhanHangDaGiao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/et_thanhtoan"
+                android:ems="10"
+                android:fontFamily="@font/robotocondensedregular"
+                android:hint="Địa chỉ"
+                android:padding="10dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="30dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:text="Ghi chú :" />
+            <TextView
+                android:id="@+id/tv_chuThichNhanHangDaGiao"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/et_thanhtoan"
+                android:ems="10"
+                android:fontFamily="@font/robotocondensedregular"
+                android:gravity="top"
+                android:hint="Ghi chú"
+                android:padding="10dp"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/backgroundtongtiendonhang"
+                    android:fontFamily="@font/robotocondensedregular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Tổng tiền"
+                    android:textColor="#e3e8ea"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_tongThanhToanDaGiao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_khung_tongtien"
+                    android:clickable="true"
+                    android:fontFamily="@font/robotocondensedregular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/backgroundtongtiendonhang"
+                    android:fontFamily="@font/robotocondensedregular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Trạng thái đơn hàng"
+                    android:textColor="#e3e8ea"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_khung_tongtien"
+                    android:fontFamily="@font/robotocondensedregular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Hoàn tất"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_xoaDonHangDaGiao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:background="#d2495054"
+                android:textStyle="bold"
+                android:textColor="#E5E5E5"
+                android:paddingBottom="16dp"
+                android:fontFamily="@font/robotocondensedregular"
+                android:gravity="center"
+                android:text="Xóa"/>
 
         </LinearLayout>
-    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imv_xoaHoaDonDaGiao"
-        android:layout_width="41dp"
-        android:layout_height="match_parent"
-        android:src="@drawable/delete_icon" />
-</LinearLayout>
+
+    </ScrollView>
 
 
 
+</android.support.v7.widget.CardView>
 
