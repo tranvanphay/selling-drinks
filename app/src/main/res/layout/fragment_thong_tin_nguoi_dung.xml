@@ -23,4 +23,25 @@
         android:layout_marginTop="457dp"
         android:text="Đăng xuất" />
 
+    <EditText
+        android:id="@+id/ed_doipw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/bt_dangXuat"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="136dp"
+        android:ems="10"
+        android:hint="new"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btn_doipw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="222dp"
+        android:layout_marginEnd="98dp"
+        android:text="Button" />
+
 </RelativeLayout>
