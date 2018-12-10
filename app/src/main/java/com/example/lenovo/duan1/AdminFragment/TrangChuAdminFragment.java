@@ -67,7 +67,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TrangChuAdminFragment extends Fragment {
+public class TrangChuAdminFragment extends Fragment{
     private ArrayList<String> tenBangTin = new ArrayList<>();
     private ArrayList<String> hinhBangTin = new ArrayList<>();
     FirebaseAuth mAuthor = FirebaseAuth.getInstance();
@@ -427,11 +427,7 @@ public class TrangChuAdminFragment extends Fragment {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String key=dataSnapshot.getKey();
-                Loai loai=dataSnapshot.getValue(Loai.class);
-                int index=keyLoai.indexOf(key);
-                dsl.set(index,loai);
-                loaiApdaterAdmin.notifyDataSetChanged();
+
 
             }
 
@@ -445,6 +441,8 @@ public class TrangChuAdminFragment extends Fragment {
                     }
 
                 }
+
+
                 loaiApdaterAdmin.notifyDataSetChanged();
 
             }
@@ -478,11 +476,7 @@ public class TrangChuAdminFragment extends Fragment {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    String key=dataSnapshot.getKey();
-                    SanPham sanPham=dataSnapshot.getValue(SanPham.class);
-                    int index=keySP.indexOf(key);
-                    dssp.set(index,sanPham);
-                    sanPhamAdapterAdmin.notifyDataSetChanged();
+
 
             }
 
@@ -551,7 +545,6 @@ public class TrangChuAdminFragment extends Fragment {
         SanPhamAdapterAdmin sanPhamAdapterAdmin = new SanPhamAdapterAdmin(dssp, getContext());
         recyclerViewSanPham.setAdapter(sanPhamAdapterAdmin);
     }
-
 
 }
 

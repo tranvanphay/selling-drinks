@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lenovo.duan1.AdminActivity;
 import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,11 +37,15 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
     ArrayList<Loai> dsl;
     Context context;
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
+    ImageView imv_suaAnhLoai;
+
 
     public LoaiApdaterAdmin(ArrayList<Loai> dsl, Context context) {
         this.dsl = dsl;
         this.context = context;
+
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -86,9 +91,9 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
 
                                         break;
                                     case R.id.suaLoai:
-                                        final Dialog dialogSuaLoai = new Dialog(context);
+                                        final Dialog dialogSuaLoai = new Dialog(context) ;
                                         dialogSuaLoai.setContentView(R.layout.dialog_sualoai);
-                                        final ImageView imv_suaAnhLoai=dialogSuaLoai.findViewById(R.id.imv_suaAnhLoai);
+                                        imv_suaAnhLoai=dialogSuaLoai.findViewById(R.id.imv_suaAnhLoai);
                                         ImageView ivCloseDialogSuaLoai=dialogSuaLoai.findViewById(R.id.ivCloseDialogSuaLoai);
                                         final EditText edt_suaMaLoai=dialogSuaLoai.findViewById(R.id.edt_suaMaLoai);
                                         final EditText edt_suaTenLoai=dialogSuaLoai.findViewById(R.id.edt_suaTenLoai);
@@ -104,7 +109,7 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
                                                 Intent cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                                 Intent group = Intent.createChooser(i, "Source");
                                                 group.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{cam});
-                                                ((Activity)context).startActivityForResult(group, 1);
+                                                ((Activity)context).startActivityForResult(group, 9);
                                             }
                                         });
                                         bt_suaLoai.setOnClickListener(new View.OnClickListener() {
@@ -114,11 +119,14 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
                                                 String linkHinh=dsl.get(position).hinhLoai;
                                                 String tenLoai=edt_suaTenLoai.getText().toString();
                                                 String maLoai=edt_suaMaLoai.getText().toString();
-                                                Loai loai1=new Loai(tenLoai,maLoai,linkHinh);
+                                                Loai loai1=new Loai(maLoai,tenLoai,linkHinh);
                                                 mData.child("Loai").child(key).setValue(loai1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         dialogSuaLoai.dismiss();
+                                                        Intent i=new Intent(context,AdminActivity.class);
+                                                        context.startActivity(i);
+                                                        ((Activity)context).finish();
                                                         Toast.makeText(context, "Sửa thành công!!!", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
@@ -133,6 +141,7 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
 
 
                                         dialogSuaLoai.show();
+
                                         break;
                                 }
 
@@ -144,6 +153,8 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
                     }
                 });
             }
+
+
 
 
     @Override
@@ -165,6 +176,9 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
             ivHinhLoai = (ImageView) itemView.findViewById(R.id.ivHinhLoaiAdmin);
             ivMenuXoaSuaLoai = (ImageView) itemView.findViewById(R.id.ivMenuLoaiAdmin);
         }
+
+
+
     }
 
 }
