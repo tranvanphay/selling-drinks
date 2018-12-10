@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -18,14 +20,15 @@ import com.example.lenovo.duan1.AdminFragment.ThongKeFragment;
 import com.example.lenovo.duan1.AdminFragment.TrangChuAdminFragment;
 
 public class AdminActivity extends AppCompatActivity {
-        private long thoiGian;
-        private Toast thoat;
+    private long thoiGian;
+    private Toast thoat;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_admin);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_admin);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         loadFragment(new TrangChuAdminFragment());
@@ -35,15 +38,15 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if(thoiGian+2000 > System.currentTimeMillis())
-        {   thoat.cancel();
+        if (thoiGian + 2000 > System.currentTimeMillis()) {
+            thoat.cancel();
             super.onBackPressed();
             return;
-        }else {
-           thoat= Toast.makeText(this, "Nhấn lần nữa để thoát!!!", Toast.LENGTH_SHORT);
-           thoat.show();
+        } else {
+            thoat = Toast.makeText(this, "Nhấn lần nữa để thoát!!!", Toast.LENGTH_SHORT);
+            thoat.show();
         }
-        thoiGian=System.currentTimeMillis();
+        thoiGian = System.currentTimeMillis();
 
     }
 
@@ -60,7 +63,7 @@ public class AdminActivity extends AppCompatActivity {
                     fragment = new HoaDonFragment();
                     loadFragment(fragment);
                     return true;
-                case R.id.thongTinAdmin:
+                case R.id.thongKe:
                     fragment = new ThongKeFragment();
                     loadFragment(fragment);
                     return true;
@@ -78,5 +81,24 @@ public class AdminActivity extends AppCompatActivity {
     }
 
 
+    public void goToFragmentHoaDon(View view) {
+        Fragment fragment = new HoaDonFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container_Admin, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+        bottomNavigationView.setSelectedItemId(R.id.hoaDon);
+
+    }
+
+    public void goToFragmentThongKe(View view) {
+        Fragment fragment = new ThongKeFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container_Admin, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+        bottomNavigationView.setSelectedItemId(R.id.thongKe);
+
+    }
 
 }

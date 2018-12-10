@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/robotocondensedregular"
         android:text="Tên sản phẩm :" />
 
@@ -19,15 +19,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="5dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/et_thanhtoan"
-        android:ems="10"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/robotocondensedregular"
-        android:hint="Tên sản phẩm"
+        android:ems="10"
+        android:background="@drawable/et_thanhtoan"
         android:padding="10dp"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:hint="Tên sản phẩm"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,16 +37,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/robotocondensedregular"
                 android:text="Số lượng :" />
 
@@ -55,32 +55,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/et_thanhtoan"
+                android:layout_marginTop="5dp"
                 android:ems="10"
-                android:fontFamily="@font/robotocondensedregular"
-                android:hint="Số lượng"
-                android:maxLines="1"
                 android:padding="10dp"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/robotocondensedregular"
+                android:background="@drawable/et_thanhtoan"
+                android:hint="Số lượng"
+                android:maxLines="1"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/robotocondensedregular"
                 android:text="Tổng tiền :" />
 
@@ -89,25 +89,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/et_thanhtoan"
+                android:layout_marginTop="5dp"
                 android:ems="10"
+                android:background="@drawable/et_thanhtoan"
+                android:padding="10dp"
                 android:fontFamily="@font/robotocondensedregular"
                 android:hint="Tổng tiền"
                 android:maxLines="1"
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
 
     </LinearLayout>
-
     <View
+        android:layout_marginTop="18dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="18dp"
-        android:background="#d2495054" />
+        android:background="#d2495054"/>
 </LinearLayout>

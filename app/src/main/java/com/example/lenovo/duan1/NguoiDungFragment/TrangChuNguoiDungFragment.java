@@ -107,11 +107,11 @@ public class TrangChuNguoiDungFragment extends Fragment {
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                String key=dataSnapshot.getKey();
-                Loai loai=dataSnapshot.getValue(Loai.class);
-                int index=keyLoai.indexOf(key);
-                dslNguoiDung.set(index,loai);
-                adapter.notifyDataSetChanged();
+//                String key=dataSnapshot.getKey();
+//                Loai loai=dataSnapshot.getValue(Loai.class);
+//                int index=keyLoai.indexOf(key);
+//                dslNguoiDung.set(index,loai);
+//                adapter.notifyDataSetChanged();
 
             }
 
@@ -159,11 +159,11 @@ public class TrangChuNguoiDungFragment extends Fragment {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String key=dataSnapshot.getKey();
-                SanPham sanPham=dataSnapshot.getValue(SanPham.class);
-                int index=keySP.indexOf(key);
-                dsspNguoiDung.set(index,sanPham);
-                sanPhamAdapterNguoiDung.notifyDataSetChanged();
+//                String key=dataSnapshot.getKey();
+//                SanPham sanPham=dataSnapshot.getValue(SanPham.class);
+//                int index=keySP.indexOf(key);
+//                dsspNguoiDung.set(index,sanPham);
+//                sanPhamAdapterNguoiDung.notifyDataSetChanged();
             }
 
             @Override

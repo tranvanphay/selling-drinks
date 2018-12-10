@@ -129,8 +129,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
+                android:onClick="goToFragmentThongKe"
                 android:background="@drawable/khung_thongke"
                 android:orientation="horizontal"
+                android:id="@+id/linearLayoutThongKe"
                 android:padding="6dp">
 
                 <ImageView
@@ -159,6 +161,8 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/khung_hoadon"
                 android:orientation="horizontal"
+                android:onClick="goToFragmentHoaDon"
+                android:id="@+id/linearLayoutHoaDon"
                 android:padding="6dp">
 
                 <ImageView
