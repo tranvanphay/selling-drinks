@@ -1,7 +1,9 @@
 package com.example.lenovo.duan1.Adapter;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lenovo.duan1.AdminActivity;
 import com.example.lenovo.duan1.Model.GioHang;
 import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.Model.SanPham;
@@ -152,6 +155,9 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         dialogSuaSanPham.dismiss();
+                                                        Intent i=new Intent(context,AdminActivity.class);
+                                                        context.startActivity(i);
+                                                        ((Activity)context).finish();
                                                         Toast.makeText(context, "Sửa thành công!!!", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });

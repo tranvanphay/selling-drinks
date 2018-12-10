@@ -57,6 +57,7 @@ public class GioHangNguoiDungFragment extends Fragment {
     DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
     String user=mAuthor.getCurrentUser().getEmail();
     ArrayList<String> keyGioHang=new ArrayList<String>();
+    String key;
     public GioHangNguoiDungFragment() {
         // Required empty public constructor
     }
@@ -98,22 +99,26 @@ public class GioHangNguoiDungFragment extends Fragment {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
-//               try{
-//                   String key=dataSnapshot.getKey();
+//                    key=dataSnapshot.getKey();
 //                   GioHang gioHang=dataSnapshot.getValue(GioHang.class);
-//                   int index=keyGioHang.indexOf(key);
-//                   dsgh.set(index,gioHang);
-//                   gioHangAdapter.notifyDataSetChanged();
-//
-//               }catch (IndexOutOfBoundsException ex){}
-
+////                   int index=keyGioHang.indexOf(key);
+////                   dsgh.set(index,gioHang);
+////                   gioHangAdapter.notifyDataSetChanged();
+//                   for(int i=0;i<dsgh.size();i++){
+//                       if(dsgh.get(i).getKeyGioHang().equals(key)){
+//                           dsgh.set(i,gioHang);
+//                           break;
+//                       }
+//                   }
+//                gioHangAdapter.notifyDataSetChanged();
 
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                String key = dataSnapshot.getKey();
-                try {
+
+
+                key = dataSnapshot.getKey();
                     for (int i = 0; i < dsgh.size(); i++) {
                         if (dsgh.get(i).getKeyGioHang().equals(key)) {
                             dsgh.remove(i);
@@ -123,10 +128,7 @@ public class GioHangNguoiDungFragment extends Fragment {
                     }
                     gioHangAdapter.notifyDataSetChanged();
 
-                }
-                catch (IndexOutOfBoundsException  NullPointerException ){
 
-                }
             }
 
             @Override
