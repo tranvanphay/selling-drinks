@@ -10,7 +10,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
@@ -25,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,6 +76,7 @@ public class TrangChuAdminFragment extends Fragment {
     TextView tvCurrentDate, tv_welcomeback;
     ImageView  imv_themAnh, imv_themAnhSanPham, iv_Logout, ivMenuThemLoaiVaSanPham;
     RecyclerView recyclerViewBangTin, recyclerViewLoai, recyclerViewSanPham;
+    LinearLayout linearLayoutThongKe,linearLayoutHoaDon;
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://duan1-ac840.appspot.com");
@@ -97,6 +101,8 @@ public class TrangChuAdminFragment extends Fragment {
         ivMenuThemLoaiVaSanPham = view.findViewById(R.id.ivMenuThemLoaiVaSanPham);
         iv_Logout = view.findViewById(R.id.imv_Logout);
         tv_welcomeback = view.findViewById(R.id.tv_welcomeback);
+        linearLayoutHoaDon = view.findViewById(R.id.linearLayoutHoaDon);
+        linearLayoutThongKe = view.findViewById(R.id.linearLayoutThongKe);
         tv_welcomeback.setText("Welcome back " + mAuthor.getCurrentUser().getEmail());
 
 
