@@ -112,6 +112,8 @@ public class TrangChuAdminFragment extends Fragment{
         linearLayoutThongKe = view.findViewById(R.id.linearLayoutThongKe);
         tv_welcomeback.setText("Welcome back " + mAuthor.getCurrentUser().getEmail());
         tv_quanLyDiaDiem=view.findViewById(R.id.tv_quanLyDiaDiem);
+
+
         tv_quanLyDiaDiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

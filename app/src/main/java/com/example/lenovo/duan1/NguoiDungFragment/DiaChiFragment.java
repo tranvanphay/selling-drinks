@@ -106,7 +106,7 @@ public class DiaChiFragment extends Fragment implements OnMapReadyCallback {
                 mym2 = mMap.addMarker(
                         new MarkerOptions()
                                 .position(latLng)
-                                .title("dia diem")
+                                .title("Địa điểm")
                                 .snippet(latLng.latitude + "," + latLng.longitude)
                                 .icon(BitmapDescriptorFactory.defaultMarker(
                                         BitmapDescriptorFactory.HUE_ROSE)));
@@ -196,7 +196,7 @@ public class DiaChiFragment extends Fragment implements OnMapReadyCallback {
         for (int i = 0; i < dsMap.size(); i++) {
             double viDo = dsMap.get(i).viDo;
             double kinhDo = dsMap.get(i).kinhDo;
-            Toast.makeText(getContext(), "vĩ độ" + viDo + "\n" + "kinh đọ" + kinhDo, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "vĩ độ" + viDo + "\n" + "kinh đọ" + kinhDo, Toast.LENGTH_SHORT).show();
             LatLng viTri = new LatLng(viDo, kinhDo);
             LatLng toado = new LatLng(location.getLatitude(), location.getLongitude());
             Marker marker = mMap.addMarker(

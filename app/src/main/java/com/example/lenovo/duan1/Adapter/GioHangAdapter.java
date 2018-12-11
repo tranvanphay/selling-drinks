@@ -1,9 +1,14 @@
 package com.example.lenovo.duan1.Adapter;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +23,7 @@ import android.widget.Toast;
 import com.example.lenovo.duan1.ItemClickListener;
 import com.example.lenovo.duan1.Model.GioHang;
 import com.example.lenovo.duan1.Model.SanPham;
+import com.example.lenovo.duan1.NguoiDungFragment.GioHangNguoiDungFragment;
 import com.example.lenovo.duan1.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,11 +35,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHolder>  {
+public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHolder> {
     ArrayList<GioHang> dsgh;
     Context context;
-    DatabaseReference mData=FirebaseDatabase.getInstance().getReference();
-    FirebaseAuth mAuhtor=FirebaseAuth.getInstance();
+    DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
+    FirebaseAuth mAuhtor = FirebaseAuth.getInstance();
 
     public GioHangAdapter(ArrayList<GioHang> dsgh, Context context) {
         this.dsgh = dsgh;
@@ -43,7 +49,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View itemView = layoutInflater.inflate(R.layout.oneitem_giohang,parent,false);
+        View itemView = layoutInflater.inflate(R.layout.oneitem_giohang, parent, false);
 
         return new ViewHolder(itemView);
     }
@@ -58,72 +64,80 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int posittion) {
-                final Dialog dialog=new Dialog(context);
+                final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_sua_gio_hang);
-                final EditText et_soLuongNhapLai=dialog.findViewById(R.id.edt_soLuongThayDoi);
-                Button bt_oke=dialog.findViewById(R.id.bt_xacNhanSuaGioHang);
-                ImageView ivHinhThongTinSanPhamCapNhatGioHang=dialog.findViewById(R.id.ivHinhThongTinSanPhamCapNhatGioHang);
-                TextView tvTenSanPhamCapNhatGioHang=dialog.findViewById(R.id.tvTenSanPhamCapNhatGioHang);
-                TextView tvTongTienSanPhamCapNhatGioHang=dialog.findViewById(R.id.tvTongTienSanPhamCapNhatGioHang);
+                final EditText et_soLuongNhapLai = dialog.findViewById(R.id.edt_soLuongThayDoi);
+                Button bt_oke = dialog.findViewById(R.id.bt_xacNhanSuaGioHang);
+                ImageView ivHinhThongTinSanPhamCapNhatGioHang = dialog.findViewById(R.id.ivHinhThongTinSanPhamCapNhatGioHang);
+                TextView tvTenSanPhamCapNhatGioHang = dialog.findViewById(R.id.tvTenSanPhamCapNhatGioHang);
+                TextView tvTongTienSanPhamCapNhatGioHang = dialog.findViewById(R.id.tvTongTienSanPhamCapNhatGioHang);
                 Picasso.get().load(dsgh.get(position).hinhSanPham).into(ivHinhThongTinSanPhamCapNhatGioHang);
                 tvTenSanPhamCapNhatGioHang.setText(dsgh.get(position).tenSanPham);
                 tvTongTienSanPhamCapNhatGioHang.setText(String.valueOf(dsgh.get(position).giaTien));
                 et_soLuongNhapLai.setText(String.valueOf(dsgh.get(position).soLuong));
+                ImageView ivCloseDialogCapNhatGioHang = dialog.findViewById(R.id.ivCloseDialogCapNhatGioHang);
 
-                ImageView iv_congsl=dialog.findViewById(R.id.iv_suaslcong);
-                ImageView iv_trusl=dialog.findViewById(R.id.iv_suasltru);
+                ImageView iv_congsl = dialog.findViewById(R.id.iv_suaslcong);
+                ImageView iv_trusl = dialog.findViewById(R.id.iv_suasltru);
 
                 iv_congsl.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        int a,b;
-                        a=Integer.parseInt(et_soLuongNhapLai.getText().toString());
-                        b=a+1;
+                        int a, b;
+                        a = Integer.parseInt(et_soLuongNhapLai.getText().toString());
+                        b = a + 1;
                         et_soLuongNhapLai.setText(String.valueOf(b));
                     }
                 });
                 iv_trusl.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        int a,b;
-                        a=Integer.parseInt(et_soLuongNhapLai.getText().toString());
-                        b=a-1;
-                        if (a==0)
-                            b=0;
+                        int a, b;
+                        a = Integer.parseInt(et_soLuongNhapLai.getText().toString());
+                        b = a - 1;
+                        if (a == 0)
+                            b = 0;
                         et_soLuongNhapLai.setText(String.valueOf(b));
                     }
                 });
 
 
+                bt_oke.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int soLuongCu = dsgh.get(position).soLuong;
+                        int soLuong = Integer.parseInt(et_soLuongNhapLai.getText().toString());
+                        String tenSanPham = dsgh.get(position).tenSanPham;
 
-                    bt_oke.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            int soLuongCu=dsgh.get(position).soLuong;
-                            int soLuong=Integer.parseInt(et_soLuongNhapLai.getText().toString());
-                            String tenSanPham=dsgh.get(position).tenSanPham;
+                        holder.tvSoLuongSanPhamGioHang.setText(String.valueOf(soLuong));
 
-                            holder.tvSoLuongSanPhamGioHang.setText(String.valueOf(soLuong));
+                        int giaTien = (dsgh.get(position).giaTien / soLuongCu) * soLuong;
+                        holder.tvGiaTienSanPhamGioHang.setText(String.valueOf(giaTien));
+                        String user = mAuhtor.getCurrentUser().getEmail();
+                        String linkHinh = dsgh.get(position).hinhSanPham;
+                        String key = dsgh.get(position).getKeyGioHang();
+                        GioHang gioHang = new GioHang(tenSanPham, soLuong, giaTien, user, linkHinh);
+                        mData.child("GioHang").child(key).setValue(gioHang).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Sửa thành công!!!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-                            int giaTien=(dsgh.get(position).giaTien/soLuongCu)*soLuong;
-                            holder.tvGiaTienSanPhamGioHang.setText(String.valueOf(giaTien));
-                            String user=mAuhtor.getCurrentUser().getEmail();
-                            String linkHinh=dsgh.get(position).hinhSanPham;
-                            String key=dsgh.get(position).getKeyGioHang();
-                                GioHang gioHang=new GioHang(tenSanPham,soLuong,giaTien,user,linkHinh);
-                                mData.child("GioHang").child(key).setValue(gioHang).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(context, "Sửa thành công!!!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                        loadFragment(new GioHangNguoiDungFragment());
+                        dialog.dismiss();
 
-                            dialog.dismiss();
-                        }
-                    });
+
+                    }
+                });
                 dialog.show();
 
-
+                ivCloseDialogCapNhatGioHang.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
 
             }
         });
@@ -132,7 +146,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
             public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("GioHang");
-                GioHang gioHang=dsgh.get(position);
+                GioHang gioHang = dsgh.get(position);
                 try {
                     myRef.child(gioHang.getKeyGioHang()).removeValue(new DatabaseReference.CompletionListener() {
                         @Override
@@ -140,7 +154,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                             Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
                         }
                     });
-                }catch (Exception ex){}
+                } catch (Exception ex) {
+                }
 
             }
         });
@@ -153,7 +168,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvTenSanPhamGioHang;
         TextView tvSoLuongSanPhamGioHang;
         TextView tvGiaTienSanPhamGioHang;
@@ -161,25 +176,36 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         ImageView imv_anhSanPhamGioHang;
 
         private ItemClickListener itemClickListener;
+
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            tvTenSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvTenSanPhamGioHang);
-            tvSoLuongSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvSoLuongSanPhamGioHang);
-            tvGiaTienSanPhamGioHang = (TextView)itemView.findViewById(R.id.tvGiaTienSanPhamGioHang);
+            tvTenSanPhamGioHang = (TextView) itemView.findViewById(R.id.tvTenSanPhamGioHang);
+            tvSoLuongSanPhamGioHang = (TextView) itemView.findViewById(R.id.tvSoLuongSanPhamGioHang);
+            tvGiaTienSanPhamGioHang = (TextView) itemView.findViewById(R.id.tvGiaTienSanPhamGioHang);
             imv_xoaGioHang = (ImageView) itemView.findViewById(R.id.imv_xoaGioHang);
-            imv_anhSanPhamGioHang=(ImageView)itemView.findViewById(R.id.imv_anhSanPhamGioHang);
+            imv_anhSanPhamGioHang = (ImageView) itemView.findViewById(R.id.imv_anhSanPhamGioHang);
 
         }
-        public void setItemClickListener(ItemClickListener itemClickListener){
-            this.itemClickListener=itemClickListener;
+
+        public void setItemClickListener(ItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
         }
 
         @Override
         public void onClick(View v) {
-            itemClickListener.onClick(v,getAdapterPosition());
+            itemClickListener.onClick(v, getAdapterPosition());
         }
     }
 
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
 }
+
 

@@ -69,13 +69,6 @@ public class DiaChiActivity extends AppCompatActivity {
         bt_themDiaDiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
-
-
-
                 final AlertDialog alertDialog = new SpotsDialog.Builder().setContext(DiaChiActivity.this).build();
                 alertDialog.setMessage("Đang thêm");
                 alertDialog.show();
@@ -152,20 +145,8 @@ public class DiaChiActivity extends AppCompatActivity {
                         });
                     }
                 });
-
-
-
-
-
-
-
-
-
             }
         });
-
-
-
     }
 
     @Override
