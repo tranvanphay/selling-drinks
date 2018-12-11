@@ -38,7 +38,8 @@ import com.google.firebase.auth.FirebaseUser;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ThongTinNguoiDungFragment extends Fragment {
+public class
+ThongTinNguoiDungFragment extends Fragment {
     Button bt_doiMatKhau, bt_dangXuat, btn_doipw;
     EditText doipw;
 
@@ -59,10 +60,12 @@ public class ThongTinNguoiDungFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_thong_tin_nguoi_dung, container, false);
         Button bt_dangXuat = view.findViewById(R.id.bt_dangXuatNguoiDung);
 
+
+
+//Đăng xuất
         bt_dangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//               mAuthor.removeAuthStateListener(mAuthListener);
                 mAuthor.signOut();
                 Intent i = new Intent(getActivity(), LoginActivity.class);
                 startActivity(i);
@@ -84,6 +87,8 @@ public class ThongTinNguoiDungFragment extends Fragment {
             }
         };
 
+
+//Custom thẻ layout
         CardView cardViewDoiPW = view.findViewById(R.id.cardViewDoiPW);
         cardViewDoiPW.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +102,8 @@ public class ThongTinNguoiDungFragment extends Fragment {
                 final EditText et_updatePassword = dialogDoiMK.findViewById(R.id.edt_MatKhauMoi);
                 final EditText et_nhaplaipw = dialogDoiMK.findViewById(R.id.edt_nhapLaiMatKhauMoi);
 
+
+//Đổi mật khẩu
                 btn_xacNhan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

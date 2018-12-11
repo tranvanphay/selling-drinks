@@ -93,7 +93,9 @@ public class LoginActivity extends AppCompatActivity {
         btnQuenMatKhau = findViewById(R.id.btnQuenMatKhau);
 
         GoogleSignInButton dangNhapGoogle = (GoogleSignInButton) findViewById(R.id.bt_dangNhapGoogle);
-        // Configure Google Sign In
+
+
+// Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -119,6 +121,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+//Check kết nối mạng
+
         if (checkNetwork()) {
             //Connected to the Internet
 
@@ -137,8 +141,10 @@ public class LoginActivity extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+
+
+//Hiệu ứng animation
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        btn = findViewById(R.id.button);
         Animation animation_logo = AnimationUtils.loadAnimation(this, R.anim.anim_logo);
         Animation animation_title = AnimationUtils.loadAnimation(this, R.anim.anim_title);
         Animation animation_dangnhap = AnimationUtils.loadAnimation(this, R.anim.anim_khunglogin);
@@ -159,6 +165,8 @@ public class LoginActivity extends AppCompatActivity {
         btnQuenMatKhau.startAnimation(animation_buttondangky);
         dangNhapGoogle.startAnimation(animation_google);
 
+
+//Đăng nhập
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,6 +178,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+//Đăng kí
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -200,6 +209,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+//Quên mật khẩu
         btnQuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -271,7 +282,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
+//Login with Google authencetion
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(signInIntent, 1);
@@ -322,12 +333,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+//Check network
     private boolean checkNetwork() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+//Đăng ký
     private void dangky() {
         String email = edt_EmailDangKy.getText().toString();
         String matKhau = edt_matKhauDangKy.getText().toString();
@@ -377,6 +390,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+//Đăng nhập
     private void dangnhap() {
         String email = etUsername.getText().toString();
         String password = etPassword.getText().toString();
@@ -429,6 +444,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
+//delay màn hình đăng nhập 2 giây
     @Override
     public void onBackPressed() {
 
