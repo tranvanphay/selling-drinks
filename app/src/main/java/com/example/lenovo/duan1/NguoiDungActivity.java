@@ -1,5 +1,6 @@
 package com.example.lenovo.duan1;
 
+import android.app.Dialog;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.lenovo.duan1.AdminFragment.ThongKeFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.GioHangNguoiDungFragment;
+import com.example.lenovo.duan1.NguoiDungFragment.LichSuGiaoDichFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.ThanhToanNguoiDungFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.ThongTinNguoiDungFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.TrangChuNguoiDungFragment;
@@ -19,7 +21,7 @@ import com.example.lenovo.duan1.NguoiDungFragment.TrangChuNguoiDungFragment;
 public class NguoiDungActivity extends AppCompatActivity {
     private long thoiGian;
     private Toast thoat;
-    BottomNavigationView bottomNavigationView;
+    public BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +83,15 @@ public class NguoiDungActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
 
+        bottomNavigationView.setSelectedItemId(R.id.thanhToan);
+    }
+
+    public void goToFragmentLSGD(View view) {
+        Fragment fragment = new LichSuGiaoDichFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
         bottomNavigationView.setSelectedItemId(R.id.thanhToan);
     }
 }

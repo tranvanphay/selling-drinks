@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,6 +54,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,36 +62,37 @@ import java.util.regex.Pattern;
 import dmax.dialog.SpotsDialog;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView tvTitle;
+    ConstraintLayout constraintLayout_title;
     ImageView ivLogo;
     EditText etUsername, etPassword;
     EditText edt_EmailDangKy, edt_matKhauDangKy, edt_nhapLaiMatKhau;
     LinearLayout linearLayoutLogin;
-    Button btnDangNhap, btnDangKy;
+    Button btnDangNhap, btnDangKy, btnQuenMatKhau;
     FirebaseAuth mAuth;
     private long thoiGian;
     AlertDialog alertDialog;
     private Toast thoat;
-   SignInButton dangNhapGoogle;
-   GoogleApiClient googleApiClient;
+    GoogleApiClient googleApiClient;
     private CallbackManager mCallbackManager;
-    public static final String TAG="FACELOG";
+    public static final String TAG = "FACELOG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
+//        FacebookSdk.sdkInitialize(getApplicationContext());
+//        AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-        tvTitle = findViewById(R.id.tvTitle);
+        constraintLayout_title = findViewById(R.id.constraintLayout_title);
         ivLogo = findViewById(R.id.ivLogo);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         linearLayoutLogin = findViewById(R.id.linearLayoutLogin);
         btnDangNhap = findViewById(R.id.btnDangNhap);
         btnDangKy = findViewById(R.id.btnDangKy);
-        dangNhapGoogle=(SignInButton)findViewById(R.id.bt_dangNhapGoogle);
+        btnQuenMatKhau = findViewById(R.id.btnQuenMatKhau);
+
+        GoogleSignInButton dangNhapGoogle = (GoogleSignInButton) findViewById(R.id.bt_dangNhapGoogle);
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -103,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
         dangNhapGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,10 +152,11 @@ public class LoginActivity extends AppCompatActivity {
         animationSet_logo.setFillAfter(true);
         ivLogo.startAnimation(animationSet_logo);
 
-        tvTitle.startAnimation(animation_title);
+        constraintLayout_title.startAnimation(animation_title);
         linearLayoutLogin.startAnimation(animation_dangnhap);
         btnDangNhap.startAnimation(animation_buttondangnhap);
         btnDangKy.startAnimation(animation_buttondangky);
+        btnQuenMatKhau.startAnimation(animation_buttondangky);
         dangNhapGoogle.startAnimation(animation_google);
 
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
@@ -196,51 +200,83 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-        //Facebook_login
-        mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = findViewById(R.id.bt_loginFacebook);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.startAnimation(animation_buttondangnhap);
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+        btnQuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                Intent intent=new Intent(LoginActivity.this,NguoiDungActivity.class);
-                startActivity(intent);
-                finish();
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
+            public void onClick(View v) {
+                final Dialog dialogQuenMK = new Dialog(LoginActivity.this);
+                dialogQuenMK.setContentView(R.layout.dialog_quenmatkhau);
+                dialogQuenMK.show();
 
-            }
+                final EditText edt_emailQuenMatKhau = dialogQuenMK.findViewById(R.id.edt_emailQuenMatKhau);
+                Button bt_xacNhanQuenMatKhau = dialogQuenMK.findViewById(R.id.bt_xacNhanQuenMatKhau);
+                bt_xacNhanQuenMatKhau.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FirebaseAuth auth = FirebaseAuth.getInstance();
+                        String emailAddress = edt_emailQuenMatKhau.getText().toString();
 
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-                Toast.makeText(LoginActivity.this, "Hủy", Toast.LENGTH_SHORT).show();
-            }
+                        auth.sendPasswordResetEmail(emailAddress)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "Email sent.");
+                                            Toast.makeText(LoginActivity.this, "Đã gửi mail đến hộp thư của bạn!", Toast.LENGTH_SHORT).show();
+                                            dialogQuenMK.dismiss();
+                                        }
+                                    }
+                                });
+                    }
+                });
 
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-                Toast.makeText(LoginActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                ImageView ivCloseDialogQuenMK = dialogQuenMK.findViewById(R.id.ivCloseDialogQuenMatKhau);
+                ivCloseDialogQuenMK.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogQuenMK.cancel();
+                    }
+                });
             }
         });
 
-
-
-
+        //Facebook_login
+//        mCallbackManager = CallbackManager.Factory.create();
+//        LoginButton loginButton = findViewById(R.id.bt_loginFacebook);
+//        loginButton.setReadPermissions("email", "public_profile");
+//        loginButton.startAnimation(animation_buttondangnhap);
+//        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                Intent intent=new Intent(LoginActivity.this,NguoiDungActivity.class);
+//                startActivity(intent);
+//                finish();
+//                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+//                handleFacebookAccessToken(loginResult.getAccessToken());
+//
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Log.d(TAG, "facebook:onCancel");
+//                Toast.makeText(LoginActivity.this, "Hủy", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                Log.d(TAG, "facebook:onError", error);
+//                Toast.makeText(LoginActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
     }
-
-
-
 
 
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(signInIntent, 1);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -258,7 +294,7 @@ public class LoginActivity extends AppCompatActivity {
                 // ...
             }
         }
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+//        mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
@@ -270,7 +306,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("google", "signInWithCredential:success");
-                            Intent i=new Intent(LoginActivity.this,NguoiDungActivity.class);
+                            Intent i = new Intent(LoginActivity.this, NguoiDungActivity.class);
                             startActivity(i);
                             finish();
 
@@ -284,7 +320,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
 
     private boolean checkNetwork() {
@@ -408,31 +443,31 @@ public class LoginActivity extends AppCompatActivity {
         thoiGian = System.currentTimeMillis();
 
     }
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-
-                        }
-
-                        // ...
-                    }
-                });
-    }
+//    private void handleFacebookAccessToken(AccessToken token) {
+//        Log.d(TAG, "handleFacebookAccessToken:" + token);
+//
+//        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithCredential:success");
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+//                                    Toast.LENGTH_SHORT).show();
+//
+//                        }
+//
+//                        // ...
+//                    }
+//                });
+//    }
 
 }
 

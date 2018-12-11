@@ -61,6 +61,10 @@ dependencies {
     //facebook Login
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 
+
+    //google
+    implementation 'com.shobhitpuri.custombuttons:google-signin:1.0.0'
+
     //format currency
     implementation 'org.fabiomsr:moneytextview:1.1.0'
 
