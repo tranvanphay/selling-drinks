@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.lenovo.duan1.AdminFragment.ThongKeFragment;
+import com.example.lenovo.duan1.NguoiDungFragment.DiaChiFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.GioHangNguoiDungFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.LichSuGiaoDichFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.ThanhToanNguoiDungFragment;
@@ -47,6 +47,10 @@ public class NguoiDungActivity extends AppCompatActivity {
                     return true;
                 case R.id.thongTinNguoiDung:
                     fragment = new ThongTinNguoiDungFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.chinhanh:
+                    fragment = new DiaChiFragment();
                     loadFragment(fragment);
                     return true;
             }

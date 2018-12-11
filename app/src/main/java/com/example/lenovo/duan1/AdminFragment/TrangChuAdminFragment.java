@@ -2,6 +2,7 @@ package com.example.lenovo.duan1.AdminFragment;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -61,6 +62,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import dmax.dialog.SpotsDialog;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -159,6 +162,9 @@ public class TrangChuAdminFragment extends Fragment{
                                 bt_themLoai.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        final AlertDialog alertDialog = new SpotsDialog.Builder().setContext(getActivity()).build();
+                                        alertDialog.setMessage("Đang thêm");
+                                        alertDialog.show();
                                         Calendar calendar = Calendar.getInstance();
                                         final StorageReference mountainsRef = storageRef.child("image" + calendar.getTimeInMillis() + ".png");
                                         imv_themAnh.setDrawingCacheEnabled(true);
@@ -215,6 +221,7 @@ public class TrangChuAdminFragment extends Fragment{
                                                                             Toast.makeText(getActivity(), "Lưu loại thành công", Toast.LENGTH_SHORT).show();
                                                                             edt_maLoai.setText("");
                                                                             edt_tenLoai.setText("");
+                                                                            alertDialog.cancel();
                                                                         } else {
                                                                             Toast.makeText(getActivity(), "Lỗi!!!", Toast.LENGTH_SHORT).show();
                                                                         }
@@ -256,7 +263,7 @@ public class TrangChuAdminFragment extends Fragment{
                                 final EditText edt_giaSanPham = dialogThemSanPham.findViewById(R.id.edt_giaSanPham);
                                 Button bt_themSanPham = dialogThemSanPham.findViewById(R.id.bt_themSanPham);
                                 dialogThemSanPham.show();
-                                LoaiSpinnerAdapter adapter = new LoaiSpinnerAdapter(getActivity(), dsl);
+                                final LoaiSpinnerAdapter adapter = new LoaiSpinnerAdapter(getActivity(), dsl);
                                 spn_maLoai.setAdapter(adapter);
                                 imv_themAnhSanPham.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -272,6 +279,9 @@ public class TrangChuAdminFragment extends Fragment{
                                 bt_themSanPham.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        final AlertDialog alertDialog = new SpotsDialog.Builder().setContext(getActivity()).build();
+                                        alertDialog.setMessage("Đang thêm");
+                                        alertDialog.show();
                                         Calendar calendar = Calendar.getInstance();
                                         final StorageReference mountainsRef = storageRef.child("image" + calendar.getTimeInMillis() + ".png");
                                         imv_themAnhSanPham.setDrawingCacheEnabled(true);
@@ -343,6 +353,7 @@ public class TrangChuAdminFragment extends Fragment{
                                                                             spn_maLoai.setSelection(0);
                                                                             edt_chuThich.setText("");
                                                                             edt_giaSanPham.setText("");
+                                                                            alertDialog.cancel();
 
                                                                         } else {
                                                                             Toast.makeText(getActivity(), "Lỗi!!!", Toast.LENGTH_SHORT).show();
