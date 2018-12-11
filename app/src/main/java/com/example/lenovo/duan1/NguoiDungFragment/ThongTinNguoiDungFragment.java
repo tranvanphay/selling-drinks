@@ -38,8 +38,7 @@ import com.google.firebase.auth.FirebaseUser;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class
-ThongTinNguoiDungFragment extends Fragment {
+public class ThongTinNguoiDungFragment extends Fragment {
     Button bt_doiMatKhau, bt_dangXuat, btn_doipw;
     EditText doipw;
 
@@ -97,6 +96,10 @@ ThongTinNguoiDungFragment extends Fragment {
                 dialogDoiMK.setContentView(R.layout.dialog_doimatkhau);
                 dialogDoiMK.show();
 
+              final   FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                final String email = user.getEmail();
+                final TextView tv_EmailNguoiDung=dialogDoiMK.findViewById(R.id.tv_emailNguoiDung);
+                tv_EmailNguoiDung.setText(email);
                 ImageView ivCloseDialogDoiPW = dialogDoiMK.findViewById(R.id.ivCloseDialogDoiMatKhau);
                 Button btn_xacNhan = dialogDoiMK.findViewById(R.id.bt_doiMatKhau);
                 final EditText et_updatePassword = dialogDoiMK.findViewById(R.id.edt_MatKhauMoi);
@@ -107,7 +110,8 @@ ThongTinNguoiDungFragment extends Fragment {
                 btn_xacNhan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                     /*   FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        final String email = user.getEmail();*/
                         if (user != null && et_nhaplaipw.getText().toString() != et_updatePassword.getText().toString()) {
                             user.updatePassword(et_updatePassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
