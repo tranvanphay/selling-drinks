@@ -52,62 +52,62 @@ public class ThongTinNguoiDungFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_thong_tin_nguoi_dung, container, false);
-        bt_doiMatKhau = view.findViewById(R.id.bt_doiMatKhau);
-        bt_dangXuat = view.findViewById(R.id.bt_dangXuat);
-        doipw = view.findViewById(R.id.ed_doipw);
-
-
-        btn_doipw = view.findViewById(R.id.btn_doipw);
-        btn_doipw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //// đổi pass. chỗ này là chỗ đổi pass. vứt vào đâu cũng dc
-                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-                if(user!=null){
-                    user.updatePassword(doipw.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(getActivity(), "thanh cong", Toast.LENGTH_SHORT).show();
-                                Toast.makeText(getActivity(), ""+doipw.getText().toString(), Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                                Toast.makeText(getActivity(), "that bai", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-
-                ///
-            }
-        });
-
-
-
-        bt_dangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//               mAuthor.removeAuthStateListener(mAuthListener);
-                mAuthor.signOut();
-                Intent i = new Intent(getActivity(), LoginActivity.class);
-                startActivity(i);
-                getActivity().finish();
-
-            }
-        });
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                if (firebaseUser != null) {
-                    String name = firebaseUser.getDisplayName();
-                    String email = firebaseUser.getEmail();
-                    Uri uri = firebaseUser.getPhotoUrl();
-                } else {
-                    Log.d("state", "onStateChange");
-                }
-            }
-        };
+//        bt_doiMatKhau = view.findViewById(R.id.bt_doiMatKhau);
+//        bt_dangXuat = view.findViewById(R.id.bt_dangXuat);
+//        doipw = view.findViewById(R.id.ed_doipw);
+//
+//
+//        btn_doipw = view.findViewById(R.id.btn_doipw);
+//        btn_doipw.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                //// đổi pass. chỗ này là chỗ đổi pass. vứt vào đâu cũng dc
+//                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+//                if(user!=null){
+//                    user.updatePassword(doipw.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if (task.isSuccessful()){
+//                                Toast.makeText(getActivity(), "thanh cong", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getActivity(), ""+doipw.getText().toString(), Toast.LENGTH_SHORT).show();
+//                            }
+//                            else
+//                                Toast.makeText(getActivity(), "that bai", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//
+//                ///
+//            }
+//        });
+//
+//
+//
+//        bt_dangXuat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////               mAuthor.removeAuthStateListener(mAuthListener);
+//                mAuthor.signOut();
+//                Intent i = new Intent(getActivity(), LoginActivity.class);
+//                startActivity(i);
+//                getActivity().finish();
+//
+//            }
+//        });
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//                if (firebaseUser != null) {
+//                    String name = firebaseUser.getDisplayName();
+//                    String email = firebaseUser.getEmail();
+//                    Uri uri = firebaseUser.getPhotoUrl();
+//                } else {
+//                    Log.d("state", "onStateChange");
+//                }
+//            }
+//        };
 
 
         return view;

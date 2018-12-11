@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="50dp"
-    android:background="@drawable/top_background_nguoidung">
+    android:layout_marginBottom="50dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".NguoiDungFragment.TrangChuNguoiDungFragment">
+        android:id="@+id/toolbarNguoiDung"
+        android:background="#e6e6e6e6">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -62,6 +60,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:onClick="goToFragmentGioHang"
                 android:src="@drawable/cart_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="12dp"
-                android:background="#262626"
+                android:background="#e6e6e6e6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,96 +81,113 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <LinearLayout
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarNguoiDung"
+        android:background="@drawable/top_background_nguoidung">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/charmonmanregular"
-                android:padding="4dp"
-                android:text="Hôm nay bạn chọn gì?"
-                android:textColor="#5DA69E"
-                android:textSize="34sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/robotocondensedregular"
-                android:lineSpacingExtra="6dp"
-                android:lineSpacingMultiplier="1"
-                android:padding="4dp"
-                android:text="Hãy để DEER TEA cung cấp năng lượng cả ngày cho bạn nhé! Chúc bạn một ngày tốt lành! "
-                android:textColor="#262626"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".NguoiDungFragment.TrangChuNguoiDungFragment">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="80dp"
-                android:background="@drawable/khung_tintuc_nguoidung">
+                android:orientation="vertical">
+
 
                 <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textView12"
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/charmonmanregular"
+                    android:padding="4dp"
+                    android:text="Hôm nay bạn chọn gì?"
+                    android:textColor="#5DA69E"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/robotocondensedregular"
+                    android:lineSpacingExtra="6dp"
+                    android:lineSpacingMultiplier="1"
+                    android:padding="4dp"
+                    android:text="Hãy để DEER TEA cung cấp năng lượng cả ngày cho bạn nhé! Chúc bạn một ngày tốt lành! "
+                    android:textColor="#262626"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:fontFamily="@font/opensanscondensedbold"
-                    android:padding="10dp"
-                    android:text="Tin tức"
-                    android:textColor="#EEF4F2"
-                    android:textSize="18sp" />
+                    android:layout_marginTop="80dp"
+                    android:background="@drawable/khung_tintuc_nguoidung">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:fontFamily="@font/opensanscondensedbold"
+                        android:padding="10dp"
+                        android:text="Tin tức"
+                        android:textColor="#EEF4F2"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewBangTinNguoiDung"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+
             </LinearLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerViewBangTinNguoiDung"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal">
-            </android.support.v7.widget.RecyclerView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="60dp"
-                android:background="@drawable/khung_menu">
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/khung_menu">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -185,34 +201,38 @@
                         android:textColor="#515151"
                         android:textSize="18sp" />
 
-                <Spinner
-                    android:id="@+id/spn_loaiMenuNguoiDung"
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:background="#9effffff"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="80dp"/>
+                    <Spinner
+                        android:id="@+id/spn_loaiMenuNguoiDung"
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="80dp"
+                        android:background="#9effffff" />
 
-                <Button
-                    android:id="@+id/btnLocLoai"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/button_locloai"
-                    android:text="Lọc"
-                    android:fontFamily="@font/opensanscondensedbold"
-                    android:textColor="#515151"
-                    android:textSize="12sp" />
+                    <Button
+                        android:id="@+id/btnLocLoai"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_locloai"
+                        android:fontFamily="@font/opensanscondensedbold"
+                        android:text="Lọc"
+                        android:textColor="#515151"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewSanPhamNguoiDung"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"></android.support.v7.widget.RecyclerView>
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerViewSanPhamNguoiDung"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"></android.support.v7.widget.RecyclerView>
+
         </LinearLayout>
 
 
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+</RelativeLayout>

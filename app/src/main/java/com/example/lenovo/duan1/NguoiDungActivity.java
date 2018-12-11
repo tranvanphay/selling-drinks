@@ -74,5 +74,14 @@ public class NguoiDungActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    public void goToFragmentGioHang(View view) {
+        Fragment fragment = new GioHangNguoiDungFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+        bottomNavigationView.setSelectedItemId(R.id.thanhToan);
+    }
 }
 
