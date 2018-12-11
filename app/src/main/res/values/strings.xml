@@ -7,4 +7,16 @@
     <string name="fb_login_protocol_scheme">fb2189940691331573</string>
 
 
+    <string name="title_eng">It’s time for Tea!</string>
+    <string name="sub_eng">DEER TEA\'s drinks create the amazing stories of your lives.</string>
+    <string name="sub_eng2">Replay your good memories now!</string>
+
+    <string name="title_vn">Đồ uống của DEER TEA tạo ra những câu chuyện tuyệt vời trong cuộc sống của bạn."\n"Hãy cùng nhau ôn lại những kỷ niệm đẹp của bạn ngay bây giờ!</string>
+    <string name="sub_vn1">Những kế hoạch lớn nhỏ thông qua những kinh nghiệm...
+        "\n"Bằng tất cả cố gắng chúng tôi kết hợp giữa cuộc sống và sự sáng tạo.
+        "\n"Cống hiến cho các sự kiện văn hoá và nghệ thuật,phát triển các thiết kế sống động và ấm cúng,để đạt được khoảnh khắc cảm xúc tuyệt vời trong cuộc sống.</string>
+    <string name="sub_vn2">Trong tim mỗi người luôn có một ly trà ngon, lúc rãnh rỗi sau buổi chiều, cùng với ánh hoàng hôn ấm áp, cơn gió nhẹ phảng phất dễ chịu, nụ cười ngọt ngào của người yêu, vị ngọt lưu lại trong miệng, hồi tưởng cảm xúc lần đầu nếm được mùi vị trà ngon, sự mãn nguyện không nói nên lời đều sẽ thông qua ly trà DEER TEA truyền đến trái tim, It’s time for tea!</string>
+    <string name="info_1">Đường mía tự nhiên, sàng lọc kĩ, nấu đến khi kết tinh, kiên trì nấu mỗi ngày cho đến khi đạt được vị ngọt ban đầu của mía, khi nếm là vị ngọt chứ không phải ngấy.</string>
+    <string name="info_2">Kiên trì từ cục bột tròn, nhồi vỗ đều, vo viên đến khi thành hình; tăng thêm khẩu vị khi nhai, thưởng thức hương vị mới mẻ là khát vọng của mỗi người.</string>
+    <string name="info_3">Từ lá trà được sàng lọc kĩ càng, tươi xanh; lá trà cùng với các nguyên vật liệu trộn lẫn sấy khô; mỗi ly trà đều có hương thơm và mùi vị đậm đà. </string>
 </resources>

@@ -133,6 +133,24 @@ ThongTinNguoiDungFragment extends Fragment {
             }
         });
 
+        CardView cardViewAboutUs = view.findViewById(R.id.cardViewAboutUs);
+        cardViewAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialogAboutUs = new Dialog(getActivity());
+                dialogAboutUs.setContentView(R.layout.aboutus_nguoidung);
+                dialogAboutUs.show();
+
+                ImageView ivCloseDialogAboutUs = dialogAboutUs.findViewById(R.id.ivCloseDialogAboutUs);
+                ivCloseDialogAboutUs.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogAboutUs.dismiss();
+                    }
+                });
+            }
+        });
+
         return view;
     }
 

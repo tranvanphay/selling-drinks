@@ -44,7 +44,7 @@ public class ChuaGiaoFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_chua_giao, container, false);
         recyclerViewChuaGiao=v.findViewById(R.id.recyclerViewChuaGiao);
         loadHoaDon();
-        viewHoaDon();
+//        viewHoaDon();
         return v;
 
     }
@@ -93,11 +93,11 @@ public class ChuaGiaoFragment extends Fragment {
             });
 
     }
-    public void viewHoaDon() {
-        recyclerViewChuaGiao.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        recyclerViewChuaGiao.setLayoutManager(layoutManager);
-        HoaDonAdapter hoaDonAdapter = new HoaDonAdapter(dshd,getContext());
-        recyclerViewChuaGiao.setAdapter(hoaDonAdapter);
-    }
+//    public void viewHoaDon() {
+//        recyclerViewChuaGiao.setHasFixedSize(true);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+//        recyclerViewChuaGiao.setLayoutManager(layoutManager);
+//        HoaDonAdapter hoaDonAdapter = new HoaDonAdapter(dshd,getContext());
+//        recyclerViewChuaGiao.setAdapter(hoaDonAdapter);
+//    }
 }
