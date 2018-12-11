@@ -37,6 +37,7 @@ import com.example.lenovo.duan1.Adapter.BangTinAdapter;
 import com.example.lenovo.duan1.Adapter.LoaiApdaterAdmin;
 import com.example.lenovo.duan1.Adapter.SanPhamAdapterAdmin;
 import com.example.lenovo.duan1.Adapter.LoaiSpinnerAdapter;
+import com.example.lenovo.duan1.DiaChiActivity;
 import com.example.lenovo.duan1.LoginActivity;
 import com.example.lenovo.duan1.Model.Loai;
 import com.example.lenovo.duan1.Model.SanPham;
@@ -58,10 +59,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
 
@@ -87,6 +90,7 @@ public class TrangChuAdminFragment extends Fragment{
     LoaiApdaterAdmin loaiApdaterAdmin;
     ArrayList<String> keySP=new ArrayList<String>();
     ArrayList<String> keyLoai=new ArrayList<String>();
+    TextView tv_quanLyDiaDiem;
     public TrangChuAdminFragment() {
         // Required empty public constructor
     }
@@ -107,7 +111,14 @@ public class TrangChuAdminFragment extends Fragment{
         linearLayoutHoaDon = view.findViewById(R.id.linearLayoutHoaDon);
         linearLayoutThongKe = view.findViewById(R.id.linearLayoutThongKe);
         tv_welcomeback.setText("Welcome back " + mAuthor.getCurrentUser().getEmail());
-
+        tv_quanLyDiaDiem=view.findViewById(R.id.tv_quanLyDiaDiem);
+        tv_quanLyDiaDiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(getActivity(),DiaChiActivity.class);
+                getContext().startActivity(i);
+            }
+        });
 
         loadLoai();
         loadSanPham();
@@ -326,6 +337,7 @@ public class TrangChuAdminFragment extends Fragment{
                                                             int index = spn_maLoai.getSelectedItemPosition();
                                                             String tenLoai = dsl.get(index).tenLoai;
                                                             String chuThich = edt_chuThich.getText().toString();
+                                                            int giaSanPham = Integer.parseInt(edt_giaSanPham.getText().toString());
 
                                                             String hinhSanPham = downloadUri.toString();
                                                             if(maSanPham.trim().isEmpty()){
@@ -343,7 +355,7 @@ public class TrangChuAdminFragment extends Fragment{
                                                                 Toast.makeText(getActivity(), "Giá tiền không được trống hoặc nhỏ hơn 1000", Toast.LENGTH_SHORT).show();
 
                                                             }else {
-                                                                int giaSanPham = Integer.parseInt(edt_giaSanPham.getText().toString());
+//                                                                int giaSanPham = Integer.parseInt(edt_giaSanPham.getText().toString());
                                                                 SanPham sanPham = new SanPham(maSanPham, tenLoai, tenSanPham, chuThich, giaSanPham, hinhSanPham);
                                                                 mData.child("SanPham").push().setValue(sanPham, new DatabaseReference.CompletionListener() {
                                                                     @Override

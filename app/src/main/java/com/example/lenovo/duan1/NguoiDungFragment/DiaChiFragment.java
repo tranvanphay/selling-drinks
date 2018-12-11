@@ -12,12 +12,18 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lenovo.duan1.Adapter.BangTinAdapter;
+import com.example.lenovo.duan1.Adapter.DiaChiAdapter;
+import com.example.lenovo.duan1.Model.Map;
 import com.example.lenovo.duan1.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,7 +34,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.annotations.Nullable;
+
+import java.util.ArrayList;
 
 import static android.content.Context.LOCATION_SERVICE;
 
@@ -36,8 +49,13 @@ import static android.content.Context.LOCATION_SERVICE;
  * A simple {@link Fragment} subclass.
  */
 public class DiaChiFragment extends Fragment implements OnMapReadyCallback {
-
+    DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
     GoogleMap mMap;
+    ArrayList<Map> dsMap = new ArrayList<Map>();
+    RecyclerView recyclerViewDiaChi;
+    DiaChiAdapter diaChiAdapter;
+    ArrayList<Double> latLong = new ArrayList<>();
+
     public DiaChiFragment() {
         // Required empty public constructor
     }
@@ -46,10 +64,10 @@ public class DiaChiFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_dia_chi,container,false);
+        View view = inflater.inflate(R.layout.fragment_dia_chi, container, false);
+        recyclerViewDiaChi = view.findViewById(R.id.recyclerView_map);
 
-
-
+        loadMap();
         // Inflate the layout for this fragment
         return view;
 
@@ -67,20 +85,17 @@ public class DiaChiFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//bang M
-            if (ContextCompat.checkSelfPermission(getActivity(),android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+            if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) ==
                     PackageManager.PERMISSION_GRANTED
-                    && ContextCompat.checkSelfPermission(getActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                    && ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
                     PackageManager.PERMISSION_GRANTED) {
                 xulyQuyen();
-                Toast.makeText(getActivity(), "e", Toast.LENGTH_SHORT).show();
             } else {
                 ActivityCompat.requestPermissions(getActivity(), new
                         String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-                Toast.makeText(getActivity(), "d", Toast.LENGTH_SHORT).show();
             }
         } else {
             xulyQuyen();
-            Toast.makeText(getActivity(), "f", Toast.LENGTH_SHORT).show();
         }
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
@@ -92,7 +107,7 @@ public class DiaChiFragment extends Fragment implements OnMapReadyCallback {
                         new MarkerOptions()
                                 .position(latLng)
                                 .title("dia diem")
-                                .snippet(latLng.latitude +","+latLng.longitude)
+                                .snippet(latLng.latitude + "," + latLng.longitude)
                                 .icon(BitmapDescriptorFactory.defaultMarker(
                                         BitmapDescriptorFactory.HUE_ROSE)));
 
@@ -108,11 +123,11 @@ public class DiaChiFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public View getInfoContents(Marker arg0) {
                 View info = getLayoutInflater().inflate(R.layout.markerinfor, null);
-                TextView tv1 = ((TextView)info.findViewById(R.id.textView));
+                TextView tv1 = ((TextView) info.findViewById(R.id.textView));
                 tv1.setText(arg0.getTitle());
-                TextView tv2 = ((TextView)info.findViewById(R.id.textView2));
+                TextView tv2 = ((TextView) info.findViewById(R.id.textView2));
                 tv2.setText(arg0.getSnippet());
-                return  info;
+                return info;
 
             }
         });
@@ -131,104 +146,69 @@ public class DiaChiFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
+    public void loadMap() {
+        mData.child("Map").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+                Map map = dataSnapshot.getValue(Map.class);
+                map.setKeyMap(dataSnapshot.getKey());
+                dsMap.add(map);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                recyclerViewDiaChi.setLayoutManager(layoutManager);
+                diaChiAdapter = new DiaChiAdapter(dsMap, getContext());
+                recyclerViewDiaChi.setAdapter(diaChiAdapter);
+                xulyQuyen();
+
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+
     public void xulyQuyen() {
         mMap.setMyLocationEnabled(true);
         LocationManager service = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         String provider = service.getBestProvider(criteria, true);
         Location location = service.getLastKnownLocation(provider);
-        LatLng vitrihientai= new LatLng(10.782128,106.6542898);
-        LatLng vitri3= new LatLng(10.7801134,106.6483486);
-        LatLng vitri2=new LatLng(10.7877144,106.6343269);
-        LatLng vitri4=new LatLng(10.7928644,106.650779);
-        LatLng vitri5=new LatLng(10.7773374,106.6482842);
-        LatLng vitri6=new LatLng(10.7868209,106.6401508);
-        LatLng vitri7=new LatLng(10.7992751,106.6467218);
-        LatLng vitri8=new LatLng(10.7960313,106.6410756);
-        LatLng vitri9=new LatLng(10.79018,106.6217747);
-        LatLng vitri10=new LatLng(10.7877144,106.6406021);
-        LatLng toado = new LatLng(location.getLatitude(),location.getLongitude());
-        Marker marker = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitrihientai)
-                        .title("The Alley")
-                        .snippet("")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_ROSE)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitrihientai, 15));
-        Marker marker1 = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitri2)
-                        .title("They Alley-Nguyễn Thị Minh Khai")
-                        .snippet("noi dung")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitri2, 15));
-        Marker marker2 = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitri3)
-                        .title("They Alley-Nguyễn Thiện Thuật")
-                        .snippet("noi dung")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitri3, 15));
-        Marker marker3 = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitri4)
-                        .title("They Alley")
-                        .snippet("noi dung")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitri4, 15));
-        Marker marker4 = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitri5)
-                        .title("They Alley-Nguyễn Văn Cừ")
-                        .snippet("noi dung")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitri5, 15));
-        Marker marker5 = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitri6)
-                        .title("They Alley")
-                        .snippet("noi dung")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitri6, 15));
-        Marker marker6 = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitri7)
-                        .title("They Alley")
-                        .snippet("noi dung")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitri7, 15));
-        Marker marker7 = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitri8)
-                        .title("They Alley")
-                        .snippet("noi dung")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitri8, 15));
-        Marker marker8 = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitri9)
-                        .title("They Alley")
-                        .snippet("noi dung")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitri9, 15));
-        Marker marker9 = mMap.addMarker(
-                new MarkerOptions()
-                        .position(vitri10)
-                        .title("They Alley")
-                        .snippet("noi dung")
-                        .icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(vitri10, 15));
+        for (int i = 0; i < dsMap.size(); i++) {
+            double viDo = dsMap.get(i).viDo;
+            double kinhDo = dsMap.get(i).kinhDo;
+            Toast.makeText(getContext(), "vĩ độ" + viDo + "\n" + "kinh đọ" + kinhDo, Toast.LENGTH_SHORT).show();
+            LatLng viTri = new LatLng(viDo, kinhDo);
+            LatLng toado = new LatLng(location.getLatitude(), location.getLongitude());
+            Marker marker = mMap.addMarker(
+                    new MarkerOptions()
+                            .position(viTri)
+                            .title("Deer Tea")
+                            .snippet("")
+                            .icon(BitmapDescriptorFactory.defaultMarker(
+                                    BitmapDescriptorFactory.HUE_ROSE)));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(viTri, 15));
 
+        }
 
 
     }
@@ -242,4 +222,9 @@ public class DiaChiFragment extends Fragment implements OnMapReadyCallback {
             xulyQuyen();
         }
     }
-}
+
+
+
+
+
+    }

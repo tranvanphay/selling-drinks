@@ -34,6 +34,7 @@ public class DaGiaoFragment extends Fragment {
     HoaDonDaGiaoAdapter hoaDonDaGiaoAdapter;
 
 
+
     public DaGiaoFragment() {
         // Required empty public constructor
     }
@@ -50,8 +51,6 @@ public class DaGiaoFragment extends Fragment {
     }
 
     private void loadHoaDonDaGiao() {
-
-
 
         mData.child("HoaDonDaGiao").addChildEventListener(new ChildEventListener() {
             @Override
