@@ -85,6 +85,7 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
                                         xuLyXoa.setMessage("Đang xóa");
                                         xuLyXoa.show();
                                         final Loai loai=dsl.get(position);
+                                        final String tenLoai=dsl.get(position).tenLoai;
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         final DatabaseReference myRef = database.getReference("Loai");
                                         StorageReference storageReference=FirebaseStorage.getInstance().getReferenceFromUrl(loai.hinhLoai);
@@ -94,7 +95,21 @@ public class LoaiApdaterAdmin extends RecyclerView.Adapter<LoaiApdaterAdmin.View
                                                 myRef.child(loai.getKeyLoai()).removeValue(new DatabaseReference.CompletionListener() {
                                                     @Override
                                                     public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                                        Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                                                        Query query=FirebaseDatabase.getInstance().getReference("SanPham").orderByChild("maLoai").equalTo(tenLoai);
+                                                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                for(DataSnapshot sanPham: dataSnapshot.getChildren()){
+                                                                    sanPham.getRef().removeValue();
+
+                                                                }
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                            }
+                                                        });
 
                                                     }
                                                 });
