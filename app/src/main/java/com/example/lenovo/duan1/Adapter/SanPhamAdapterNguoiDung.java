@@ -1,5 +1,6 @@
 package com.example.lenovo.duan1.Adapter;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.media.Image;
@@ -26,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import dmax.dialog.SpotsDialog;
 
 public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapterNguoiDung.ViewHolder> {
     ArrayList<SanPham> dsspNguoiDung;
@@ -99,13 +102,16 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
                 bt_them.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        AlertDialog xuLyThem = new SpotsDialog.Builder().setContext(context).build();
+                        xuLyThem.setMessage("Đang thêm");
+                        xuLyThem.show();
+
                         SanPham sanPham = dsspNguoiDung.get(position);
                         String tenSanPham = sanPham.tenSanPham;
 
 /*cc*/
 
                         if (et_soluong.getText().toString().isEmpty() || Integer.parseInt(et_soluong.getText().toString())==0) {
-                            et_soluong.setText("");
                             Toast.makeText(context, "Vui lòng nhập số lượng", Toast.LENGTH_SHORT).show();
                         } else {
                             int soLuong = Integer.parseInt(et_soluong.getText().toString());
@@ -126,6 +132,7 @@ public class SanPhamAdapterNguoiDung extends RecyclerView.Adapter<SanPhamAdapter
                                 }
                             });
                         }
+                        xuLyThem.cancel();
                     }
                 });
 

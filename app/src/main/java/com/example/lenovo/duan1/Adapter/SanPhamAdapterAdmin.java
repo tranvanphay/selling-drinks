@@ -1,6 +1,7 @@
 package com.example.lenovo.duan1.Adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +39,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import dmax.dialog.SpotsDialog;
+
 public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmin.ViewHolder> {
     ArrayList<SanPham> dssp;
     Context context;
@@ -74,6 +77,9 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
                             public boolean onMenuItemClick(MenuItem item) {
                                 switch (item.getItemId()) {
                                     case R.id.xoaSanPham:
+                                        AlertDialog xuLyXoa = new SpotsDialog.Builder().setContext(context).build();
+                                        xuLyXoa.setMessage("Đang sửa");
+                                        xuLyXoa.show();
                                         final SanPham sanPham=dssp.get(position);
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         StorageReference storageReference=FirebaseStorage.getInstance().getReferenceFromUrl(sanPham.hinhSanPham);
@@ -89,7 +95,7 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
                                                 });
                                             }
                                         });
-
+                                        xuLyXoa.cancel();
                                         break;
                                     case R.id.suaSanPham:
                                         final Dialog dialogSuaSanPham = new Dialog(context);
@@ -142,6 +148,9 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
                                         bt_suaSanPham.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
+                                                AlertDialog xuLySua = new SpotsDialog.Builder().setContext(context).build();
+                                                xuLySua.setMessage("Đang sửa");
+                                                xuLySua.show();
                                                 String maSanPham=edt_suaMaSanPham.getText().toString();
                                                 String tenSanPham=edt_suaTenSanPham.getText().toString();
                                                 int giaSanPham= Integer.parseInt(edt_suaGiaSanPham.getText().toString());
@@ -161,7 +170,7 @@ public class SanPhamAdapterAdmin extends RecyclerView.Adapter<SanPhamAdapterAdmi
                                                         Toast.makeText(context, "Sửa thành công!!!", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
-
+                                                xuLySua.cancel();
                                             }
                                         });
                                         ivCloseDialogThemSanPham.setOnClickListener(new View.OnClickListener() {

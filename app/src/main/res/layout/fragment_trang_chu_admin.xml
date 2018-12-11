@@ -143,6 +143,7 @@
                     android:src="@drawable/thongke_icon" />
 
                 <TextView
+                    android:id="@+id/tv_thongKe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -173,6 +174,7 @@
                     android:src="@drawable/hoadon_icon" />
 
                 <TextView
+                    android:id="@+id/tv_hoaDon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

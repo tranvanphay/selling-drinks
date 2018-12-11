@@ -1,6 +1,7 @@
 package com.example.lenovo.duan1.NguoiDungFragment;
 
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -45,6 +46,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import dmax.dialog.SpotsDialog;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -77,7 +80,7 @@ public class GioHangNguoiDungFragment extends Fragment {
             }
         });
         loadGioHang();
-        viewGioHang();
+//        viewGioHang();
         return v;
     }
     private void loadGioHang(){
@@ -99,24 +102,12 @@ public class GioHangNguoiDungFragment extends Fragment {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
-//                    key=dataSnapshot.getKey();
-//                   GioHang gioHang=dataSnapshot.getValue(GioHang.class);
-////                   int index=keyGioHang.indexOf(key);
-////                   dsgh.set(index,gioHang);
-////                   gioHangAdapter.notifyDataSetChanged();
-//                   for(int i=0;i<dsgh.size();i++){
-//                       if(dsgh.get(i).getKeyGioHang().equals(key)){
-//                           dsgh.set(i,gioHang);
-//                           break;
-//                       }
-//                   }
-//                gioHangAdapter.notifyDataSetChanged();
+
 
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
 
                 key = dataSnapshot.getKey();
                     for (int i = 0; i < dsgh.size(); i++) {
@@ -159,6 +150,9 @@ public class GioHangNguoiDungFragment extends Fragment {
         bt_xacNhanDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog xuLyDatHang = new SpotsDialog.Builder().setContext(getActivity()).build();
+                xuLyDatHang.setMessage("Đang đặt hàng");
+                xuLyDatHang.show();
                 String tenDatHang=et_Ten.getText().toString();
                 String sdt=et_sdt.getText().toString();
                 String diaChi=et_diachi.getText().toString();
@@ -207,19 +201,12 @@ public class GioHangNguoiDungFragment extends Fragment {
                 });
 
             }
+                xuLyDatHang.cancel();
             }
         });
         dialog.show();
     }
 
-    public void viewGioHang(){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        recyclerViewSanPhamGioHang.setLayoutManager(layoutManager);
-        recyclerViewSanPhamGioHang.setHasFixedSize(true);
-        GioHangAdapter gioHangAdapter = new GioHangAdapter(dsgh,getContext());
-        recyclerViewSanPhamGioHang.setAdapter(gioHangAdapter);
-
-    }
     private void xoaGioHang(){
         Query query1=FirebaseDatabase.getInstance().getReference("GioHang").orderByChild("user").equalTo(user);
         query1.addListenerForSingleValueEvent(new ValueEventListener() {

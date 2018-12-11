@@ -7,8 +7,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.example.lenovo.duan1.AdminFragment.ThongKeFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.GioHangNguoiDungFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.ThanhToanNguoiDungFragment;
 import com.example.lenovo.duan1.NguoiDungFragment.ThongTinNguoiDungFragment;
@@ -17,13 +19,13 @@ import com.example.lenovo.duan1.NguoiDungFragment.TrangChuNguoiDungFragment;
 public class NguoiDungActivity extends AppCompatActivity {
     private long thoiGian;
     private Toast thoat;
-
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nguoi_dung);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
+        bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         loadFragment(new TrangChuNguoiDungFragment());

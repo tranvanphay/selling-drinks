@@ -1,5 +1,6 @@
 package com.example.lenovo.duan1;
 
+import android.content.Intent;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -101,4 +102,9 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

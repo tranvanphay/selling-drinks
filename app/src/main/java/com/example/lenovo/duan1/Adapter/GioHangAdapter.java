@@ -70,7 +70,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 tvTongTienSanPhamCapNhatGioHang.setText(String.valueOf(dsgh.get(position).giaTien));
                 et_soLuongNhapLai.setText(String.valueOf(dsgh.get(position).soLuong));
 
-/*c*/
                 ImageView iv_congsl=dialog.findViewById(R.id.iv_suaslcong);
                 ImageView iv_trusl=dialog.findViewById(R.id.iv_suasltru);
 
@@ -106,12 +105,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
                             holder.tvSoLuongSanPhamGioHang.setText(String.valueOf(soLuong));
 
-
                             int giaTien=(dsgh.get(position).giaTien/soLuongCu)*soLuong;
+                            holder.tvGiaTienSanPhamGioHang.setText(String.valueOf(giaTien));
                             String user=mAuhtor.getCurrentUser().getEmail();
                             String linkHinh=dsgh.get(position).hinhSanPham;
                             String key=dsgh.get(position).getKeyGioHang();
-                            try{
                                 GioHang gioHang=new GioHang(tenSanPham,soLuong,giaTien,user,linkHinh);
                                 mData.child("GioHang").child(key).setValue(gioHang).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -120,7 +118,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                                     }
                                 });
 
-                            }catch (NullPointerException ex){}
                             dialog.dismiss();
                         }
                     });
