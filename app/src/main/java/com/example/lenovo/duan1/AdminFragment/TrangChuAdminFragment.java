@@ -120,6 +120,8 @@ public class TrangChuAdminFragment extends Fragment{
         SimpleDateFormat df = new SimpleDateFormat("EEE, MMM d, yyyy, hh:mm");
         String formattedDate = df.format(c);
         tvCurrentDate.setText(formattedDate);
+
+
         iv_Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

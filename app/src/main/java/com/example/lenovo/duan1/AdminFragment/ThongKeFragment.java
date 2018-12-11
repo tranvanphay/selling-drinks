@@ -34,7 +34,7 @@ public class ThongKeFragment extends Fragment {
     ArrayList<HoaDonDaGiao> dshdDaGiaoTheoNgay=new ArrayList<HoaDonDaGiao>();
     ArrayList<HoaDonDaGiao> dshdDaGiaoTheoThang=new ArrayList<HoaDonDaGiao>();
     ArrayList<HoaDonDaGiao> dshdDaGiaoTheoNam=new ArrayList<HoaDonDaGiao>();
-    TextView tv_doanhThuTheoNgay,tv_doanhThuTheoThang,tv_doanhThuTheoNam;
+    TextView tv_doanhThuTheoNgay,tv_doanhThuTheoThang,tv_doanhThuTheoNam,tv_currentDayThongKe;
     public ThongKeFragment() {
         // Required empty public constructor
     }
@@ -48,6 +48,15 @@ public class ThongKeFragment extends Fragment {
         tv_doanhThuTheoNgay=view.findViewById(R.id.tv_doanhThuTheoNgay);
         tv_doanhThuTheoThang=view.findViewById(R.id.tv_doanhThuTheoThang);
         tv_doanhThuTheoNam=view.findViewById(R.id.tv_doanhThuTheoNam);
+        tv_currentDayThongKe = view.findViewById(R.id.tv_currentDayThongKe);
+
+        Date c = Calendar.getInstance().getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("EEE, MMM d, yyyy");
+        String formattedDate = df.format(c);
+        tv_currentDayThongKe.setText(formattedDate);
+
+
         doanhThuTheoNgay();
         doanhThuTheoThang();
         doanhThuTheoNam();
