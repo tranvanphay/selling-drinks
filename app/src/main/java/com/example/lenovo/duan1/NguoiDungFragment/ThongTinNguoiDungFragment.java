@@ -41,6 +41,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class ThongTinNguoiDungFragment extends Fragment {
     Button bt_doiMatKhau, bt_dangXuat, btn_doipw;
     EditText doipw;
+    TextView tv_IDThongTinNguoiDung;
 
 
     FirebaseAuth mAuthor = FirebaseAuth.getInstance();
@@ -59,7 +60,8 @@ public class ThongTinNguoiDungFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_thong_tin_nguoi_dung, container, false);
         Button bt_dangXuat = view.findViewById(R.id.bt_dangXuatNguoiDung);
 
-
+        tv_IDThongTinNguoiDung=view.findViewById(R.id.tv_IDThongTinNguoiDung);
+        tv_IDThongTinNguoiDung.setText(auth.getCurrentUser().getEmail());
 
 //Đăng xuất
         bt_dangXuat.setOnClickListener(new View.OnClickListener() {

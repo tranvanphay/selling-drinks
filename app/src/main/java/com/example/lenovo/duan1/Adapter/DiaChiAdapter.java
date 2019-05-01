@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.duan1.ItemClickListener;
 import com.example.lenovo.duan1.Model.Map;
@@ -35,9 +36,15 @@ public class DiaChiAdapter extends RecyclerView.Adapter<DiaChiAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(DiaChiAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(DiaChiAdapter.ViewHolder holder, final int position) {
         holder.tv_diaChi.setText(dsMap.get(position).diaChi);
         Picasso.get().load(dsMap.get(position).linkHinh).into(holder.iv_hinhDiaChi);
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int posittion) {
+                Toast.makeText(context, "Địa chỉ "+dsMap.get(position).diaChi , Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 

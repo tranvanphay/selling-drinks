@@ -93,23 +93,23 @@
 
 
             <EditText
-                android:id="@+id/edt_kinhDo"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/et_loai"
-                android:fontFamily="@font/robotocondensedregular"
-                android:hint="Nhập mã loại"
-                android:padding="10dp" />
-
-            <EditText
                 android:id="@+id/edt_viDo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/et_loai"
                 android:fontFamily="@font/robotocondensedregular"
-                android:hint="Nhập tên loại"
+                android:hint="Nhập vĩ độ"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/edt_kinhDo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/et_loai"
+                android:fontFamily="@font/robotocondensedregular"
+                android:hint="Nhập kinh độ"
                 android:padding="10dp" />
 
 
